@@ -1,0 +1,5 @@
+# For Rails projects
+inherit_gem:
+  rubocop-fjord:
+    - "config/rubocop.yml"
+    - "config/rails.yml"
