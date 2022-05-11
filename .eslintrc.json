@@ -1,19 +1,28 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
     "extends": [
-        "plugin:vue/essential",
+        "plugin:vue/recommended",
+        "eslint:recommended",
         "standard"
     ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+    "env": {
+        "jquery": true,
+        "node": true
     },
-    "plugins": [
-        "vue"
-    ],
+    "globals": {
+        "window": true,
+        "fetch": true,
+        "FileReader": true,
+        "Event": true,
+        "FormData": true
+    },
+    "root": true,
+    "parserOptions": {
+        "ecmaVersion": 2020
+    },
     "rules": {
+        "no-unused-vars": ["error", {
+            "args": "all",
+            "argsIgnorePattern": "^_"
+        }]
     }
 }
