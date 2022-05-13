@@ -2,7 +2,7 @@
     "extends": [
         "plugin:vue/recommended",
         "eslint:recommended",
-        "standard"
+        "plugin:prettier/recommended"
     ],
     "env": {
         "jquery": true,
