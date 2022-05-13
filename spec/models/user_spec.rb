@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is invalid without a name" do
+    user = User.new(name: nil)
+    user.valid?
+    expect(user.errors[:name]).to include("can't be blank")
+  end
 end
