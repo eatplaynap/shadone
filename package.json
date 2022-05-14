@@ -16,6 +16,17 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^8.7.1",
+    "prettier": "^2.6.2",
     "webpack-dev-server": "^3"
+  },
+  "scripts": {
+    "lint": "eslint 'app/javascript/**/*.{js,vue}' --max-warnings=0"
   }
 }
