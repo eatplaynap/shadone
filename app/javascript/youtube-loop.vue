@@ -1,23 +1,34 @@
 <template>
   <div id="app">
-    <youtube :video-id="videoId" ref="youtube" :playerVars="playerVars" @playing="playingVideo"></youtube>
+    <youtube
+      ref="youtube"
+      :video-id="videoId"
+      :player-vars="playerVars"
+      @playing="playingVideo"
+    ></youtube>
     <div>
       <label>URL:</label>
-      <input v-model="newURL" v-on:keyup.enter="changeVideo">
+      <input v-model="newURL" @keyup.enter="changeVideo" />
     </div>
     <div>
       <label>Start from:</label>
-      <input v-model.number="startMinute" type="number">:<input v-model.number="startSecond" type="number">
-      <br>
+      <input v-model.number="startMinute" type="number" />:<input
+        v-model.number="startSecond"
+        type="number"
+      />
+      <br />
       <label>End at:</label>
-      <input v-model.number="endMinute" type="number">:<input v-model.number="endSecond" type="number">
+      <input v-model.number="endMinute" type="number" />:<input
+        v-model.number="endSecond"
+        type="number"
+      />
     </div>
     <div>
       <label>Loop Count:</label>
-      <input v-model="loopCount">
+      <input v-model="loopCount" />
     </div>
-    <button @click="pauseVideo" v-if="playing">pause</button>
-    <button @click="startLoop" v-else>loop start</button>
+    <button v-if="playing" @click="pauseVideo">pause</button>
+    <button v-else @click="startLoop">loop start</button>
   </div>
 </template>
 
@@ -32,8 +43,8 @@ export default {
   data() {
     return {
       videoId: 'lG0Ys-2d4MA',
-      playerVars:{
-        rel: 0
+      playerVars: {
+        rel: 0,
       },
       newURL: undefined,
       playing: false,
@@ -43,8 +54,13 @@ export default {
       endMinute: 0,
       endSecond: 0,
       endTime: 0,
-      loopCount: 1
+      loopCount: 1,
     }
+  },
+  computed: {
+    player() {
+      return this.$refs.youtube.player
+    },
   },
   methods: {
     playVideo() {
@@ -62,16 +78,18 @@ export default {
       this.startTime = this.startMinute * 60 + this.startSecond
       this.endTime = this.endMinute * 60 + this.endSecond
     },
-    async setLoop(){
+    async setLoop() {
       for (let n = this.loopCount; n > 0; n--) {
         this.player.seekTo(this.startTime)
         this.playVideo()
-        await this.promiseBasedSetTimeout(() => { this.pauseVideo() }, (this.endTime - this.startTime + 1) * 1000 )
+        await this.promiseBasedSetTimeout(() => {
+          this.pauseVideo()
+        }, (this.endTime - this.startTime + 1) * 1000)
       }
       this.pauseVideo()
     },
-    promiseBasedSetTimeout(resolve, interval) {
-      return new Promise((resolve) => setTimeout(resolve, interval))
+    promiseBasedSetTimeout(_, interval) {
+      return new Promise((_) => setTimeout(_, interval))
     },
     changeVideo() {
       this.videoId = getYouTubeID(this.newURL)
@@ -80,12 +98,7 @@ export default {
     startLoop() {
       this.calSeconds()
       this.setLoop()
-    }
+    },
   },
-  computed: {
-    player() {
-      return this.$refs.youtube.player
-    }
-  }
 }
 </script>
