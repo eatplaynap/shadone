@@ -1,31 +1,31 @@
 <template>
   <div id="app">
     <youtube
-        ref="youtube"
-        :video-id="videoId"
-        :player-vars="playerVars"
-        @playing="playingVideo"
+      ref="youtube"
+      :video-id="videoId"
+      :player-vars="playerVars"
+      @playing="playingVideo"
     ></youtube>
     <div>
       <label>URL:</label>
-      <input v-model="newURL" @keyup.enter="changeVideo"/>
+      <input v-model="newURL" @keyup.enter="changeVideo" />
     </div>
     <div>
       <label>Start from:</label>
-      <input v-model.number="startMinute" type="number"/>:<input
+      <input v-model.number="startMinute" type="number" />:<input
         v-model.number="startSecond"
         type="number"
-    />
-      <br/>
+      />
+      <br />
       <label>End at:</label>
-      <input v-model.number="endMinute" type="number"/>:<input
+      <input v-model.number="endMinute" type="number" />:<input
         v-model.number="endSecond"
         type="number"
-    />
+      />
     </div>
     <div>
       <label>Loop Count:</label>
-      <input v-model="loopCount"/>
+      <input v-model="loopCount" />
     </div>
     <button v-if="playing" @click="pauseVideo">pause</button>
     <button v-else @click="startLoop">loop start</button>
@@ -105,19 +105,19 @@ export default {
       this.createPracticeLog()
     },
     createPracticeLog() {
-      const params = { user_id: 1, practice_id: 1, url: 'dummyUrl', minutes: 1}
-      fetch('/api/practices',{
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json; charset=utf-8',
-              'X-Requested-With': 'XMLHttpRequest',
-              'X-CSRF-Token': this.token()
-            },
-            credentials: 'same-origin',
-            redirect: 'manual',
-            body: JSON.stringify(params)
-          })
-    }
+      const params = { user_id: 1, practice_id: 1, url: 'dummyUrl', minutes: 1 }
+      fetch('/api/practices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-Token': this.token(),
+        },
+        credentials: 'same-origin',
+        redirect: 'manual',
+        body: JSON.stringify(params),
+      })
+    },
   },
 }
 </script>
