@@ -55,6 +55,7 @@ export default {
       endSecond: 0,
       endTime: 0,
       loopCount: 1,
+      loopMinutes: 0
     }
   },
   computed: {
@@ -86,11 +87,16 @@ export default {
       for (let n = this.loopCount; n > 0; n--) {
         this.player.seekTo(this.startTime)
         this.playVideo()
+        const intervalID = setInterval(() => {
+          this.loopMinutes += 1
+        }, 1000)
         await this.promiseBasedSetTimeout(() => {
           this.pauseVideo()
         }, (this.endTime - this.startTime + 1) * 1000)
+        clearInterval(intervalID)
       }
       this.pauseVideo()
+      this.loopMinutes = this.loopMinutes - 10
     },
     promiseBasedSetTimeout(_, interval) {
       return new Promise((_) => setTimeout(_, interval))
@@ -99,13 +105,13 @@ export default {
       this.videoId = getYouTubeID(this.newURL)
       return this.videoId
     },
-    startLoop() {
+    async startLoop() {
       this.calSeconds()
-      this.setLoop()
+      await this.setLoop()
       this.createPracticeLog()
     },
     createPracticeLog() {
-      const params = { user_id: 1, practice_id: 1, url: 'dummyUrl', minutes: 1 }
+      const params = { user_id: 1, practice_id: 1, url: 'dummyUrl', minutes: this.loopMinutes }
       fetch('/api/practices', {
         method: 'POST',
         headers: {
