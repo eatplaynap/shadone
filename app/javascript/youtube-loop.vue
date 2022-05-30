@@ -55,7 +55,7 @@ export default {
       endSecond: 0,
       endTime: 0,
       loopCount: 1,
-      loopMinutes: 0
+      loopMinutes: 0,
     }
   },
   computed: {
@@ -111,7 +111,12 @@ export default {
       this.createPracticeLog()
     },
     createPracticeLog() {
-      const params = { user_id: 1, practice_id: 1, url: 'dummyUrl', minutes: this.loopMinutes }
+      const params = {
+        user_id: 1,
+        practice_id: 1,
+        url: 'dummyUrl',
+        minutes: this.loopMinutes,
+      }
       fetch('/api/practices', {
         method: 'POST',
         headers: {
