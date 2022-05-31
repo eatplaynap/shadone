@@ -55,7 +55,7 @@ export default {
       endSecond: 0,
       endTime: 0,
       loopCount: 1,
-      loopMinutes: 0,
+      loopSeconds: 0,
     }
   },
   computed: {
@@ -88,7 +88,7 @@ export default {
         this.player.seekTo(this.startTime)
         this.playVideo()
         const intervalID = setInterval(() => {
-          this.loopMinutes += 1
+          this.loopSeconds += 1
         }, 1000)
         await this.promiseBasedSetTimeout(() => {
           this.pauseVideo()
@@ -96,7 +96,6 @@ export default {
         clearInterval(intervalID)
       }
       this.pauseVideo()
-      this.loopMinutes = this.loopMinutes - 10
     },
     promiseBasedSetTimeout(_, interval) {
       return new Promise((_) => setTimeout(_, interval))
@@ -114,7 +113,7 @@ export default {
       const params = {
         user_id: 1,
         url: this.newURL,
-        minutes: this.loopMinutes,
+        minutes: this.loopSeconds,
       }
       fetch('/api/practices', {
         method: 'POST',
