@@ -113,7 +113,6 @@ export default {
     createPracticeLog() {
       const params = {
         user_id: 1,
-        practice_id: 1,
         url: this.newURL,
         minutes: this.loopMinutes,
       }

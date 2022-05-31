@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_09_113608) do
+ActiveRecord::Schema.define(version: 2022_05_31_071035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "practices", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "practice_id", null: false
     t.string "url", null: false
     t.integer "minutes", null: false
     t.text "memo"
