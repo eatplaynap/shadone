@@ -46,7 +46,7 @@ export default {
       playerVars: {
         rel: 0,
       },
-      newURL: undefined,
+      newURL: 'https://www.youtube.com/watch?v=lG0Ys-2d4MA',
       playing: false,
       startMinute: 0,
       startSecond: 0,
@@ -77,7 +77,7 @@ export default {
       this.playing = false
     },
     playingVideo() {
-      console.log('we are watching!!!')
+      console.log(this.newURL)
     },
     calSeconds() {
       this.startTime = this.startMinute * 60 + this.startSecond
@@ -114,7 +114,7 @@ export default {
       const params = {
         user_id: 1,
         practice_id: 1,
-        url: 'dummyUrl',
+        url: this.newURL,
         minutes: this.loopMinutes,
       }
       fetch('/api/practices', {
