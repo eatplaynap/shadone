@@ -29,6 +29,7 @@
     </div>
     <button v-if="playing" @click="pauseVideo">pause</button>
     <button v-else @click="startLoop">loop start</button>
+    <p>{{ remainingLoopCount }}</p>
   </div>
 </template>
 
@@ -56,6 +57,7 @@ export default {
       endTime: 0,
       loopCount: 1,
       loopSeconds: 0,
+      remainingLoopCount: null,
     }
   },
   computed: {
@@ -84,7 +86,8 @@ export default {
       this.endTime = this.endMinute * 60 + this.endSecond
     },
     async setLoop() {
-      for (let n = this.loopCount; n > 0; n--) {
+      for (this.remainingLoopCount = this.loopCount; this.remainingLoopCount > 0; this.remainingLoopCount--) {
+        console.log(this.remainingLoopCount)
         this.player.seekTo(this.startTime)
         this.playVideo()
         const intervalID = setInterval(() => {
@@ -105,9 +108,13 @@ export default {
       return this.videoId
     },
     async startLoop() {
+      this.loopCountDown()
       this.calSeconds()
       await this.setLoop()
       this.createPracticeLog()
+    },
+    loopCountDown() {
+      console.log(this.loopCount)
     },
     createPracticeLog() {
       const params = {
