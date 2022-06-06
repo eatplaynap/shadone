@@ -87,16 +87,11 @@ export default {
     },
     async setLoop() {
       for (this.remainingLoopCount = this.loopCount; this.remainingLoopCount > 0; this.remainingLoopCount--) {
-        console.log(this.remainingLoopCount)
         this.player.seekTo(this.startTime)
         this.playVideo()
-        const intervalID = setInterval(() => {
-          this.loopSeconds += 1
-        }, 1000)
         await this.promiseBasedSetTimeout(() => {
           this.pauseVideo()
         }, (this.endTime - this.startTime + 1) * 1000)
-        clearInterval(intervalID)
       }
       this.pauseVideo()
     },
@@ -108,19 +103,19 @@ export default {
       return this.videoId
     },
     async startLoop() {
-      this.loopCountDown()
       this.calSeconds()
       await this.setLoop()
       this.createPracticeLog()
     },
-    loopCountDown() {
-      console.log(this.loopCount)
+    calPracticeDuration() {
+     this.loopSeconds = (this.endTime - this.startTime) * this.loopCount
     },
     createPracticeLog() {
+      this.calPracticeDuration()
       const params = {
         user_id: 1,
         url: this.newURL,
-        minutes: this.loopSeconds,
+        duration: this.loopSeconds,
       }
       fetch('/api/practices', {
         method: 'POST',

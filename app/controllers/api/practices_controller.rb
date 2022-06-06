@@ -16,6 +16,6 @@ class Api::PracticesController < ApplicationController
   private
 
   def practice_params
-    params.require(:practice).permit(:user_id, :practice_id, :url, :minutes)
+    params.require(:practice).permit(:user_id, :practice_id, :url, :duration)
   end
 end
