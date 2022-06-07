@@ -27,6 +27,14 @@
       <label>Loop Count:</label>
       <input v-model="loopCount" />
     </div>
+    <div>
+      <label>Playback Speed:</label>
+      <select v-model="playbackSpeed">
+        <option v-for="item in selectItems" :value="item.speed" :key="item.id">
+          {{ item.speed }}
+        </option>
+      </select>
+    </div>
     <button v-if="playing" @click="pauseVideo">pause</button>
     <button v-else @click="startLoop">loop start</button>
     <p>{{ remainingLoopCount }}</p>
@@ -58,6 +66,17 @@ export default {
       loopCount: 1,
       loopSeconds: 0,
       remainingLoopCount: null,
+      playbackSpeed: null,
+      selectItems: [
+        { id: 1, speed: 0.25 },
+        { id: 2, speed: 0.5 },
+        { id: 3, speed: 0.75 },
+        { id: 4, speed: 1 },
+        { id: 5, speed: 1.25 },
+        { id: 6, speed: 1.5 },
+        { id: 7, speed: 1.75 },
+        { id: 8, speed: 2 },
+      ]
     }
   },
   computed: {
@@ -81,9 +100,16 @@ export default {
     playingVideo() {
       console.log(this.newURL)
     },
-    calSeconds() {
+    getPlaybackRate() {
+      this.player.getPlaybackRate().then(value => this.playbackSpeed = value)
+    },
+    setPlaybackRate() {
+      this.player.setPlaybackRate(this.playbackSpeed)
+    },
+    async getLoopDataFromForm() {
       this.startTime = this.startMinute * 60 + this.startSecond
       this.endTime = this.endMinute * 60 + this.endSecond
+      await this.getPlaybackRate()
     },
     async setLoop() {
       for (this.remainingLoopCount = this.loopCount; this.remainingLoopCount > 0; this.remainingLoopCount--) {
@@ -103,12 +129,13 @@ export default {
       return this.videoId
     },
     async startLoop() {
-      this.calSeconds()
+      this.setPlaybackRate()
+      await this.getLoopDataFromForm()
       await this.setLoop()
       this.createPracticeLog()
     },
     calPracticeDuration() {
-     this.loopSeconds = (this.endTime - this.startTime) * this.loopCount
+      this.loopSeconds = (this.endTime - this.startTime) * this.loopCount / this.playbackSpeed
     },
     createPracticeLog() {
       this.calPracticeDuration()
