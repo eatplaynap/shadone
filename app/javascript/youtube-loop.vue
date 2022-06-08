@@ -30,7 +30,7 @@
     <div>
       <label>Playback Speed:</label>
       <select v-model="playbackSpeed">
-        <option v-for="item in selectItems" :value="item.speed" :key="item.id">
+        <option v-for="item in selectItems" :key="item.id" :value="item.speed">
           {{ item.speed }}
         </option>
       </select>
@@ -76,7 +76,7 @@ export default {
         { id: 6, speed: 1.5 },
         { id: 7, speed: 1.75 },
         { id: 8, speed: 2 },
-      ]
+      ],
     }
   },
   computed: {
@@ -101,7 +101,9 @@ export default {
       console.log(this.newURL)
     },
     getPlaybackRate() {
-      this.player.getPlaybackRate().then(value => this.playbackSpeed = value)
+      this.player
+        .getPlaybackRate()
+        .then((value) => (this.playbackSpeed = value))
     },
     setPlaybackRate() {
       this.player.setPlaybackRate(this.playbackSpeed)
@@ -112,7 +114,11 @@ export default {
       await this.getPlaybackRate()
     },
     async setLoop() {
-      for (this.remainingLoopCount = this.loopCount; this.remainingLoopCount > 0; this.remainingLoopCount--) {
+      for (
+        this.remainingLoopCount = this.loopCount;
+        this.remainingLoopCount > 0;
+        this.remainingLoopCount--
+      ) {
         this.player.seekTo(this.startTime)
         this.playVideo()
         await this.promiseBasedSetTimeout(() => {
@@ -135,7 +141,8 @@ export default {
       this.createPracticeLog()
     },
     calPracticeDuration() {
-      this.loopSeconds = (this.endTime - this.startTime) * this.loopCount / this.playbackSpeed
+      this.loopSeconds =
+        ((this.endTime - this.startTime) * this.loopCount) / this.playbackSpeed
     },
     createPracticeLog() {
       this.calPracticeDuration()
