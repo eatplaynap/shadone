@@ -27,8 +27,17 @@
       <label>Loop Count:</label>
       <input v-model="loopCount" />
     </div>
+    <div>
+      <label>Playback Speed:</label>
+      <select v-model="playbackSpeed">
+        <option v-for="item in selectItems" :key="item.id" :value="item.speed">
+          {{ item.speed }}
+        </option>
+      </select>
+    </div>
     <button v-if="playing" @click="pauseVideo">pause</button>
     <button v-else @click="startLoop">loop start</button>
+    <p>{{ remainingLoopCount }}</p>
   </div>
 </template>
 
@@ -46,7 +55,7 @@ export default {
       playerVars: {
         rel: 0,
       },
-      newURL: undefined,
+      newURL: 'https://www.youtube.com/watch?v=lG0Ys-2d4MA',
       playing: false,
       startMinute: 0,
       startSecond: 0,
@@ -55,6 +64,19 @@ export default {
       endSecond: 0,
       endTime: 0,
       loopCount: 1,
+      loopSeconds: 0,
+      remainingLoopCount: null,
+      playbackSpeed: 1,
+      selectItems: [
+        { id: 1, speed: 0.25 },
+        { id: 2, speed: 0.5 },
+        { id: 3, speed: 0.75 },
+        { id: 4, speed: 1 },
+        { id: 5, speed: 1.25 },
+        { id: 6, speed: 1.5 },
+        { id: 7, speed: 1.75 },
+        { id: 8, speed: 2 },
+      ],
     }
   },
   computed: {
@@ -76,19 +98,26 @@ export default {
       this.playing = false
     },
     playingVideo() {
-      console.log('we are watching!!!')
+      console.log(this.newURL)
     },
-    calSeconds() {
+    setPlaybackRate() {
+      this.player.setPlaybackRate(this.playbackSpeed)
+    },
+    getLoopDataFromForm() {
       this.startTime = this.startMinute * 60 + this.startSecond
       this.endTime = this.endMinute * 60 + this.endSecond
     },
     async setLoop() {
-      for (let n = this.loopCount; n > 0; n--) {
+      for (
+        this.remainingLoopCount = this.loopCount;
+        this.remainingLoopCount > 0;
+        this.remainingLoopCount--
+      ) {
         this.player.seekTo(this.startTime)
         this.playVideo()
         await this.promiseBasedSetTimeout(() => {
           this.pauseVideo()
-        }, (this.endTime - this.startTime + 1) * 1000)
+        }, ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000)
       }
       this.pauseVideo()
     },
@@ -99,13 +128,23 @@ export default {
       this.videoId = getYouTubeID(this.newURL)
       return this.videoId
     },
-    startLoop() {
-      this.calSeconds()
-      this.setLoop()
+    async startLoop() {
+      this.setPlaybackRate()
+      this.getLoopDataFromForm()
+      await this.setLoop()
       this.createPracticeLog()
     },
+    calPracticeDuration() {
+      this.loopSeconds =
+        ((this.endTime - this.startTime) * this.loopCount) / this.playbackSpeed
+    },
     createPracticeLog() {
-      const params = { user_id: 1, practice_id: 1, url: 'dummyUrl', minutes: 1 }
+      this.calPracticeDuration()
+      const params = {
+        user_id: 1,
+        url: this.newURL,
+        duration: this.loopSeconds,
+      }
       fetch('/api/practices', {
         method: 'POST',
         headers: {
