@@ -66,7 +66,7 @@ export default {
       loopCount: 1,
       loopSeconds: 0,
       remainingLoopCount: null,
-      playbackSpeed: null,
+      playbackSpeed: 1,
       selectItems: [
         { id: 1, speed: 0.25 },
         { id: 2, speed: 0.5 },
@@ -100,18 +100,12 @@ export default {
     playingVideo() {
       console.log(this.newURL)
     },
-    getPlaybackRate() {
-      this.player
-        .getPlaybackRate()
-        .then((value) => (this.playbackSpeed = value))
-    },
     setPlaybackRate() {
       this.player.setPlaybackRate(this.playbackSpeed)
     },
-    async getLoopDataFromForm() {
+    getLoopDataFromForm() {
       this.startTime = this.startMinute * 60 + this.startSecond
       this.endTime = this.endMinute * 60 + this.endSecond
-      await this.getPlaybackRate()
     },
     async setLoop() {
       for (
@@ -123,7 +117,7 @@ export default {
         this.playVideo()
         await this.promiseBasedSetTimeout(() => {
           this.pauseVideo()
-        }, (this.endTime - this.startTime + 1) * 1000)
+        }, ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000)
       }
       this.pauseVideo()
     },
@@ -136,7 +130,7 @@ export default {
     },
     async startLoop() {
       this.setPlaybackRate()
-      await this.getLoopDataFromForm()
+      this.getLoopDataFromForm()
       await this.setLoop()
       this.createPracticeLog()
     },
