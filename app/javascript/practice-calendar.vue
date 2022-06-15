@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         <tr v-for="week in monthlyCalendar" :key="week.id">
-          <td v-for="date in week.value" :key="date.key">{{ date.date }}</td>
+          <td v-for="date in week.value" :key="date.key" :class='[practiceMarkClass(date), todayClass(date)]'>{{ date.date }}</td>
         </tr>
       </tbody>
     </table>
@@ -34,14 +34,53 @@ export default {
       calendarMonth: this.getCurrentMonth(),
       firstWday: this.getFirstWday(),
       lastDate: this.getLastDate(),
+      today: this.getCurrentDay(),
       monthlyCalendar: [],
+      practices:[]
     }
   },
   mounted() {
     this.getMonthlyCalendar()
+    fetch(`/api/practice_calendars/1.json`, {
+      method: 'GET',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': this.token()
+      },
+      credentials: 'same-origin'
+    })
+        .then((response) => {
+          return response.json()
+        })
+        .then((json) => {
+          json.forEach((r) => {
+            this.practices.push(r)
+          })
+        })
+        .catch((error) => {
+          console.warn(error)
+        })
   },
 
   methods: {
+    token() {
+      const meta = document.querySelector('meta[name="csrf-token"]')
+      return meta ? meta.getAttribute('content') : ''
+    },
+    practiceMarkClass(date) {
+      return date.practice ? 'practice-done' : 'practice-none'
+    },
+    todayClass(date) {
+      if (
+          this.calendarYear !== this.currentYear ||
+          this.calendarMonth !== this.currentMonth
+      )
+        return
+      if (date.date === this.today) return 'is-today'
+    },
+    getCurrentDay() {
+      return new Date().getDate()
+    },
     getCurrentYear() {
       return new Date().getFullYear()
     },
@@ -106,3 +145,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.is-today {
+  color: red;
+}
+</style>
