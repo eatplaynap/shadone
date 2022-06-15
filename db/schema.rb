@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_06_06_063654) do
     t.string "url", null: false
     t.integer "duration", null: false
     t.text "memo"
-    t.date "practice_on"
+    t.date "practice_on", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "practice_on"], name: "index_practices_on_user_id_and_practice_on", unique: true
