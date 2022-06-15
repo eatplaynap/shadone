@@ -17,7 +17,13 @@
       </thead>
       <tbody>
         <tr v-for="week in monthlyCalendar" :key="week.id">
-          <td v-for="date in week.value" :key="date.key" :class='[practiceMarkClass(date), todayClass(date)]'>{{ date.date }}</td>
+          <td
+            v-for="date in week.value"
+            :key="date.key"
+            :class="[practiceMarkClass(date), todayClass(date)]"
+          >
+            {{ date.date }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -36,7 +42,7 @@ export default {
       lastDate: this.getLastDate(),
       today: this.getCurrentDay(),
       monthlyCalendar: [],
-      practices:[]
+      practices: [],
     }
   },
   mounted() {
@@ -45,21 +51,21 @@ export default {
       method: 'GET',
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRF-Token': this.token()
+        'X-CSRF-Token': this.token(),
       },
-      credentials: 'same-origin'
+      credentials: 'same-origin',
     })
-        .then((response) => {
-          return response.json()
+      .then((response) => {
+        return response.json()
+      })
+      .then((json) => {
+        json.forEach((r) => {
+          this.practices.push(r)
         })
-        .then((json) => {
-          json.forEach((r) => {
-            this.practices.push(r)
-          })
-        })
-        .catch((error) => {
-          console.warn(error)
-        })
+      })
+      .catch((error) => {
+        console.warn(error)
+      })
   },
 
   methods: {
@@ -72,8 +78,8 @@ export default {
     },
     todayClass(date) {
       if (
-          this.calendarYear !== this.currentYear ||
-          this.calendarMonth !== this.currentMonth
+        this.calendarYear !== this.currentYear ||
+        this.calendarMonth !== this.currentMonth
       )
         return
       if (date.date === this.today) return 'is-today'
