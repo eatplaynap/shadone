@@ -1,1 +1,1 @@
-json.array! @practices
+json.array! @practices, :id, :practice_on

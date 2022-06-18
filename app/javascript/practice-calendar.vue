@@ -16,10 +16,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="week in monthlyCalendar" :key="week.id">
+        <tr v-for="week in calendarWeeks" :key="week.id">
           <td
             v-for="date in week.value"
-            :key="date.key"
+            :key="date.weekDay"
             :class="[practiceMarkClass(date), todayClass(date)]"
           >
             {{ date.date }}
@@ -34,19 +34,70 @@
 export default {
   data() {
     return {
+      practices: [],
       currentYear: this.getCurrentYear(),
       currentMonth: this.getCurrentMonth(),
       calendarYear: this.getCurrentYear(),
       calendarMonth: this.getCurrentMonth(),
-      firstWday: this.getFirstWday(),
-      lastDate: this.getLastDate(),
       today: this.getCurrentDay(),
-      monthlyCalendar: [],
-      practices: [],
     }
   },
+  computed: {
+    calendarPractices() {
+      return this.practices.filter((practice) =>
+        practice.practice_on.includes(
+          `${this.calendarYear}-${this.formatMonth(this.calendarMonth)}`
+        )
+      )
+    },
+    firstWday() {
+      const firstDay = new Date(this.calendarYear, this.calendarMonth - 1, 1)
+      return firstDay.getDay()
+    },
+    lastDate() {
+      const lastDay = new Date(this.calendarYear, this.calendarMonth, 0)
+      return lastDay.getDate()
+    },
+    calendarDates() {
+      const calendar = []
+      if (this.firstWday > 0) {
+        for (let blank = 0; blank < this.firstWday; blank++) {
+          calendar.push(null)
+        }
+      }
+      for (let date = 1; date <= this.lastDate; date++) {
+        const result = this.calendarPractices.find(
+          (practice) => this.practiceDate(practice) === date
+        )
+        if (result) {
+          result.date = date
+          calendar.push(result)
+        } else {
+          calendar.push({ date: date })
+        }
+      }
+      return calendar
+    },
+    calendarWeeks() {
+      const weeksAry = []
+      let value = []
+      let id = 1
+      let weekDay = 0
+      this.calendarDates.forEach(function (date, i, ary) {
+        !date ? (date = { weekDay: weekDay }) : (date.weekDay = weekDay)
+        value.push(date)
+        weekDay++
+        if (value.length === 7 || i === ary.length - 1) {
+          weeksAry.push({ id: id, value: value })
+          id++
+          value = []
+          weekDay = 0
+        }
+      })
+      return weeksAry
+    },
+  },
   mounted() {
-    this.getMonthlyCalendar()
     fetch(`/api/practice_calendars/1.json`, {
       method: 'GET',
       headers: {
@@ -73,8 +124,24 @@ export default {
       const meta = document.querySelector('meta[name="csrf-token"]')
       return meta ? meta.getAttribute('content') : ''
     },
+    previousMonth() {
+      if (this.calendarMonth === 1) {
+        this.calendarMonth = 12
+        this.calendarYear--
+      } else {
+        this.calendarMonth--
+      }
+    },
+    nextMonth() {
+      if (this.calendarMonth === 12) {
+        this.calendarMonth = 1
+        this.calendarYear++
+      } else {
+        this.calendarMonth++
+      }
+    },
     practiceMarkClass(date) {
-      return date.practice ? 'practice-done' : 'practice-none'
+      return date.practice_on ? 'practice-done' : 'practice-none'
     },
     todayClass(date) {
       if (
@@ -84,8 +151,11 @@ export default {
         return
       if (date.date === this.today) return 'is-today'
     },
-    getCurrentDay() {
-      return new Date().getDate()
+    newestMonth() {
+      return (
+        this.currentYear === this.calendarYear &&
+        this.currentMonth === this.calendarMonth
+      )
     },
     getCurrentYear() {
       return new Date().getFullYear()
@@ -93,60 +163,14 @@ export default {
     getCurrentMonth() {
       return new Date().getMonth() + 1
     },
-    getFirstWday() {
-      const firstDay = new Date(this.calendarYear, this.calendarMonth - 1, 1)
-      return firstDay.getDay()
+    getCurrentDay() {
+      return new Date().getDate()
     },
-    getLastDate() {
-      const lastDay = new Date(this.calendarYear, this.calendarMonth, 0)
-      return lastDay.getDate()
+    practiceDate(practice) {
+      return Number(practice.practice_on.split('-')[2])
     },
-    getMonthlyCalendar() {
-      let value = []
-      let key = 0
-      let id = 1
-      if (this.getFirstWday() >= 1) {
-        for (let blank = 0; blank < this.getFirstWday(); blank++) {
-          value.push({ key: key })
-          key++
-        }
-      }
-      for (let date = 1; date < this.getLastDate() + 1; date++) {
-        value.push({ key: key, date: date })
-        key++
-        if (value.length % 7 === 0 || date === this.getLastDate()) {
-          this.monthlyCalendar.push({ id: id, value: value })
-          value = []
-          id++
-          key = 0
-        }
-      }
-    },
-    previousMonth() {
-      if (this.calendarMonth === 1) {
-        this.calendarMonth = 12
-        this.calendarYear--
-      } else {
-        this.calendarMonth--
-      }
-      this.monthlyCalendar = []
-      this.getMonthlyCalendar()
-    },
-    nextMonth() {
-      if (this.calendarMonth === 12) {
-        this.calendarMonth = 1
-        this.calendarYear++
-      } else {
-        this.calendarMonth++
-      }
-      this.monthlyCalendar = []
-      this.getMonthlyCalendar()
-    },
-    newestMonth() {
-      return (
-        this.currentYear === this.calendarYear &&
-        this.currentMonth === this.calendarMonth
-      )
+    formatMonth(month) {
+      return month.toString().padStart(2, '0')
     },
   },
 }
@@ -155,5 +179,8 @@ export default {
 <style>
 .is-today {
   color: red;
+}
+.practice-done {
+  background-color: yellow;
 }
 </style>
