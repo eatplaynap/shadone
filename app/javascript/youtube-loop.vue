@@ -162,7 +162,6 @@ export default {
         redirect: 'manual',
         body: JSON.stringify(params),
       })
-        .then(console.log(params.duration))
         .catch((error) => {
           console.error(error)
         })

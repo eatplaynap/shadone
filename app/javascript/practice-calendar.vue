@@ -102,25 +102,6 @@ export default {
   },
   mounted() {
     this.getPracticeData()
-    // fetch(`/api/practice_calendars/1.json`, {
-    //   method: 'GET',
-    //   headers: {
-    //     'X-Requested-With': 'XMLHttpRequest',
-    //     'X-CSRF-Token': this.token(),
-    //   },
-    //   credentials: 'same-origin',
-    // })
-    //   .then((response) => {
-    //     return response.json()
-    //   })
-    //   .then((json) => {
-    //     json.forEach((r) => {
-    //       this.practices.push(r)
-    //     })
-    //   })
-    //   .catch((error) => {
-    //     console.warn(error)
-    //   })
   },
   watch: {
     dataFromYouTube: function () {
@@ -206,6 +187,8 @@ export default {
 </script>
 
 <style>
+/*delete when time comes*/
+
 .is-today {
   color: red;
 }
@@ -213,7 +196,4 @@ export default {
   background-color: yellow;
 }
 
-.done {
-  color: green;
-}
 </style>
