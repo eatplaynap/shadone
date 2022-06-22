@@ -8,8 +8,9 @@ import Turbolinks from 'turbolinks'
 import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
 
-import '../youtube-loop.js'
-import '../practice-calendar.js'
+// import '../youtube-loop.js'
+// import '../practice-calendar.js'
+import '../main.js'
 
 Rails.start()
 Turbolinks.start()

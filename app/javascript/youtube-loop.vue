@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="youtubeloop">
     <youtube
       ref="youtube"
       :video-id="videoId"
@@ -166,6 +166,7 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+      this.$emit('custom-event')
     },
   },
 }
