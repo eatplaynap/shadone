@@ -161,11 +161,11 @@ export default {
         credentials: 'same-origin',
         redirect: 'manual',
         body: JSON.stringify(params),
+      }).catch((error) => {
+        console.error(error)
       })
-        .catch((error) => {
-          console.error(error)
-        })
       this.$emit('custom-event')
+      // todo: change event name and pass current user id
     },
   },
 }

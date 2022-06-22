@@ -1,13 +1,11 @@
 import Vue from 'vue'
-import App from './main.vue'
+import App from './after-login-main.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const selector = '#js-main'
   const main = document.querySelector(selector)
   if (main) {
-    const practiceCalendar = new Vue({
-      render: (h) => h(App),
-    }).$mount(selector)
+    new Vue({ render: (h) => h(App) }).$mount(selector)
     document.body.appendChild(main.$el)
   }
 })

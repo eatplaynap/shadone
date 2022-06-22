@@ -33,7 +33,7 @@
 <script>
 export default {
   props: {
-    dataFromYouTube: { type: Array },
+    dataFromYouTube: { type: Array, default: undefined },
   },
   data() {
     return {
@@ -100,13 +100,13 @@ export default {
       return weeksAry
     },
   },
-  mounted() {
-    this.getPracticeData()
-  },
   watch: {
     dataFromYouTube: function () {
       this.getPracticeData()
-    }
+    },
+  },
+  mounted() {
+    this.getPracticeData()
   },
   methods: {
     getPracticeData() {
@@ -118,17 +118,17 @@ export default {
         },
         credentials: 'same-origin',
       })
-          .then((response) => {
-            return response.json()
+        .then((response) => {
+          return response.json()
+        })
+        .then((json) => {
+          json.forEach((r) => {
+            this.practices.push(r)
           })
-          .then((json) => {
-            json.forEach((r) => {
-              this.practices.push(r)
-            })
-          })
-          .catch((error) => {
-            console.warn(error)
-          })
+        })
+        .catch((error) => {
+          console.warn(error)
+        })
     },
     token() {
       const meta = document.querySelector('meta[name="csrf-token"]')
@@ -195,5 +195,4 @@ export default {
 .practice-done {
   background-color: yellow;
 }
-
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <YouTubeLoop @custom-event="fetchData" />
-    <PracticeCalendar :data-from-you-tube="practices"/>
+    <PracticeCalendar :data-from-you-tube="practices" />
   </div>
 </template>
 
@@ -12,7 +12,8 @@ import PracticeCalendar from './practice-calendar.vue'
 export default {
   components: {
     YouTubeLoop,
-    PracticeCalendar },
+    PracticeCalendar,
+  },
   data() {
     return {
       data: null,
@@ -33,18 +34,18 @@ export default {
         },
         credentials: 'same-origin',
       })
-          .then((response) => {
-            return response.json()
+        .then((response) => {
+          return response.json()
+        })
+        .then((json) => {
+          json.forEach((r) => {
+            this.practices.push(r)
           })
-          .then((json) => {
-            json.forEach((r) => {
-              this.practices.push(r)
-            })
-          })
-          .catch((error) => {
-            console.warn(error)
-          })
-    }
-  }
+        })
+        .catch((error) => {
+          console.warn(error)
+        })
+    },
+  },
 }
 </script>
