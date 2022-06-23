@@ -44,6 +44,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'dotenv-rails'
   gem 'rubocop-fjord', require: false
   gem 'rubocop-rails', require: false
   gem 'spring'
@@ -54,6 +55,7 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'dotenv-rails'
   gem 'webdrivers'
 end
 
