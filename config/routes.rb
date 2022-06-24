@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  get "welcome", to: "welcome#index", as: "welcome"
   root 'top#index'
   resources :users, only: [:show, :edit, :destroy]
   resources :practices, only: [:new, :show, :edit, :destroy]
