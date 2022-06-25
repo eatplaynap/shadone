@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get "welcome", to: "welcome#index", as: "welcome"
   root 'top#index'
+  get "welcome", to: "welcome#index", as: "welcome"
+  get "auth/:provider/callback", to: "sessions#create"
   resources :users, only: [:show, :edit, :destroy]
   resources :practices, only: [:new, :show, :edit, :destroy]
   namespace :api do
@@ -8,3 +9,4 @@ Rails.application.routes.draw do
     resources :practice_calendars, only: :show
   end
 end
+
