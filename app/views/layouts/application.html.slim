@@ -9,4 +9,8 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    - if logged_in?
+      = button_to "Logout", logout_path, method: :delete
+    - else
+      = button_to "Log in", "/auth/google_oauth2", method: :post
     = yield
