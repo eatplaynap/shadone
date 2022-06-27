@@ -10,7 +10,7 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
     - if logged_in?
-      = button_to "Logout", logout_path, method: :delete
+      = button_to 'Logout', logout_path, method: :delete
     - else
-      = button_to "Log in", "/auth/google_oauth2", method: :post
+      = button_to 'Log in', '/auth/google_oauth2', method: :post
     = yield
