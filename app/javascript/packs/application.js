@@ -8,7 +8,7 @@ import Turbolinks from 'turbolinks'
 import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
 
-import '../youtube-loop.js'
+import '../after-login-main.js'
 
 Rails.start()
 Turbolinks.start()

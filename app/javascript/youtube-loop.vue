@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="youtubeloop">
     <youtube
       ref="youtube"
       :video-id="videoId"
@@ -45,6 +45,7 @@
 import Vue from 'vue'
 import VueYoutube from 'vue-youtube'
 import getYouTubeID from 'get-youtube-id'
+import dayjs from 'dayjs'
 
 Vue.use(VueYoutube)
 
@@ -77,6 +78,7 @@ export default {
         { id: 7, speed: 1.75 },
         { id: 8, speed: 2 },
       ],
+      today: this.getCurrentDay(),
     }
   },
   computed: {
@@ -138,12 +140,16 @@ export default {
       this.loopSeconds =
         ((this.endTime - this.startTime) * this.loopCount) / this.playbackSpeed
     },
+    getCurrentDay() {
+      return dayjs().format('YYYY-MM-DD')
+    },
     createPracticeLog() {
       this.calPracticeDuration()
       const params = {
         user_id: 1,
         url: this.newURL,
         duration: this.loopSeconds,
+        practice_on: this.today,
       }
       fetch('/api/practices', {
         method: 'POST',
@@ -155,7 +161,11 @@ export default {
         credentials: 'same-origin',
         redirect: 'manual',
         body: JSON.stringify(params),
+      }).catch((error) => {
+        console.error(error)
       })
+      this.$emit('custom-event')
+      // todo: change event name and pass current user id
     },
   },
 }

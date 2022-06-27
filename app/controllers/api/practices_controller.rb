@@ -2,7 +2,7 @@
 
 class Api::PracticesController < ApplicationController
   def create
-    @practice = Practice.new(practice_params)
+    @practice = Practice.find_or_initialize_by(practice_params)
 
     respond_to do |format|
       if @practice.save
@@ -16,6 +16,6 @@ class Api::PracticesController < ApplicationController
   private
 
   def practice_params
-    params.require(:practice).permit(:user_id, :practice_id, :url, :duration)
+    params.require(:practice).permit(:user_id, :practice_id, :url, :duration, :practice_on)
   end
 end

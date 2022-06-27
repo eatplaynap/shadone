@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :practices, only: [:new, :show, :edit, :destroy]
   namespace :api do
     resources :practices, only: :create
+    resources :practice_calendars, only: :show
   end
 end
