@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <YouTubeLoop @custom-event="fetchData" />
-    <PracticeCalendar :data-from-you-tube="practices" />
+    <YouTubeLoop @custom-event="fetchPractices" />
+    <PracticeCalendar :practices="practices" />
   </div>
 </template>
 
@@ -20,13 +20,16 @@ export default {
       practices: [],
     }
   },
+  mounted() {
+    this.fetchPractices()
+  },
   methods: {
     token() {
       const meta = document.querySelector('meta[name="csrf-token"]')
       return meta ? meta.getAttribute('content') : ''
     },
-    fetchData() {
-      fetch(`/api/practice_calendars/1.json`, {
+    fetchPractices() {
+      fetch(`/api/practices.json`, {
         method: 'GET',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',

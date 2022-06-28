@@ -146,7 +146,7 @@ export default {
     createPracticeLog() {
       this.calPracticeDuration()
       const params = {
-        user_id: 1,
+        user_id: 2,
         url: this.newURL,
         duration: this.loopSeconds,
         practice_on: this.today,
@@ -161,10 +161,11 @@ export default {
         credentials: 'same-origin',
         redirect: 'manual',
         body: JSON.stringify(params),
+      }).then( () => {
+            this.$emit('custom-event')
       }).catch((error) => {
         console.error(error)
       })
-      this.$emit('custom-event')
       // todo: change event name and pass current user id
     },
   },

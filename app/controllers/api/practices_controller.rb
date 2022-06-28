@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class Api::PracticesController < ApplicationController
+  def index
+    @practices = Practice.where(user_id: 2).order('practice_on')
+  end
+
   def create
     @practice = Practice.find_or_initialize_by(practice_params)
 
-    respond_to do |format|
-      if @practice.save
-        format.json { redirect_to 'top', status: :created, location: @practice }
-      else
-        format.json { render json: @practice.errors, status: :unprocessable_entity }
-      end
+    if @practice.save
+      head :created
+    else
+      render json: @practice.errors, status: :unprocessable_entity
     end
   end
 

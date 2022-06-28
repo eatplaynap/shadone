@@ -6,6 +6,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector(selector)
   if (main) {
     new Vue({ render: (h) => h(App) }).$mount(selector)
-    document.body.appendChild(main.$el)
   }
 })
