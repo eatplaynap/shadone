@@ -2,7 +2,7 @@
 
 class Api::PracticesController < ApplicationController
   def index
-    @practices = Practice.where(user_id: 2).order('practice_on')
+    @practices = current_user.practices.order(:practice_on)
   end
 
   def create

@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   validates :name, presence: true
+  has_many :practices
 
   def self.find_or_create_from_auth_hash!(auth_hash)
     provider = auth_hash[:provider]
