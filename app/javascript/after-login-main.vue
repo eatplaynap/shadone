@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <YouTubeLoop @custom-event="fetchPractices" />
+    <YouTubeLoop @loop-done="fetchPractices" />
     <PracticeCalendar :practices="practices" />
   </div>
 </template>
@@ -28,8 +28,21 @@ export default {
       const meta = document.querySelector('meta[name="csrf-token"]')
       return meta ? meta.getAttribute('content') : ''
     },
-    fetchPractices() {
-      fetch(`/api/practices.json`, {
+    async fetchPractices(params) {
+      await fetch('/api/practices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-Token': this.token(),
+        },
+        credentials: 'same-origin',
+        redirect: 'manual',
+        body: JSON.stringify(params),
+      }).catch((error) => {
+        console.error(error)
+      })
+      await fetch(`/api/practices.json`, {
         method: 'GET',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',

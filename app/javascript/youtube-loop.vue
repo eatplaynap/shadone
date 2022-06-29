@@ -150,22 +150,7 @@ export default {
         duration: this.loopSeconds,
         practice_on: this.today,
       }
-      fetch('/api/practices', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': this.token(),
-        },
-        credentials: 'same-origin',
-        redirect: 'manual',
-        body: JSON.stringify(params),
-      }).then( () => {
-            this.$emit('custom-event')
-      }).catch((error) => {
-        console.error(error)
-      })
-      // todo: change event name and pass current user id
+      this.$emit('loop-done', params)
     },
   },
 }
