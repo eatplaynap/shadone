@@ -146,7 +146,6 @@ export default {
     createPracticeLog() {
       this.calPracticeDuration()
       const params = {
-        user_id: 2,
         url: this.newURL,
         duration: this.loopSeconds,
         practice_on: this.today,

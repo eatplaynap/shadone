@@ -6,7 +6,8 @@ class Api::PracticesController < ApplicationController
   end
 
   def create
-    @practice = Practice.find_or_initialize_by(practice_params)
+    @practice = current_user.practices.find_or_initialize_by(practice_params)
+    @practice.user_id = current_user.id
 
     if @practice.save
       head :created
@@ -18,6 +19,6 @@ class Api::PracticesController < ApplicationController
   private
 
   def practice_params
-    params.require(:practice).permit(:user_id, :practice_id, :url, :duration, :practice_on)
+    params.require(:practice).permit(:practice_id, :url, :duration, :practice_on)
   end
 end
