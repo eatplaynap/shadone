@@ -9,7 +9,7 @@ module SignInHelper
       info: { name: user.name }
     )
     visit welcome_url
-    click_on 'Login'
+    click_link 'Login'
     @current_user = user
   end
 
