@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
 class Api::PracticesController < ApplicationController
-  def create
-    @practice = Practice.find_or_initialize_by(practice_params)
+  def index
+    @practices = current_user.practices.order(:practice_on)
+  end
 
-    respond_to do |format|
-      if @practice.save
-        format.json { redirect_to 'top', status: :created, location: @practice }
-      else
-        format.json { render json: @practice.errors, status: :unprocessable_entity }
-      end
+  def create
+    @practice = current_user.practices.find_or_initialize_by(practice_on: Time.zone.today)
+
+    if @practice.update(practice_params)
+      head :created
+    else
+      head :unprocessable_entity
     end
   end
 
   private
 
   def practice_params
-    params.require(:practice).permit(:user_id, :practice_id, :url, :duration, :practice_on)
+    params.require(:practice).permit(:url, :duration)
   end
 end

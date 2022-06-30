@@ -9,4 +9,12 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    h1 Shadone
+    - if logged_in?
+      = link_to 'YouTube'
+      = link_to 'Calendar'
+      = link_to 'Profile'
+      = link_to 'Logout', logout_path, method: :delete
+    - else
+      = link_to 'Login', '/auth/google_oauth2', method: :post
     = yield

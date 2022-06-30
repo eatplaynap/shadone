@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::PracticeCalendars', type: :request do
+RSpec.describe 'Sessions', type: :request do
   describe 'GET /index' do
   end
 end

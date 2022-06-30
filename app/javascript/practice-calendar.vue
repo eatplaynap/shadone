@@ -33,11 +33,10 @@
 <script>
 export default {
   props: {
-    dataFromYouTube: { type: Array, default: undefined },
+    practices: { type: Array, required: true },
   },
   data() {
     return {
-      practices: this.dataFromYouTube || [],
       currentYear: this.getCurrentYear(),
       currentMonth: this.getCurrentMonth(),
       calendarYear: this.getCurrentYear(),
@@ -100,40 +99,7 @@ export default {
       return weeksAry
     },
   },
-  watch: {
-    dataFromYouTube: function () {
-      this.getPracticeData()
-    },
-  },
-  mounted() {
-    this.getPracticeData()
-  },
   methods: {
-    getPracticeData() {
-      fetch(`/api/practice_calendars/1.json`, {
-        method: 'GET',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': this.token(),
-        },
-        credentials: 'same-origin',
-      })
-        .then((response) => {
-          return response.json()
-        })
-        .then((json) => {
-          json.forEach((r) => {
-            this.practices.push(r)
-          })
-        })
-        .catch((error) => {
-          console.warn(error)
-        })
-    },
-    token() {
-      const meta = document.querySelector('meta[name="csrf-token"]')
-      return meta ? meta.getAttribute('content') : ''
-    },
     previousMonth() {
       if (this.calendarMonth === 1) {
         this.calendarMonth = 12
