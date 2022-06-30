@@ -45,7 +45,6 @@
 import Vue from 'vue'
 import VueYoutube from 'vue-youtube'
 import getYouTubeID from 'get-youtube-id'
-import dayjs from 'dayjs'
 
 Vue.use(VueYoutube)
 
@@ -78,7 +77,6 @@ export default {
         { id: 7, speed: 1.75 },
         { id: 8, speed: 2 },
       ],
-      today: this.getCurrentDay(),
     }
   },
   computed: {
@@ -140,17 +138,13 @@ export default {
       this.loopSeconds =
         ((this.endTime - this.startTime) * this.loopCount) / this.playbackSpeed
     },
-    getCurrentDay() {
-      return dayjs().format('YYYY-MM-DD')
-    },
     createPracticeLog() {
       this.calPracticeDuration()
-      const params = {
+      const practiceLog = {
         url: this.newURL,
         duration: this.loopSeconds,
-        practice_on: this.today,
       }
-      this.$emit('loop-done', params)
+      this.$emit('loop-done', practiceLog)
     },
   },
 }

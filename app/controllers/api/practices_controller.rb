@@ -6,19 +6,18 @@ class Api::PracticesController < ApplicationController
   end
 
   def create
-    @practice = current_user.practices.find_or_initialize_by(practice_params)
-    @practice.user_id = current_user.id
+    @practice = current_user.practices.find_or_initialize_by(practice_on: Time.zone.today)
 
-    if @practice.save
+    if @practice.update(practice_params)
       head :created
     else
-      render json: @practice.errors, status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 
   private
 
   def practice_params
-    params.require(:practice).permit(:practice_id, :url, :duration, :practice_on)
+    params.require(:practice).permit(:url, :duration)
   end
 end

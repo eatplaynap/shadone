@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2022_06_23_074318) do
   enable_extension "plpgsql"
 
   create_table "practices", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "url", null: false
     t.integer "duration", null: false
     t.text "memo"
