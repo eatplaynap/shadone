@@ -1,2 +1,14 @@
-h1 Practices#show
-p Find me in app/views/practices/show.html.slim
+h2= @practice.practice_on
+
+table
+  tbody
+    tr
+      th= Practice.human_attribute_name(:url)
+      td= @practice.url
+    tr
+      th= Practice.human_attribute_name(:duration)
+      td= @practice.duration
+    tr
+      th= Practice.human_attribute_name(:memo)
+      td= @practice.memo
+

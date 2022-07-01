@@ -22,7 +22,12 @@
             :key="date.weekDay"
             :class="[practiceMarkClass(date), todayClass(date)]"
           >
-            {{ date.date }}
+            <a v-if="date.id" :href="linkOfPractice(date)">
+              {{ date.date }}
+            </a>
+            <span v-else>
+              {{ date.date }}
+            </span>
           </td>
         </tr>
       </tbody>
@@ -100,6 +105,9 @@ export default {
     },
   },
   methods: {
+    linkOfPractice(date) {
+      return `/practices/${date.id}`
+    },
     previousMonth() {
       if (this.calendarMonth === 1) {
         this.calendarMonth = 12

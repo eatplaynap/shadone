@@ -3,7 +3,9 @@
 class PracticesController < ApplicationController
   def new; end
 
-  def show; end
+  def show
+    @practice = Practice.find(params[:id])
+  end
 
   def edit; end
 
