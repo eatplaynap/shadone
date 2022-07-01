@@ -13,3 +13,4 @@ table
       td= @practice.memo
 
 = link_to 'Edit', edit_practice_path
+= link_to 'Delete', @practice, method: :delete, data: { confirm: "Are you sure?" }
