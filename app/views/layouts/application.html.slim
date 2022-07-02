@@ -13,7 +13,7 @@ html
     - if logged_in?
       = link_to 'YouTube'
       = link_to 'Calendar'
-      = link_to 'Profile'
+      = link_to 'Profile', me_path
       = link_to 'Logout', logout_path, method: :delete
     - else
       = link_to 'Login', '/auth/google_oauth2', method: :post

@@ -1,2 +1,7 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+h2 Your Profile
+
+table
+  tbody
+    tr
+      th= User.human_attribute_name(:name)
+      td= @user.name
