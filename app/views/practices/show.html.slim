@@ -1,16 +1,16 @@
-h2= @practice.practice_on
+h2 = @practice.practice_on
 
 table
   tbody
     tr
-      th= Practice.human_attribute_name(:url)
-      td= @practice.url
+      th = Practice.human_attribute_name(:url)
+      td = @practice.url
     tr
-      th= Practice.human_attribute_name(:duration)
-      td= @practice.duration
+      th = Practice.human_attribute_name(:duration)
+      td = @practice.duration
     tr
-      th= Practice.human_attribute_name(:memo)
-      td= @practice.memo
+      th = Practice.human_attribute_name(:memo)
+      td = @practice.memo
 
 = link_to 'Edit', edit_practice_path
-= link_to 'Delete', @practice, method: :delete, data: { confirm: "Are you sure?" }
+= link_to 'Delete', @practice, method: :delete, data: { confirm: 'Are you sure?' }

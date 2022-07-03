@@ -1,4 +1,4 @@
-h2= @practice.practice_on
+h2 = @practice.practice_on
 
 = form_with model: @practice, local: true do |f|
   .form-group
@@ -10,4 +10,4 @@ h2= @practice.practice_on
   .form-group
     = f.label :memo
     = f.text_area :memo, rows: 5, class: 'form-control', id: 'practice_duration'
-  =f.submit nil
+  = f.submit nil
