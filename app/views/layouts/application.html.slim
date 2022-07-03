@@ -11,9 +11,9 @@ html
   body
     h1 Shadone
     - if logged_in?
-      = link_to 'YouTube'
-      = link_to 'Calendar'
-      = link_to 'Profile'
+      = link_to 'YouTube', root_path
+      = link_to 'Calendar', root_path
+      = link_to 'Profile', me_path
       = link_to 'Logout', logout_path, method: :delete
     - else
       = link_to 'Login', '/auth/google_oauth2', method: :post
