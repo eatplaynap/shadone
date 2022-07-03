@@ -6,6 +6,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def destroy; end
+  def destroy
+    current_user.destroy
+    reset_session
+    redirect_to welcome_path, notice: 'Successfully deleted your account!'
+  end
 
 end

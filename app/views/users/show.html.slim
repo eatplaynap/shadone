@@ -5,3 +5,5 @@ table
     tr
       th= User.human_attribute_name(:name)
       td= @user.name
+
+= link_to 'Delete Account', me_path(@user), method: :delete, data: { confirm: "Are you sure?" }
