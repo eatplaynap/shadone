@@ -33,17 +33,17 @@ export default {
         },
         credentials: 'same-origin',
       })
-          .then((response) => {
-            return response.json()
+        .then((response) => {
+          return response.json()
+        })
+        .then((json) => {
+          json.forEach((r) => {
+            this.practices.push(r)
           })
-          .then((json) => {
-            json.forEach((r) => {
-              this.practices.push(r)
-            })
-          })
-          .catch((error) => {
-            console.warn(error)
-          })
+        })
+        .catch((error) => {
+          console.warn(error)
+        })
     },
   },
 }
