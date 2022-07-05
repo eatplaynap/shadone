@@ -1,2 +1,13 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+h2 Your Profile
+
+table
+  tbody
+    tr
+      th = User.human_attribute_name(:name)
+      td = @user.name
+      tr
+        th = 'Total Practice Hours'
+        td = seconds_to_str(@user.total_practice_duration)
+#js-user-show
+
+= link_to 'Delete Account', me_path(@user), method: :delete, data: { confirm: 'Are you sure?' }

@@ -15,4 +15,8 @@ class User < ApplicationRecord
       user.image_url = image_url
     end
   end
+
+  def total_practice_duration
+    practices.map(&:duration).sum || 0
+  end
 end
