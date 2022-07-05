@@ -9,6 +9,7 @@ import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
 
 import '../after-login-main.js'
+import '../before-login-main.js'
 import '../user-show.js'
 
 Rails.start()
