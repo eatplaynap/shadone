@@ -32,6 +32,5 @@ RSpec.describe 'Welcome', type: :system do
   # end
 
   it 'can do loop' do
-
   end
 end

@@ -10,7 +10,6 @@ RSpec.describe User, type: :model do
   end
 
   describe '.find_or_create_from_auth_hash!' do
-
   end
 
   describe '#total_practice_duration' do
