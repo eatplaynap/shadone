@@ -3,11 +3,11 @@ h2 = @practice.practice_on
 = form_with model: @practice, local: true do |f|
   .form-group
     = f.label :url
-    = f.text_field :url, class: 'form-control', id: 'practice_url'
+    = f.text_field :url, class: 'form-control'
   .form-group
     = f.label :duration
-    = f.text_field :duration, class: 'form-control', id: 'practice_duration'
+    = f.text_field :duration, class: 'form-control'
   .form-group
     = f.label :memo
-    = f.text_area :memo, rows: 5, class: 'form-control', id: 'practice_duration'
-  = f.submit nil
+    = f.text_area :memo, rows: 5, class: 'form-control'
+  = f.submit

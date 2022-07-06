@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './user-show.vue'
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   const selector = '#js-user-show'
   const userShow = document.querySelector(selector)
   if (userShow) {

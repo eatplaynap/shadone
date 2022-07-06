@@ -7,7 +7,7 @@ table
       td = @practice.url
     tr
       th = Practice.human_attribute_name(:duration)
-      td = seconds_to_str(@practice.duration)
+      td = seconds_in_words(@practice.duration)
     tr
       th = Practice.human_attribute_name(:memo)
       td = @practice.memo
