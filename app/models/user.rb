@@ -9,7 +9,7 @@ class User < ApplicationRecord
     name = auth_hash[:info][:name]
     image_url = auth_hash[:info][:image]
 
-    User.find_or_create_by!(provider: provider, uid: uid) do |user|
+    find_or_create_by!(provider: provider, uid: uid) do |user|
       user.name = name
       user.image_url = image_url
     end
