@@ -16,6 +16,6 @@ class User < ApplicationRecord
   end
 
   def total_practice_duration
-    practices.map(&:duration).sum || 0
+    practices.sum(:duration)
   end
 end
