@@ -8,7 +8,7 @@
     ></youtube>
     <div>
       <label>URL:</label>
-      <input v-model="newURL" @input="changeVideo" />
+      <input v-model="newURL" type="url" @input="changeVideo" />
     </div>
     <div>
       <label>Start from:</label>
