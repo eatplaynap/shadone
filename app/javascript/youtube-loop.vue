@@ -8,24 +8,26 @@
     ></youtube>
     <div>
       <label>URL:</label>
-      <input v-model="newURL" @keyup.enter="changeVideo" />
+      <input v-model="newURL" type="url" @input="changeVideo" />
     </div>
     <div>
       <label>Start from:</label>
-      <input v-model.number="startMinute" type="number" />:<input
+      <input v-model.number="startMinute" type="number" min="0" />:<input
         v-model.number="startSecond"
         type="number"
+        min="0"
       />
       <br />
       <label>End at:</label>
-      <input v-model.number="endMinute" type="number" />:<input
+      <input v-model.number="endMinute" type="number" min="0" />:<input
         v-model.number="endSecond"
         type="number"
+        min="0"
       />
     </div>
     <div>
       <label>Loop Count:</label>
-      <input v-model="loopCount" />
+      <input v-model="loopCount" type="number" min="1" />
     </div>
     <div>
       <label>Playback Speed:</label>
@@ -35,8 +37,7 @@
         </option>
       </select>
     </div>
-    <button v-if="playing" @click="pauseVideo">pause</button>
-    <button v-else @click="startLoop">loop start</button>
+    <button :disabled="isProcessing()" @click="startLoop">loop start</button>
     <p>{{ remainingLoopCount }}</p>
   </div>
 </template>
@@ -45,10 +46,12 @@
 import Vue from 'vue'
 import VueYoutube from 'vue-youtube'
 import getYouTubeID from 'get-youtube-id'
+import Processing from './mixins/processing.js'
 
 Vue.use(VueYoutube)
 
 export default {
+  mixins: [Processing],
   data() {
     return {
       videoId: 'lG0Ys-2d4MA',
@@ -129,10 +132,12 @@ export default {
       return this.videoId
     },
     async startLoop() {
+      this.startProcessing()
       this.setPlaybackRate()
       this.getLoopDataFromForm()
       await this.setLoop()
       this.createPracticeLog()
+      this.endProcessing()
     },
     calPracticeDuration() {
       this.loopSeconds =
