@@ -35,8 +35,7 @@
         </option>
       </select>
     </div>
-    <button v-if="playing" @click="pauseVideo">pause</button>
-    <button v-else @click="startLoop">loop start</button>
+    <button v-bind:disabled="isProcessing()" @click="startLoop">loop start</button>
     <p>{{ remainingLoopCount }}</p>
   </div>
 </template>
@@ -45,10 +44,12 @@
 import Vue from 'vue'
 import VueYoutube from 'vue-youtube'
 import getYouTubeID from 'get-youtube-id'
+import Processing from './mixins/processing.js'
 
 Vue.use(VueYoutube)
 
 export default {
+  mixins: [Processing],
   data() {
     return {
       videoId: 'lG0Ys-2d4MA',
@@ -129,10 +130,12 @@ export default {
       return this.videoId
     },
     async startLoop() {
+      this.startProcessing()
       this.setPlaybackRate()
       this.getLoopDataFromForm()
       await this.setLoop()
       this.createPracticeLog()
+      this.endProcessing()
     },
     calPracticeDuration() {
       this.loopSeconds =
