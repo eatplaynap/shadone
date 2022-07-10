@@ -12,20 +12,22 @@
     </div>
     <div>
       <label>Start from:</label>
-      <input v-model.number="startMinute" type="number" />:<input
+      <input v-model.number="startMinute" type="number" min="0" />:<input
         v-model.number="startSecond"
         type="number"
+        min="0"
       />
       <br />
       <label>End at:</label>
-      <input v-model.number="endMinute" type="number" />:<input
+      <input v-model.number="endMinute" type="number" min="0" />:<input
         v-model.number="endSecond"
         type="number"
+        min="0"
       />
     </div>
     <div>
       <label>Loop Count:</label>
-      <input v-model="loopCount" />
+      <input v-model="loopCount" type="number" min="1" />
     </div>
     <div>
       <label>Playback Speed:</label>
@@ -35,7 +37,7 @@
         </option>
       </select>
     </div>
-    <button v-bind:disabled="isProcessing()" @click="startLoop">loop start</button>
+    <button :disabled="isProcessing()" @click="startLoop">loop start</button>
     <p>{{ remainingLoopCount }}</p>
   </div>
 </template>
