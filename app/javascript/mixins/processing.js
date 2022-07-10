@@ -1,7 +1,7 @@
 export default {
   data() {
     return {
-      processing: false
+      processing: false,
     }
   },
   methods: {
@@ -13,6 +13,6 @@ export default {
     },
     isProcessing() {
       return this.processing
-    }
-  }
+    },
+  },
 }
