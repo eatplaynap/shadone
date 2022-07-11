@@ -6,10 +6,11 @@ html
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = csrf_meta_tags
     = csp_meta_tag
+    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    h1 Shadone
+    h1 class="text-red-500 text-9xl" Shadone
     - if logged_in?
       = link_to 'YouTube', root_path
       = link_to 'Calendar', root_path
