@@ -4,7 +4,6 @@
       ref="youtube"
       :video-id="videoId"
       :player-vars="playerVars"
-      @playing="playingVideo"
     ></youtube>
     <div>
       <label>URL:</label>
@@ -37,7 +36,8 @@
         </option>
       </select>
     </div>
-    <button :disabled="isProcessing()" @click="startLoop">loop start</button>
+    <button v-if="playing" @click="pauseVideo">Stop</button>
+    <button v-else @click="startLoop">Start</button>
     <p>{{ remainingLoopCount }}</p>
   </div>
 </template>
@@ -46,12 +46,10 @@
 import Vue from 'vue'
 import VueYoutube from 'vue-youtube'
 import getYouTubeID from 'get-youtube-id'
-import Processing from './mixins/processing.js'
 
 Vue.use(VueYoutube)
 
 export default {
-  mixins: [Processing],
   data() {
     return {
       videoId: 'lG0Ys-2d4MA',
@@ -99,9 +97,7 @@ export default {
     pauseVideo() {
       this.player.pauseVideo()
       this.playing = false
-    },
-    playingVideo() {
-      console.log(this.newURL)
+      this.loopCount = this.loopCount - this.remainingLoopCount
     },
     setPlaybackRate() {
       this.player.setPlaybackRate(this.playbackSpeed)
@@ -115,13 +111,16 @@ export default {
         this.remainingLoopCount = this.loopCount;
         this.remainingLoopCount > 0;
         this.remainingLoopCount--
-      ) {
-        this.player.seekTo(this.startTime)
-        this.playVideo()
-        await this.promiseBasedSetTimeout(() => {
-          this.pauseVideo()
-        }, ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000)
-      }
+      )
+        if (this.playing) {
+          {
+            this.player.seekTo(this.startTime)
+            this.playVideo()
+            await this.promiseBasedSetTimeout(() => {
+              this.pauseVideo()
+            }, ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000)
+          }
+        }
       this.pauseVideo()
     },
     promiseBasedSetTimeout(_, interval) {
@@ -132,12 +131,11 @@ export default {
       return this.videoId
     },
     async startLoop() {
-      this.startProcessing()
+      this.playing = true
       this.setPlaybackRate()
       this.getLoopDataFromForm()
       await this.setLoop()
       this.createPracticeLog()
-      this.endProcessing()
     },
     calPracticeDuration() {
       this.loopSeconds =
