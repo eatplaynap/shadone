@@ -9,17 +9,19 @@ html
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  body
-    h1 Shadone
-    - if logged_in?
-      = link_to 'YouTube', root_path
-      = link_to 'Calendar', root_path
-      = link_to 'Profile', me_path
-      = link_to 'Logout', logout_path, method: :delete
-    - else
-      = link_to 'Login', '/auth/google_oauth2', method: :post
+  body.flex.flex-col
+    header.w-full.flex.bg-main.sticky.top-0
+      h1.text-6xl Shadone
+      .menu.text-2xl
+          - if logged_in?
+            = link_to 'YouTube', root_path
+            = link_to 'Calendar', root_path
+            = link_to 'Profile', me_path
+            = link_to 'Logout', logout_path, method: :delete
+          - else
+            = link_to 'Login', '/auth/google_oauth2', method: :post
     = yield
-  footer
-    | © 2022 eatplaynap
-    a href="https://twitter.com/eatplaynap329" role="button" Twitter
-    a href="https://github.com/eatplaynap/shadone/" role="button" GitHub
+    footer.w-full.bg-main.text-center
+      | © 2022 eatplaynap
+      a href="https://twitter.com/eatplaynap329" role="button" Twitter
+      a href="https://github.com/eatplaynap/shadone/" role="button" GitHub

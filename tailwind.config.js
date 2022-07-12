@@ -7,6 +7,10 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    colors: {
+      'main': '#84C7BF',
+      'sub': '#B32034'
+    },
     extend: {},
   },
   variants: {
