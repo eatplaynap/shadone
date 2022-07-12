@@ -10,7 +10,7 @@ import 'channels'
 import 'stylesheets/application.css'
 
 import '../after-login-main.js'
-import '../before-login-main.js'
+import '../youtube-loop.js'
 import '../user-show.js'
 
 Rails.start()
