@@ -4,11 +4,10 @@
       ref="youtube"
       :video-id="videoId"
       :player-vars="playerVars"
-      @playing="playingVideo"
     ></youtube>
     <div>
       <label>URL:</label>
-      <input v-model="newURL" type="url" @input="changeVideo" />
+      <input v-model="url" type="url" />
     </div>
     <div>
       <label>Start from:</label>
@@ -27,7 +26,7 @@
     </div>
     <div>
       <label>Loop Count:</label>
-      <input v-model="loopCount" type="number" min="1" />
+      <input v-model.number="loopCount" type="number" min="1" />
     </div>
     <div>
       <label>Playback Speed:</label>
@@ -37,7 +36,8 @@
         </option>
       </select>
     </div>
-    <button :disabled="isProcessing()" @click="startLoop">loop start</button>
+    <button v-if="!playing" @click="startLoop">Start</button>
+    <button v-else @click="endLoop">End Loop And Create Practice Log</button>
     <p>{{ remainingLoopCount }}</p>
   </div>
 </template>
@@ -45,29 +45,23 @@
 <script>
 import Vue from 'vue'
 import VueYoutube from 'vue-youtube'
-import getYouTubeID from 'get-youtube-id'
-import Processing from './mixins/processing.js'
+import getYouTubeId from 'get-youtube-id'
 
 Vue.use(VueYoutube)
 
 export default {
-  mixins: [Processing],
   data() {
     return {
-      videoId: 'lG0Ys-2d4MA',
       playerVars: {
         rel: 0,
       },
-      newURL: 'https://www.youtube.com/watch?v=lG0Ys-2d4MA',
+      url: 'https://www.youtube.com/watch?v=lG0Ys-2d4MA',
       playing: false,
       startMinute: 0,
       startSecond: 0,
-      startTime: 0,
       endMinute: 0,
       endSecond: 0,
-      endTime: 0,
       loopCount: 1,
-      loopSeconds: 0,
       remainingLoopCount: null,
       playbackSpeed: 1,
       selectItems: [
@@ -80,74 +74,68 @@ export default {
         { id: 7, speed: 1.75 },
         { id: 8, speed: 2 },
       ],
+      intervalId: null,
     }
   },
   computed: {
     player() {
       return this.$refs.youtube.player
     },
+    practiceDuration() {
+      return (
+        ((this.endTime - this.startTime) *
+          (this.loopCount - this.remainingLoopCount)) /
+        this.playbackSpeed
+      )
+    },
+    startTime() {
+      return this.startMinute * 60 + this.startSecond
+    },
+    endTime() {
+      return this.endMinute * 60 + this.endSecond
+    },
+    videoId() {
+      return getYouTubeId(this.url)
+    },
+    durationOfOneLoop() {
+      return ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000
+    },
   },
   methods: {
-    token() {
-      const meta = document.querySelector('meta[name="csrf-token"]')
-      return meta ? meta.getAttribute('content') : ''
-    },
-    playVideo() {
-      this.player.playVideo()
+    startLoop() {
       this.playing = true
+      this.setPlaybackRate()
+      this.remainingLoopCount = this.loopCount
+      this.intervalId = this.setLoop()
     },
-    pauseVideo() {
+    endLoop() {
+      clearInterval(this.intervalId)
       this.player.pauseVideo()
       this.playing = false
-    },
-    playingVideo() {
-      console.log(this.newURL)
+      this.createPracticeLog()
     },
     setPlaybackRate() {
       this.player.setPlaybackRate(this.playbackSpeed)
     },
-    getLoopDataFromForm() {
-      this.startTime = this.startMinute * 60 + this.startSecond
-      this.endTime = this.endMinute * 60 + this.endSecond
-    },
-    async setLoop() {
-      for (
-        this.remainingLoopCount = this.loopCount;
-        this.remainingLoopCount > 0;
-        this.remainingLoopCount--
-      ) {
+    setLoop() {
+      const eachLoop = () => {
         this.player.seekTo(this.startTime)
-        this.playVideo()
-        await this.promiseBasedSetTimeout(() => {
-          this.pauseVideo()
-        }, ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000)
+        this.player.playVideo()
       }
-      this.pauseVideo()
-    },
-    promiseBasedSetTimeout(_, interval) {
-      return new Promise((_) => setTimeout(_, interval))
-    },
-    changeVideo() {
-      this.videoId = getYouTubeID(this.newURL)
-      return this.videoId
-    },
-    async startLoop() {
-      this.startProcessing()
-      this.setPlaybackRate()
-      this.getLoopDataFromForm()
-      await this.setLoop()
-      this.createPracticeLog()
-      this.endProcessing()
-    },
-    calPracticeDuration() {
-      this.loopSeconds =
-        ((this.endTime - this.startTime) * this.loopCount) / this.playbackSpeed
+      eachLoop()
+      return setInterval(() => {
+        this.remainingLoopCount--
+        if (this.remainingLoopCount === 0) {
+          this.endLoop()
+          return
+        }
+        eachLoop()
+      }, this.durationOfOneLoop)
     },
     createPracticeLog() {
-      this.calPracticeDuration()
       const practiceLog = {
-        url: this.newURL,
-        duration: this.loopSeconds,
+        url: this.url,
+        duration: this.practiceDuration,
       }
       this.$emit('loop-done', practiceLog)
     },
