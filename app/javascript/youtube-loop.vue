@@ -7,7 +7,7 @@
     ></youtube>
     <div>
       <label>URL:</label>
-      <input v-model="newURL" type="url" @input="changeVideo" />
+      <input v-model="url" type="url" />
     </div>
     <div>
       <label>Start from:</label>
@@ -55,7 +55,7 @@ export default {
       playerVars: {
         rel: 0,
       },
-      newURL: 'https://www.youtube.com/watch?v=lG0Ys-2d4MA',
+      url: 'https://www.youtube.com/watch?v=lG0Ys-2d4MA',
       playing: false,
       startMinute: 0,
       startSecond: 0,
