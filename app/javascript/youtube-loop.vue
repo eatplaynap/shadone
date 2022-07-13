@@ -52,7 +52,6 @@ Vue.use(VueYoutube)
 export default {
   data() {
     return {
-      videoId: 'lG0Ys-2d4MA',
       playerVars: {
         rel: 0,
       },
@@ -60,12 +59,9 @@ export default {
       playing: false,
       startMinute: 0,
       startSecond: 0,
-      startTime: 0,
       endMinute: 0,
       endSecond: 0,
-      endTime: 0,
       loopCount: 1,
-      loopSeconds: 0,
       remainingLoopCount: null,
       playbackSpeed: 1,
       selectItems: [
@@ -84,6 +80,21 @@ export default {
   computed: {
     player() {
       return this.$refs.youtube.player
+    },
+    practiceDuration() {
+      return (this.endTime - this.startTime) * (this.loopCount - this.remainingLoopCount) / this.playbackSpeed
+    },
+    startTime() {
+      return this.startMinute * 60 + this.startSecond
+    },
+    endTime() {
+      return this.endMinute * 60 + this.endSecond
+    },
+    videoId() {
+      return getYouTubeId(this.url)
+    },
+    durationOfOneLoop() {
+      return ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000
     },
   },
   methods: {
@@ -118,10 +129,9 @@ export default {
       }, this.durationOfOneLoop)
     },
     createPracticeLog() {
-      this.calPracticeDuration()
       const practiceLog = {
-        url: this.newURL,
-        duration: this.loopSeconds,
+        url: this.url,
+        duration: this.practiceDuration,
       }
       this.$emit('loop-done', practiceLog)
     },
