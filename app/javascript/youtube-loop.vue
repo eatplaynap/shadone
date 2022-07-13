@@ -45,7 +45,7 @@
 <script>
 import Vue from 'vue'
 import VueYoutube from 'vue-youtube'
-import getYouTubeID from 'get-youtube-id'
+import getYouTubeId from 'get-youtube-id'
 
 Vue.use(VueYoutube)
 
