@@ -101,12 +101,36 @@ export default {
       return ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000
     },
   },
+  mounted() {
+    if (localStorage.url) {
+      this.url = localStorage.url
+    }
+    if (localStorage.startMinute) {
+      this.startMinute = localStorage.startMinute
+    }
+    if (localStorage.startSecond) {
+      this.startSecond = localStorage.startSecond
+    }
+    if (localStorage.endMinute) {
+      this.endMinute = localStorage.endMinute
+    }
+    if (localStorage.endSecond) {
+      this.endSecond = localStorage.endSecond
+    }
+    if (localStorage.playbackSpeed) {
+      this.playbackSpeed = localStorage.playbackSpeed
+    }
+    if (localStorage.loopCount) {
+      this.loopCount = localStorage.loopCount
+    }
+  },
   methods: {
     startLoop() {
       this.playing = true
       this.setPlaybackRate()
       this.remainingLoopCount = this.loopCount
       this.intervalId = this.setLoop()
+      this.persistData()
     },
     endLoop() {
       clearInterval(this.intervalId)
@@ -138,6 +162,15 @@ export default {
         duration: this.practiceDuration,
       }
       this.$emit('loop-done', practiceLog)
+    },
+    persistData() {
+      localStorage.url = this.url
+      localStorage.startMinute = this.startMinute
+      localStorage.startSecond = this.startSecond
+      localStorage.endMinute = this.endMinute
+      localStorage.endSecond = this.endSecond
+      localStorage.playbackSpeed = this.playbackSpeed
+      localStorage.loopCount = this.loopCount
     },
   },
 }
