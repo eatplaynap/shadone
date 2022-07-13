@@ -8,12 +8,14 @@
 <script>
 import YouTubeLoop from './youtube-loop.vue'
 import PracticeCalendar from './practice-calendar.vue'
+import token from './mixins/token.js'
 
 export default {
   components: {
     YouTubeLoop,
     PracticeCalendar,
   },
+  mixins: [token],
   data() {
     return {
       data: null,
@@ -24,16 +26,11 @@ export default {
     this.fetchPractices()
   },
   methods: {
-    token() {
-      const meta = document.querySelector('meta[name="csrf-token"]')
-      return meta ? meta.getAttribute('content') : ''
-    },
     async fetchPractices() {
       fetch(`/api/practices.json`, {
         method: 'GET',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': this.token,
         },
         credentials: 'same-origin',
       })

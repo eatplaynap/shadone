@@ -20,16 +20,11 @@ export default {
     this.fetchPractices()
   },
   methods: {
-    token() {
-      const meta = document.querySelector('meta[name="csrf-token"]')
-      return meta ? meta.getAttribute('content') : ''
-    },
     fetchPractices() {
       fetch(`/api/practices.json`, {
         method: 'GET',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': this.token,
         },
         credentials: 'same-origin',
       })
