@@ -82,7 +82,11 @@ export default {
       return this.$refs.youtube.player
     },
     practiceDuration() {
-      return (this.endTime - this.startTime) * (this.loopCount - this.remainingLoopCount) / this.playbackSpeed
+      return (
+        ((this.endTime - this.startTime) *
+          (this.loopCount - this.remainingLoopCount)) /
+        this.playbackSpeed
+      )
     },
     startTime() {
       return this.startMinute * 60 + this.startSecond
