@@ -26,7 +26,7 @@
     </div>
     <div>
       <label>Loop Count:</label>
-      <input v-model="loopCount" type="number" min="1" />
+      <input v-model.number="loopCount" type="number" min="1" />
     </div>
     <div>
       <label>Playback Speed:</label>
