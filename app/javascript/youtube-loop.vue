@@ -97,7 +97,7 @@ export default {
       clearInterval(this.intervalId)
       this.player.pauseVideo()
       this.playing = false
-      this.loopCount = this.loopCount - this.remainingLoopCount
+      this.createPracticeLog()
     },
     setPlaybackRate() {
       this.player.setPlaybackRate(this.playbackSpeed)
