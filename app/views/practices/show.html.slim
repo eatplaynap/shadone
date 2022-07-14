@@ -14,3 +14,10 @@ table
       td = @practice.memo
 
 = link_to 'Edit', edit_practice_path
+
+- if @practice.previous
+  = link_to @practice.previous
+    | Old
+- if @practice.next
+  = link_to @practice.next
+    | New
