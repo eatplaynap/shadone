@@ -46,11 +46,8 @@
 import Vue from 'vue'
 import VueYoutube from 'vue-youtube'
 import getYouTubeId from 'get-youtube-id'
-import VueToast from 'vue-toast-notification'
-import 'vue-toast-notification/dist/theme-sugar.css'
 
 Vue.use(VueYoutube)
-Vue.use(VueToast)
 
 export default {
   data() {
@@ -139,7 +136,6 @@ export default {
       clearInterval(this.intervalId)
       this.player.pauseVideo()
       this.playing = false
-      this.$toast.success("Yey! You've created another practice log!")
       this.createPracticeLog()
     },
     setPlaybackRate() {
