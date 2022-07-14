@@ -26,6 +26,6 @@ class PracticesController < ApplicationController
   private
 
   def practice_params
-    params.require(:practice).permit(:url, :duration, :memo)
+    params.require(:practice).permit(:memo)
   end
 end

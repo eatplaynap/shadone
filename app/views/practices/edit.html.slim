@@ -1,12 +1,16 @@
 h2 = @practice.practice_on
 
+table
+  tbody
+    tr
+      th Video
+      td
+        img src="#{YouTubeRails.extract_video_image(@practice.url)}"
+    tr
+      th = Practice.human_attribute_name(:duration)
+      td = seconds_in_words(@practice.duration)
+
 = form_with model: @practice, local: true do |f|
-  .form-group
-    = f.label :url
-    = f.text_field :url, class: 'form-control'
-  .form-group
-    = f.label :duration
-    = f.text_field :duration, class: 'form-control'
   .form-group
     = f.label :memo
     = f.text_area :memo, rows: 5, class: 'form-control'
