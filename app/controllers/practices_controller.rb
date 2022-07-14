@@ -17,12 +17,6 @@ class PracticesController < ApplicationController
     redirect_to practice_url, notice: "Updated practice of #{practice.practice_on}"
   end
 
-  def destroy
-    practice = current_user.practices.find(params[:id])
-    practice.destroy!
-    redirect_to root_path, notice: "Deleted practice of #{practice.practice_on}"
-  end
-
   private
 
   def practice_params
