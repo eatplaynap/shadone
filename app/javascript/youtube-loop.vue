@@ -80,9 +80,6 @@ export default {
       intervalId: null,
     }
   },
-  watch: {
-
-  },
   computed: {
     player() {
       return this.$refs.youtube.player
