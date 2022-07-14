@@ -9,6 +9,11 @@
 import YouTubeLoop from './youtube-loop.vue'
 import PracticeCalendar from './practice-calendar.vue'
 import token from './mixins/token.js'
+import Vue from 'vue'
+import VueToast from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-sugar.css'
+
+Vue.use(VueToast)
 
 export default {
   components: {
@@ -47,6 +52,7 @@ export default {
         })
     },
     async createPracticeLog(practiceLog) {
+      this.$toast.success("Yey! You've created another practice log!")
       await fetch('/api/practices', {
         method: 'POST',
         headers: {
