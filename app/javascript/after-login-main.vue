@@ -11,7 +11,7 @@ import PracticeCalendar from './practice-calendar.vue'
 import Vue from 'vue'
 import VueToast from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-sugar.css'
-import PracticeFetchable from "./mixins/practice-fetchable";
+import PracticeFetchable from './mixins/practice-fetchable'
 
 Vue.use(VueToast)
 
@@ -36,15 +36,19 @@ export default {
         credentials: 'same-origin',
         redirect: 'manual',
         body: JSON.stringify(practiceLog),
-      }).then(() => {
-        this.$toast.success("Yey! You've created another practice log!")
-        this.fetchPractices()
-      }).catch(() => {
-        this.$toast.error("Failed to create a new practice log!")
       })
+        .then(() => {
+          this.$toast.success("Yey! You've created another practice log!")
+          this.fetchPractices()
+        })
+        .catch(() => {
+          this.$toast.error('Failed to create a new practice log!')
+        })
     },
     csrfToken() {
-      return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+      return document
+        .querySelector('meta[name="csrf-token"]')
+        ?.getAttribute('content')
     },
   },
 }

@@ -6,7 +6,7 @@
 
 <script>
 import PracticeCalendar from './practice-calendar.vue'
-import PracticeFetchable from "./mixins/practice-fetchable";
+import PracticeFetchable from './mixins/practice-fetchable'
 
 export default {
   components: {

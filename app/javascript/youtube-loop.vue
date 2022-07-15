@@ -101,29 +101,6 @@ export default {
       return ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000
     },
   },
-  created() {
-    if (localStorage.url) {
-      this.url = localStorage.url
-    }
-    if (localStorage.startMinute) {
-      this.startMinute = Number(localStorage.startMinute)
-    }
-    if (localStorage.startSecond) {
-      this.startSecond = Number(localStorage.startSecond)
-    }
-    if (localStorage.endMinute) {
-      this.endMinute = Number(localStorage.endMinute)
-    }
-    if (localStorage.endSecond) {
-      this.endSecond = Number(localStorage.endSecond)
-    }
-    if (localStorage.playbackSpeed) {
-      this.playbackSpeed = Number(localStorage.playbackSpeed)
-    }
-    if (localStorage.loopCount) {
-      this.loopCount = Number(localStorage.loopCount)
-    }
-  },
   watch: {
     url(newUrl) {
       localStorage.url = newUrl
@@ -146,6 +123,29 @@ export default {
     loopCount(newLoopCount) {
       localStorage.loopCount = newLoopCount
     },
+  },
+  created() {
+    if (localStorage.url) {
+      this.url = localStorage.url
+    }
+    if (localStorage.startMinute) {
+      this.startMinute = Number(localStorage.startMinute)
+    }
+    if (localStorage.startSecond) {
+      this.startSecond = Number(localStorage.startSecond)
+    }
+    if (localStorage.endMinute) {
+      this.endMinute = Number(localStorage.endMinute)
+    }
+    if (localStorage.endSecond) {
+      this.endSecond = Number(localStorage.endSecond)
+    }
+    if (localStorage.playbackSpeed) {
+      this.playbackSpeed = Number(localStorage.playbackSpeed)
+    }
+    if (localStorage.loopCount) {
+      this.loopCount = Number(localStorage.loopCount)
+    }
   },
   methods: {
     startLoop() {
