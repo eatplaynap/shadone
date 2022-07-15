@@ -7,10 +7,10 @@ class Practice < ApplicationRecord
   validates :practice_on, presence: true, uniqueness: { scope: :user_id }
 
   def previous
-    Practice.where(user: user).where('practice_on < ?', practice_on).order(practice_on: :desc).first
+    user.practices.where('practice_on < ?', practice_on).order(:practice_on).last
   end
 
   def next
-    Practice.where(user: user).where('practice_on > ?', practice_on).order(:practice_on).first
+    user.practices.where('practice_on > ?', practice_on).order(:practice_on).first
   end
 end

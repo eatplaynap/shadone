@@ -37,7 +37,7 @@
       </select>
     </div>
     <button v-if="!playing" @click="startLoop">Start</button>
-    <button v-else @click="endLoop">End Loop And Create Practice Log</button>
+    <button v-else @click="endLoop">Quit</button>
     <p>{{ remainingLoopCount }}</p>
   </div>
 </template>
@@ -101,27 +101,50 @@ export default {
       return ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000
     },
   },
-  mounted() {
+  watch: {
+    url(newUrl) {
+      localStorage.url = newUrl
+    },
+    startMinute(newStartMinute) {
+      localStorage.startMinute = newStartMinute
+    },
+    startSecond(newStartSecond) {
+      localStorage.startSecond = newStartSecond
+    },
+    endMinute(newEndMinute) {
+      localStorage.endMinute = newEndMinute
+    },
+    endSecond(newEndSecond) {
+      localStorage.endSecond = newEndSecond
+    },
+    playbackSpeed(newPlaybackSpeed) {
+      localStorage.playbackSpeed = newPlaybackSpeed
+    },
+    loopCount(newLoopCount) {
+      localStorage.loopCount = newLoopCount
+    },
+  },
+  created() {
     if (localStorage.url) {
       this.url = localStorage.url
     }
     if (localStorage.startMinute) {
-      this.startMinute = localStorage.startMinute
+      this.startMinute = Number(localStorage.startMinute)
     }
     if (localStorage.startSecond) {
-      this.startSecond = localStorage.startSecond
+      this.startSecond = Number(localStorage.startSecond)
     }
     if (localStorage.endMinute) {
-      this.endMinute = localStorage.endMinute
+      this.endMinute = Number(localStorage.endMinute)
     }
     if (localStorage.endSecond) {
-      this.endSecond = localStorage.endSecond
+      this.endSecond = Number(localStorage.endSecond)
     }
     if (localStorage.playbackSpeed) {
-      this.playbackSpeed = localStorage.playbackSpeed
+      this.playbackSpeed = Number(localStorage.playbackSpeed)
     }
     if (localStorage.loopCount) {
-      this.loopCount = localStorage.loopCount
+      this.loopCount = Number(localStorage.loopCount)
     }
   },
   methods: {
@@ -130,7 +153,6 @@ export default {
       this.setPlaybackRate()
       this.remainingLoopCount = this.loopCount
       this.intervalId = this.setLoop()
-      this.persistData()
     },
     endLoop() {
       clearInterval(this.intervalId)
@@ -162,15 +184,6 @@ export default {
         duration: this.practiceDuration,
       }
       this.$emit('loop-done', practiceLog)
-    },
-    persistData() {
-      localStorage.url = this.url
-      localStorage.startMinute = this.startMinute
-      localStorage.startSecond = this.startSecond
-      localStorage.endMinute = this.endMinute
-      localStorage.endSecond = this.endSecond
-      localStorage.playbackSpeed = this.playbackSpeed
-      localStorage.loopCount = this.loopCount
     },
   },
 }

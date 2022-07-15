@@ -11,7 +11,7 @@ import 'stylesheets/application.css'
 
 import '../after-login-main.js'
 import '../youtube-loop.js'
-import '../user-show.js'
+import '../user-profile.js'
 
 Rails.start()
 Turbolinks.start()

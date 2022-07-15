@@ -5,7 +5,7 @@ table
     tr
       th Video
       td
-        img src="#{YouTubeRails.extract_video_image(@practice.url)}"
+        img src="#{youtube_thumbnail_url(@practice.url)}"
     tr
       th = Practice.human_attribute_name(:duration)
       td = seconds_in_words(@practice.duration)
