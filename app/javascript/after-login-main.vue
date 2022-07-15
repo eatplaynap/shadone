@@ -25,29 +25,8 @@ export default {
     this.fetchPractices()
   },
   methods: {
-    async fetchPractices() {
-      fetch(`/api/practices.json`, {
-        method: 'GET',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-        },
-        credentials: 'same-origin',
-      })
-        .then((response) => {
-          return response.json()
-        })
-        .then((json) => {
-          json.forEach((r) => {
-            this.practices.push(r)
-          })
-        })
-        .catch((error) => {
-          console.warn(error)
-        })
-    },
-    async createPracticeLog(practiceLog) {
-      this.$toast.success("Yey! You've created another practice log!")
-      await fetch('/api/practices', {
+    createPracticeLog(practiceLog) {
+      fetch('/api/practices', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
@@ -63,7 +42,6 @@ export default {
       }).catch(() => {
         this.$toast.error("Failed to create a new practice log!")
       })
-      await this.fetchPractices()
     },
     csrfToken() {
       return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
