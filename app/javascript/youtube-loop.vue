@@ -101,7 +101,7 @@ export default {
       return ((this.endTime - this.startTime + 1) / this.playbackSpeed) * 1000
     },
   },
-  mounted() {
+  created() {
     if (localStorage.url) {
       this.url = localStorage.url
     }
@@ -130,7 +130,6 @@ export default {
       this.setPlaybackRate()
       this.remainingLoopCount = this.loopCount
       this.intervalId = this.setLoop()
-      this.persistData()
     },
     endLoop() {
       clearInterval(this.intervalId)
@@ -162,15 +161,6 @@ export default {
         duration: this.practiceDuration,
       }
       this.$emit('loop-done', practiceLog)
-    },
-    persistData() {
-      localStorage.url = this.url
-      localStorage.startMinute = this.startMinute
-      localStorage.startSecond = this.startSecond
-      localStorage.endMinute = this.endMinute
-      localStorage.endSecond = this.endSecond
-      localStorage.playbackSpeed = this.playbackSpeed
-      localStorage.loopCount = this.loopCount
     },
   },
 }
