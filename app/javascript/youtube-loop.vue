@@ -106,22 +106,22 @@ export default {
       this.url = localStorage.url
     }
     if (localStorage.startMinute) {
-      this.startMinute = localStorage.startMinute
+      this.startMinute = Number(localStorage.startMinute)
     }
     if (localStorage.startSecond) {
-      this.startSecond = localStorage.startSecond
+      this.startSecond = Number(localStorage.startSecond)
     }
     if (localStorage.endMinute) {
-      this.endMinute = localStorage.endMinute
+      this.endMinute = Number(localStorage.endMinute)
     }
     if (localStorage.endSecond) {
-      this.endSecond = localStorage.endSecond
+      this.endSecond = Number(localStorage.endSecond)
     }
     if (localStorage.playbackSpeed) {
-      this.playbackSpeed = localStorage.playbackSpeed
+      this.playbackSpeed = Number(localStorage.playbackSpeed)
     }
     if (localStorage.loopCount) {
-      this.loopCount = localStorage.loopCount
+      this.loopCount = Number(localStorage.loopCount)
     }
   },
   methods: {
