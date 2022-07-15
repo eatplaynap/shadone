@@ -8,10 +8,10 @@
 <script>
 import YouTubeLoop from './youtube-loop.vue'
 import PracticeCalendar from './practice-calendar.vue'
-import token from './mixins/token.js'
 import Vue from 'vue'
 import VueToast from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-sugar.css'
+import PracticeFetchable from "./mixins/practice-fetchable";
 
 Vue.use(VueToast)
 
@@ -20,13 +20,7 @@ export default {
     YouTubeLoop,
     PracticeCalendar,
   },
-  mixins: [token],
-  data() {
-    return {
-      data: null,
-      practices: [],
-    }
-  },
+  mixins: [PracticeFetchable],
   mounted() {
     this.fetchPractices()
   },
