@@ -57,8 +57,11 @@ export default {
         credentials: 'same-origin',
         redirect: 'manual',
         body: JSON.stringify(practiceLog),
-      }).catch((error) => {
-        console.error(error)
+      }).then(() => {
+        this.$toast.success("Yey! You've created another practice log!")
+        this.fetchPractices()
+      }).catch(() => {
+        this.$toast.error("Failed to create a new practice log!")
       })
       await this.fetchPractices()
     },
