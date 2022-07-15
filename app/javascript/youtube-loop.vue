@@ -37,7 +37,7 @@
       </select>
     </div>
     <button v-if="!playing" @click="startLoop">Start</button>
-    <button v-else @click="endLoop">End Loop And Create Practice Log</button>
+    <button v-else @click="endLoop">Quit</button>
     <p>{{ remainingLoopCount }}</p>
   </div>
 </template>
