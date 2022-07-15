@@ -52,7 +52,7 @@ export default {
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
           'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': this.token(),
+          'X-CSRF-Token': this.csrfToken(),
         },
         credentials: 'same-origin',
         redirect: 'manual',
@@ -61,6 +61,9 @@ export default {
         console.error(error)
       })
       await this.fetchPractices()
+    },
+    csrfToken() {
+      return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
     },
   },
 }
