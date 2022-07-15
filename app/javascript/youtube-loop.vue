@@ -124,6 +124,29 @@ export default {
       this.loopCount = Number(localStorage.loopCount)
     }
   },
+  watch: {
+    url(newUrl) {
+      localStorage.url = newUrl
+    },
+    startMinute(newStartMinute) {
+      localStorage.startMinute = newStartMinute
+    },
+    startSecond(newStartSecond) {
+      localStorage.startSecond = newStartSecond
+    },
+    endMinute(newEndMinute) {
+      localStorage.endMinute = newEndMinute
+    },
+    endSecond(newEndSecond) {
+      localStorage.endSecond = newEndSecond
+    },
+    playbackSpeed(newPlaybackSpeed) {
+      localStorage.playbackSpeed = newPlaybackSpeed
+    },
+    loopCount(newLoopCount) {
+      localStorage.loopCount = newLoopCount
+    },
+  },
   methods: {
     startLoop() {
       this.playing = true
