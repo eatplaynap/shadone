@@ -3,21 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Welcome', type: :system do
-  # let(:user) { FactoryBot.create(:user) }
-  #
-  # it 'can log in' do
-  #   sign_in_as user
-  #   # サインインしましたをチェック
-  #   expect(page).to have_content 'Logout'
-  # end
-  #
-  # it 'can log out' do
-  #   sign_in_as user
-  #   click_link 'Logout'
-  #
-  #   expect(page).to have_content 'Login'
-  # end
-  #
   # it 'cannot access / when user was not logged in' do
   #   visit root_path
   #   # /welcomeに戻ることをテスト
