@@ -6,17 +6,27 @@ RSpec.describe User, type: :model do
   let(:user) { FactoryBot.create(:user) }
 
   describe '.find_or_create_from_auth_hash!' do
+    it 'returns a user object if a record exists' do
+      auth_hash = { provider: user.provider, uid: user.uid, info: { name: user.name, image_url: user.image_url } }
+      expect(User.find_or_create_from_auth_hash!(auth_hash)).to eq user
+    end
+
+    it 'returns an error if an invalid argument is passed' do
+      auth_hash = { provider: user.provider, uid: nil, info: { name: user.name, image_url: user.image_url } }
+      expect { User.find_or_create_from_auth_hash!(auth_hash) }.to raise_error ActiveRecord::NotNullViolation
+    end
   end
 
   describe '#total_practice_duration' do
     it 'returns total duration if a user created a practice' do
-      practice1 = user.practices.create(
+      # need to refactor using Factory
+      user.practices.create(
         url: 'test_url',
         duration: 100,
         practice_on: Time.zone.today
       )
 
-      practice2 = user.practices.create(
+      user.practices.create(
         url: 'test_url',
         duration: 300,
         practice_on: Time.zone.today - 1
