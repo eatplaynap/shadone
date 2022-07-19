@@ -50,6 +50,7 @@ group :development do
   gem 'rubocop-fjord', require: false
   gem 'rubocop-rails', require: false
   gem 'spring'
+  gem 'foreman'
 end
 
 group :test do

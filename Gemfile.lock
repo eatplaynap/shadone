@@ -97,6 +97,7 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (2.0.3)
     ffi (1.15.5)
+    foreman (0.87.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -310,6 +311,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
@@ -320,6 +322,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot
   factory_bot_rails
+  foreman
   html2slim
   jbuilder (~> 2.7)
   listen (~> 3.3)
