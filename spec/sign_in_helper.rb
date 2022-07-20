@@ -8,7 +8,7 @@ module SignInHelper
       uid: user.uid,
       info: { name: user.name }
     )
-    visit welcome_url
+    visit welcome_path
     click_link 'Login'
     @current_user = user
   end
