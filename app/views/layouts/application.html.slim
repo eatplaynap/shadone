@@ -15,11 +15,7 @@ html(data-theme="shadone")
         header.w-full.sticky.top-0.bg-base.py-2.px-4
           .container
             .mx-auto.flex.justify-between.items-center
-              h1.sha-logo.text-4xl.font-bold
-                span.text-main
-                  | Sha
-                span
-                  | done
+              = link_to image_tag('shadone.svg', alt: 'Shadone logo', width: '200px'), '#'
               .menu.text-main
                 - if logged_in?
                   = link_to 'YouTube', root_path
