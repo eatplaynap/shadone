@@ -6,4 +6,8 @@ inherit_gem:
 
 Rails/FilePath:
   Exclude:
-    - spec/**/*
+    - "spec/**/*"
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"

@@ -7,18 +7,30 @@
     ></youtube>
     <div>
       <label>URL:</label>
-      <input v-model="url" type="url" />
+      <input id="url" v-model="url" type="url" />
     </div>
     <div>
       <label>Start from:</label>
-      <input v-model.number="startMinute" type="number" min="0" />:<input
+      <input
+        id="start-minutes"
+        v-model.number="startMinute"
+        type="number"
+        min="0"
+      />:<input
+        id="start-seconds"
         v-model.number="startSecond"
         type="number"
         min="0"
       />
       <br />
       <label>End at:</label>
-      <input v-model.number="endMinute" type="number" min="0" />:<input
+      <input
+        id="end-minutes"
+        v-model.number="endMinute"
+        type="number"
+        min="0"
+      />:<input
+        id="end-seconds"
         v-model.number="endSecond"
         type="number"
         min="0"
@@ -26,7 +38,7 @@
     </div>
     <div>
       <label>Loop Count:</label>
-      <input v-model.number="loopCount" type="number" min="1" />
+      <input id="loop-count" v-model.number="loopCount" type="number" min="1" />
     </div>
     <div>
       <label>Playback Speed:</label>

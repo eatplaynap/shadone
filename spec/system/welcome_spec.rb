@@ -3,34 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Welcome', type: :system do
-  # let(:user) { FactoryBot.create(:user) }
-  #
-  # it 'can log in' do
-  #   sign_in_as user
-  #   # サインインしましたをチェック
-  #   expect(page).to have_content 'Logout'
-  # end
-  #
-  # it 'can log out' do
-  #   sign_in_as user
-  #   click_link 'Logout'
-  #
-  #   expect(page).to have_content 'Login'
-  # end
-  #
-  # it 'cannot access / when user was not logged in' do
-  #   visit root_path
-  #   # /welcomeに戻ることをテスト
-  #   expect(page).to have_content 'Login'
-  # end
-  #
-  # it 'can access / when user was logged in' do
-  #   sign_in_as user
-  #   # ログイン後root_pathにいることをテスト
-  #   visit root_path
-  #   expect(page).to have_content 'Calendar'
-  # end
-
-  it 'can do loop' do
+  it 'can do loop', js: true do
+    visit welcome_path
+    fill_in('url', with: 'https://www.youtube.com/watch?v=s3ZX2RX73_g')
+    fill_in('start-minutes', with: 1)
+    fill_in('start-seconds', with: 1)
+    fill_in('end-minutes', with: 1)
+    fill_in('end-seconds', with: 2)
+    fill_in('loop-count', with: 3)
+    click_on('Start')
+    sleep 5
+    has_text?('0')
   end
 end
