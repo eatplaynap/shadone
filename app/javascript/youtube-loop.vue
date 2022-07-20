@@ -76,6 +76,15 @@
         </div>
       </div>
 
+    <div class="flex items-center mt-4">
+      <div class="w-20">
+        <label class="text-sm font-semibold">Loop Count</label>
+      </div>
+      <div class="flex-1">
+        <input id="loop-count" v-model.number="loopCount" type="number" min="1" class="input input-bordered w-full" />
+      </div>
+    </div>
+
       <div class="flex items-center mt-4">
         <div class="w-20">
           <label class="text-sm font-semibold">Speed</label>
