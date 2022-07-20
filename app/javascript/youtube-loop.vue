@@ -1,56 +1,106 @@
 <template>
-  <div id="youtubeloop">
-    <youtube
-      ref="youtube"
-      :video-id="videoId"
-      :player-vars="playerVars"
-    ></youtube>
-    <div>
-      <label>URL:</label>
-      <input id="url" v-model="url" type="url" />
+  <div id="youtubeloop" class="sha-youtube flex gap-6">
+    <div class="sha-youtube__container">
+      <youtube
+        ref="youtube"
+        :video-id="videoId"
+        :player-vars="playerVars"
+      ></youtube>
     </div>
-    <div>
-      <label>Start from:</label>
-      <input
-        id="start-minutes"
-        v-model.number="startMinute"
-        type="number"
-        min="0"
-      />:<input
-        id="start-seconds"
-        v-model.number="startSecond"
-        type="number"
-        min="0"
-      />
-      <br />
-      <label>End at:</label>
-      <input
-        id="end-minutes"
-        v-model.number="endMinute"
-        type="number"
-        min="0"
-      />:<input
-        id="end-seconds"
-        v-model.number="endSecond"
-        type="number"
-        min="0"
-      />
+
+    <div class="sha-youtube__form grow max-w-md">
+      <div class="flex items-center">
+        <div class="w-20">
+          <label class="text-sm font-semibold">URL</label>
+        </div>
+        <div class="flex-1">
+          <input v-model="url" type="url" class="input input-bordered w-full" />
+        </div>
+      </div>
+
+      <div class="flex items-center mt-4">
+        <div class="w-20">
+          <label class="text-sm font-semibold">Start from</label>
+        </div>
+        <div class="flex-1">
+          <input
+            v-model.number="startMinute"
+            type="number"
+            min="0"
+            class="input input-bordered w-full"
+          />
+        </div>
+        <div class="w-4">
+          <div class="text-center">
+            :
+          </div>
+        </div>
+        <div class="flex-1">
+          <input
+            v-model.number="startSecond"
+            type="number"
+            min="0"
+            class="input input-bordered w-full"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center mt-4">
+        <div class="w-20">
+          <label class="text-sm font-semibold">End at</label>
+        </div>
+        <div class="flex-1">
+          <input
+            v-model.number="endMinute"
+            type="number"
+            min="0"
+            class="input input-bordered w-full"
+          />
+        </div>
+        <div class="w-4">
+          <div class="text-center">
+            :
+          </div>
+        </div>
+        <div class="flex-1">
+          <input
+            v-model.number="endSecond"
+            type="number"
+            min="0"
+            class="input input-bordered w-full"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center mt-4">
+        <div class="w-20">
+          <label class="text-sm font-semibold">Speed</label>
+        </div>
+        <div class="flex-1">
+          <select v-model="playbackSpeed" class="select select-bordered w-full">
+            <option v-for="item in selectItems" :key="item.id" :value="item.speed">
+              {{ item.speed }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex items-center mt-4">
+        <button
+          v-if="!playing"
+          @click="startLoop"
+          class="py-3 px-4 w-40 bg-primary font-semibold rounded-lg hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+          Start
+        </button>
+        <button
+          v-else
+          @click="endLoop"
+        >
+          Quit
+        </button>
+        <p>{{ remainingLoopCount }}</p>
+      </div>
     </div>
-    <div>
-      <label>Loop Count:</label>
-      <input id="loop-count" v-model.number="loopCount" type="number" min="1" />
-    </div>
-    <div>
-      <label>Playback Speed:</label>
-      <select v-model="playbackSpeed">
-        <option v-for="item in selectItems" :key="item.id" :value="item.speed">
-          {{ item.speed }}
-        </option>
-      </select>
-    </div>
-    <button v-if="!playing" @click="startLoop">Start</button>
-    <button v-else @click="endLoop">Quit</button>
-    <p>{{ remainingLoopCount }}</p>
   </div>
 </template>
 
