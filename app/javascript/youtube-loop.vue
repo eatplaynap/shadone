@@ -14,7 +14,7 @@
           <label class="text-sm font-semibold">URL</label>
         </div>
         <div class="flex-1">
-          <input v-model="url" type="url" class="input input-bordered w-full" />
+          <input v-model="url" type="url" id="url" class="input input-bordered w-full" />
         </div>
       </div>
 
@@ -27,6 +27,7 @@
             v-model.number="startMinute"
             type="number"
             min="0"
+            id="start-minute"
             class="input input-bordered w-full"
           />
         </div>
@@ -40,6 +41,7 @@
             v-model.number="startSecond"
             type="number"
             min="0"
+            id="start-second"
             class="input input-bordered w-full"
           />
         </div>
@@ -54,6 +56,7 @@
             v-model.number="endMinute"
             type="number"
             min="0"
+            id="end-minute"
             class="input input-bordered w-full"
           />
         </div>
@@ -67,6 +70,7 @@
             v-model.number="endSecond"
             type="number"
             min="0"
+            id="end-second"
             class="input input-bordered w-full"
           />
         </div>
