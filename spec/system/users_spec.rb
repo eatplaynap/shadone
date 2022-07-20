@@ -7,14 +7,14 @@ RSpec.describe 'User', type: :system do
 
   it 'can show their profile page' do
     sign_in_as user
-    click_link 'Profile'
+    click_on 'Profile'
     expect(page).to have_content 'Your Profile'
   end
 
   it 'can delete their account' do
     sign_in_as user
-    click_link 'Profile'
-    click_link 'Delete Account'
+    click_on 'Profile'
+    accept_confirm { click_on 'Delete Account' }
     expect(page).to have_content 'Successfully deleted your account!'
   end
 end
