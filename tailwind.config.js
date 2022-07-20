@@ -4,17 +4,23 @@ module.exports = {
     './app/views/**/*.html.slim',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
+    './app/javascript/**/*.vue',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
       'main': '#84C7BF',
-      'sub': '#B32034'
+      'black': '#000',
+      'sub': '#B32034',
+      'blue': 'blue',
     },
     extend: {},
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["bumblebee"],
+  },
 }
