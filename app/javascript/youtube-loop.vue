@@ -14,7 +14,12 @@
           <label class="text-sm font-semibold">URL</label>
         </div>
         <div class="flex-1">
-          <input v-model="url" type="url" id="url" class="input input-bordered w-full" />
+          <input
+            id="url"
+            v-model="url"
+            type="url"
+            class="input input-bordered w-full"
+          />
         </div>
       </div>
 
@@ -24,24 +29,22 @@
         </div>
         <div class="flex-1">
           <input
+            id="start-minute"
             v-model.number="startMinute"
             type="number"
             min="0"
-            id="start-minute"
             class="input input-bordered w-full"
           />
         </div>
         <div class="w-4">
-          <div class="text-center">
-            :
-          </div>
+          <div class="text-center">:</div>
         </div>
         <div class="flex-1">
           <input
+            id="start-second"
             v-model.number="startSecond"
             type="number"
             min="0"
-            id="start-second"
             class="input input-bordered w-full"
           />
         </div>
@@ -53,37 +56,41 @@
         </div>
         <div class="flex-1">
           <input
+            id="end-minute"
             v-model.number="endMinute"
             type="number"
             min="0"
-            id="end-minute"
             class="input input-bordered w-full"
           />
         </div>
         <div class="w-4">
-          <div class="text-center">
-            :
-          </div>
+          <div class="text-center">:</div>
         </div>
         <div class="flex-1">
           <input
+            id="end-second"
             v-model.number="endSecond"
             type="number"
             min="0"
-            id="end-second"
             class="input input-bordered w-full"
           />
         </div>
       </div>
 
-    <div class="flex items-center mt-4">
-      <div class="w-20">
-        <label class="text-sm font-semibold">Loop Count</label>
+      <div class="flex items-center mt-4">
+        <div class="w-20">
+          <label class="text-sm font-semibold">Loop Count</label>
+        </div>
+        <div class="flex-1">
+          <input
+            id="loop-count"
+            v-model.number="loopCount"
+            type="number"
+            min="1"
+            class="input input-bordered w-full"
+          />
+        </div>
       </div>
-      <div class="flex-1">
-        <input id="loop-count" v-model.number="loopCount" type="number" min="1" class="input input-bordered w-full" />
-      </div>
-    </div>
 
       <div class="flex items-center mt-4">
         <div class="w-20">
@@ -91,7 +98,11 @@
         </div>
         <div class="flex-1">
           <select v-model="playbackSpeed" class="select select-bordered w-full">
-            <option v-for="item in selectItems" :key="item.id" :value="item.speed">
+            <option
+              v-for="item in selectItems"
+              :key="item.id"
+              :value="item.speed"
+            >
               {{ item.speed }}
             </option>
           </select>
@@ -101,16 +112,12 @@
       <div class="flex items-center mt-4">
         <button
           v-if="!playing"
+          class="py-3 px-4 w-40 bg-primary font-semibold rounded-lg hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
           @click="startLoop"
-          class="py-3 px-4 w-40 bg-primary font-semibold rounded-lg hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+        >
           Start
         </button>
-        <button
-          v-else
-          @click="endLoop"
-        >
-          Quit
-        </button>
+        <button v-else @click="endLoop">Quit</button>
         <p>{{ remainingLoopCount }}</p>
       </div>
     </div>
