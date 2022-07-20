@@ -8,10 +8,10 @@ RSpec.describe 'Top', type: :system do
   it 'can do loop' do
     sign_in_as user
     fill_in('url', with: 'https://www.youtube.com/watch?v=s3ZX2RX73_g')
-    fill_in('start-minutes', with: 1)
-    fill_in('start-seconds', with: 1)
-    fill_in('end-minutes', with: 1)
-    fill_in('end-seconds', with: 2)
+    fill_in('start-minute', with: 1)
+    fill_in('start-second', with: 1)
+    fill_in('end-minute', with: 1)
+    fill_in('end-second', with: 2)
     fill_in('loop-count', with: 3)
     click_on('Start')
     sleep 5
@@ -21,10 +21,10 @@ RSpec.describe 'Top', type: :system do
   it 'can create a new practice log when loop ended' do
     sign_in_as user
     fill_in('url', with: 'https://www.youtube.com/watch?v=s3ZX2RX73_g')
-    fill_in('start-minutes', with: 1)
-    fill_in('start-seconds', with: 1)
-    fill_in('end-minutes', with: 1)
-    fill_in('end-seconds', with: 2)
+    fill_in('start-minute', with: 1)
+    fill_in('start-second', with: 1)
+    fill_in('end-minute', with: 1)
+    fill_in('end-second', with: 2)
     fill_in('loop-count', with: 3)
     click_on('Start')
     sleep 5
@@ -34,10 +34,10 @@ RSpec.describe 'Top', type: :system do
   it 'can access a practice show page when a new practice log was created' do
     sign_in_as user
     fill_in('url', with: 'https://www.youtube.com/watch?v=s3ZX2RX73_g')
-    fill_in('start-minutes', with: 1)
-    fill_in('start-seconds', with: 1)
-    fill_in('end-minutes', with: 1)
-    fill_in('end-seconds', with: 2)
+    fill_in('start-minute', with: 1)
+    fill_in('start-second', with: 1)
+    fill_in('end-minute', with: 1)
+    fill_in('end-second', with: 2)
     fill_in('loop-count', with: 3)
     click_on('Start')
     sleep 5
@@ -50,10 +50,10 @@ RSpec.describe 'Top', type: :system do
   it 'can stop middle of the loop and create a practice log' do
     sign_in_as user
     fill_in('url', with: 'https://www.youtube.com/watch?v=s3ZX2RX73_g')
-    fill_in('start-minutes', with: 1)
-    fill_in('start-seconds', with: 1)
-    fill_in('end-minutes', with: 1)
-    fill_in('end-seconds', with: 2)
+    fill_in('start-minute', with: 1)
+    fill_in('start-second', with: 1)
+    fill_in('end-minute', with: 1)
+    fill_in('end-second', with: 2)
     fill_in('loop-count', with: 10)
     click_on('Start')
     sleep 1
