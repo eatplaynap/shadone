@@ -1,5 +1,5 @@
 doctype html
-html(data-theme="bumblebee")
+html(data-theme="shadone")
   head
     title
       | Shadone
@@ -9,18 +9,14 @@ html(data-theme="bumblebee")
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  body
+  body.text-main
     .flex.flex-col.min-h-screen
       .flex-grow
-        header.w-full.sticky.top-0.bg-base-200.py-2.px-4
+        header.w-full.sticky.top-0.bg-base.py-2.px-4
           .container
             .mx-auto.flex.justify-between.items-center
-              h1.sha-logo.text-4xl.font-bold
-                span.text-primary
-                  | Sha
-                span
-                  | done
-              .menu.text-base
+              = link_to image_tag('shadone.svg', alt: 'Shadone logo', width: '200px'), '#'
+              .menu.text-main
                 - if logged_in?
                   = link_to 'YouTube', root_path
                   = link_to 'Calendar', root_path

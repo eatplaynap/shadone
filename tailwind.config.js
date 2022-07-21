@@ -9,10 +9,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      'main': '#84C7BF',
-      'black': '#000',
-      'sub': '#B32034',
-      'blue': 'blue',
+      'base': '#FFF',
+      'main': '#29292c',
+      'accent': '#e03131',
+      'sub': '#f0f0f8'
     },
     extend: {},
   },
@@ -21,6 +21,14 @@ module.exports = {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["bumblebee"],
+    themes: [
+      {
+      shadone: {
+      'base': '#FFF',
+      'main': '#29292c',
+      'accent': '#e03131',
+      'sub': '#f0f0f8'
+      }
+      }, "bumblebee"],
   },
 }

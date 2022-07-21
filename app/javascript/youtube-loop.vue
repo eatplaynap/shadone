@@ -117,7 +117,13 @@
         >
           Start
         </button>
-        <button v-else @click="endLoop">Quit</button>
+        <button
+          v-else
+          class="py-3 px-4 w-40 bg-primary font-semibold rounded-lg hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          @click="endLoop"
+        >
+          Quit
+        </button>
         <p>{{ remainingLoopCount }}</p>
       </div>
     </div>
