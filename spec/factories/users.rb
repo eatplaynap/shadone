@@ -3,8 +3,8 @@
 FactoryBot.define do
   factory :user do
     provider { 'google_oauth2' }
-    sequence(:uid) { |i| "uid#{i}" }
-    sequence(:name) { |i| "name#{i}" }
-    sequence(:image_url) { |i| "image#{i}" }
+    uid { Faker::Internet.uuid }
+    name { Faker::Name.name }
+    image_url { Faker::Avatar.image }
   end
 end
