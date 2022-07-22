@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
 
     it 'returns an error if an invalid argument is passed' do
       auth_hash = { provider: user.provider, uid: nil, info: { name: user.name, image_url: user.image_url } }
-      expect { User.find_or_create_from_auth_hash!(auth_hash) }.to raise_error ActiveRecord::NotNullViolation
+      expect { User.find_or_create_from_auth_hash!(auth_hash) }.to raise_error ActiveRecord::RecordInvalid
     end
   end
 
