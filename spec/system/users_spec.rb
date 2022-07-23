@@ -2,13 +2,28 @@
 
 require 'rails_helper'
 
-RSpec.describe 'User', type: :system do
-  let(:user) { FactoryBot.create(:user) }
+RSpec.describe 'Users', type: :system do
+  let(:user) { FactoryBot.create(:user, name: 'Test User') }
+  let(:practice) { FactoryBot.create(:practice, user: user, duration: 60) }
 
-  it 'can show their profile page' do
+  before do
+    @practiced_date = practice.practice_on.day.to_s
+  end
+
+  it 'can access their profile page' do
     sign_in_as user
     click_on 'Profile'
-    expect(page).to have_content 'Your Profile'
+    expect(page).to have_content 'Test User'
+    expect(page).to have_content 'Total Practice Duration'
+    expect(page).to have_content 'Su Mo Tu We Th Fr Sa'
+  end
+
+  it 'can access a practice show page from a calendar' do
+    sign_in_as user
+    click_on 'Profile'
+    click_on @practiced_date
+    expect(page).to have_content '1 minute'
+    expect(page).to have_content 'Edit'
   end
 
   it 'can delete their account' do
