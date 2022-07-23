@@ -2,25 +2,16 @@
 
 require 'rails_helper'
 
-describe 'practice', type: :system do
+RSpec.describe 'Practices', type: :system do
   let(:user) { FactoryBot.create(:user) }
+  let(:practice) { FactoryBot.create(:practice, user: user) }
 
   it 'can edit a practice log' do
     sign_in_as user
-    fill_in('url', with: 'https://www.youtube.com/watch?v=s3ZX2RX73_g')
-    fill_in('start-minute', with: 1)
-    fill_in('start-second', with: 1)
-    fill_in('end-minute', with: 1)
-    fill_in('end-second', with: 2)
-    fill_in('loop-count', with: 3)
-    click_on('Start')
-    sleep 5
-    scroll_to(:bottom)
-    date_of_today = Time.zone.today.day.to_s
-    click_on(date_of_today)
+    visit practice_path(practice)
     click_on('Edit')
-    fill_in('Memo', with: 'Editing the practice.')
+    fill_in('Memo', with: 'Edit the practice.')
     click_on('Update Practice')
-    has_text?('Editing the practice.')
+    expect(page).to have_content('Edit the practice.')
   end
 end

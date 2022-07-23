@@ -10,10 +10,5 @@ module SignInHelper
     )
     visit welcome_path
     click_link 'Login'
-    @current_user = user
-  end
-
-  def current_user
-    @current_user
   end
 end
