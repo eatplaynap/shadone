@@ -7,19 +7,19 @@ RSpec.describe User, type: :model do
 
   describe '.find_or_create_from_auth_hash!' do
     it 'returns a user object if a record exists' do
-      auth_hash = { provider: user.provider, uid: user.uid, info: { name: user.name, image_url: user.image_url } }
+      auth_hash = { provider: user.provider, uid: user.uid, info: { name: user.name, image: user.image_url } }
       expect(User.find_or_create_from_auth_hash!(auth_hash)).to eq user
       expect { User.find_or_create_from_auth_hash!(auth_hash) }.to_not(change { User.count })
     end
 
     it 'creates a new user if a record does not exist' do
       new_user = FactoryBot.build(:user)
-      new_user_auth_hash = { provider: new_user.provider, uid: new_user.uid, info: { name: new_user.name, image_url: new_user.image_url } }
+      new_user_auth_hash = { provider: new_user.provider, uid: new_user.uid, info: { name: new_user.name, image: new_user.image_url } }
       expect { User.find_or_create_from_auth_hash!(new_user_auth_hash) }.to change { User.count }.from(0).to(1)
     end
 
     it 'returns an error if an invalid argument is passed' do
-      auth_hash = { provider: user.provider, uid: nil, info: { name: user.name, image_url: user.image_url } }
+      auth_hash = { provider: user.provider, uid: nil, info: { name: user.name, image: user.image_url } }
       expect { User.find_or_create_from_auth_hash!(auth_hash) }.to raise_error ActiveRecord::RecordInvalid
     end
   end
