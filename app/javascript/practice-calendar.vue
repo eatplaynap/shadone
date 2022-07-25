@@ -1,6 +1,6 @@
 <template>
   <div id="practiceCalendar">
-    <div class="card lg:card-side bg-base-100">
+    <div class="card lg:card-side bg-base-100 z-0">
       <div class="card-body">
 
         <div class="card-title">Your Practice Calendar</div>
@@ -21,31 +21,34 @@
           </div>
         </div>
 
-          <table class="border-collapse border w-full">
-            <thead>
+          <table class="border-collapse border border-neutral w-full">
+            <thead class="bg-sub">
             <tr>
-              <th class="border w-1/7">Su</th>
-              <th class="border w-1/7">Mo</th>
-              <th class="border w-1/7">Tu</th>
-              <th class="border w-1/7">We</th>
-              <th class="border w-1/7">Th</th>
-              <th class="border w-1/7">Fr</th>
-              <th class="border w-1/7">Sa</th>
+              <th class="border border-neutral w-1/7">Su</th>
+              <th class="border border-neutral w-1/7">Mo</th>
+              <th class="border border-neutral w-1/7">Tu</th>
+              <th class="border border-neutral w-1/7">We</th>
+              <th class="border border-neutral w-1/7">Th</th>
+              <th class="border border-neutral w-1/7">Fr</th>
+              <th class="border border-neutral w-1/7">Sa</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="week in calendarWeeks" :key="week.id">
-                <td v-for="date in week.value" :key="date.weekDay" :class="[practiceMarkClass(date), todayClass(date)]" class="border h-12">
+                <td v-for="date in week.value" :key="date.weekDay" :class="[practiceMarkClass(date), todayClass(date)]" class="border border-neutral h-12">
                   <a v-if="date.id" :href="linkOfPracticeLog(date)">
-                    <div>
+                    <div class="text-left inline-block align-top">
                     {{ date.date }}
                     </div>
-                    <div>
-                      <img src="/images/done.svg">
+                    <div class="h-2/3">
+                      <img src="/images/done.svg" class="h-10/12">
                     </div>
                   </a>
                   <span v-else>
+                    <div class="text-left inline-block align-top">
                     {{ date.date }}
+                    </div>
+                    <div class="h-2/3"></div>
                   </span>
                 </td>
             </tr>
@@ -185,7 +188,7 @@ export default {
 /*delete when time comes*/
 
 .is-today {
-  color: red;
+  border: dashed 2px;
 }
 
 </style>

@@ -112,14 +112,14 @@
       <div class="flex items-center mt-4">
         <button
           v-if="!playing"
-          class="py-3 px-4 w-40 bg-primary font-semibold rounded-lg hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
           @click="startLoop"
         >
           Start
         </button>
         <button
           v-else
-          class="py-3 px-4 w-40 bg-primary font-semibold rounded-lg hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
           @click="endLoop"
         >
           Quit
