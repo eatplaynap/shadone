@@ -21,32 +21,32 @@
           </div>
         </div>
 
-          <table>
+          <table class="border-collapse border w-full">
             <thead>
-            <tr class="border">
-              <th class="border">Su</th>
-              <th class="border">Mo</th>
-              <th class="border">Tu</th>
-              <th class="border">We</th>
-              <th class="border">Th</th>
-              <th class="border">Fr</th>
-              <th class="border">Sa</th>
+            <tr>
+              <th class="border w-1/7">Su</th>
+              <th class="border w-1/7">Mo</th>
+              <th class="border w-1/7">Tu</th>
+              <th class="border w-1/7">We</th>
+              <th class="border w-1/7">Th</th>
+              <th class="border w-1/7">Fr</th>
+              <th class="border w-1/7">Sa</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="week in calendarWeeks" :key="week.id">
-                <td
-                  v-for="date in week.value"
-                  :key="date.weekDay"
-                  :class="[practiceMarkClass(date), todayClass(date)]">
-                  <div class="border h-12">
-                    <a v-if="date.id" :href="linkOfPracticeLog(date)">
-                      {{ date.date }}
-                    </a>
-                    <span v-else>
-                      {{ date.date }}
-                    </span>
-                  </div>
+                <td v-for="date in week.value" :key="date.weekDay" :class="[practiceMarkClass(date), todayClass(date)]" class="border h-12">
+                  <a v-if="date.id" :href="linkOfPracticeLog(date)">
+                    <div>
+                    {{ date.date }}
+                    </div>
+                    <div>
+                      <img src="/images/done.svg">
+                    </div>
+                  </a>
+                  <span v-else>
+                    {{ date.date }}
+                  </span>
                 </td>
             </tr>
             </tbody>
@@ -188,7 +188,4 @@ export default {
   color: red;
 }
 
-.practice-done {
-  background-color: yellow;
-}
 </style>
