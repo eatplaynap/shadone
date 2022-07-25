@@ -14,7 +14,11 @@ module.exports = {
       'accent': '#e03131',
       'sub': '#f0f0f8'
     },
-    extend: {},
+    extend: {
+      width: {
+        '1/7': '14.2857143%',
+      }
+    },
   },
   variants: {
     extend: {},
