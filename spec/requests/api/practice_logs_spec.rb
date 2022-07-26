@@ -8,7 +8,6 @@ RSpec.describe 'PracticeLog', type: :request do
   end
 
   context 'as an authenticated user' do
-
     before do
       get '/auth/google_oauth2/callback'
     end
