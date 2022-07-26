@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <YouTubeLoop @loop-done="createPracticeLog" />
-    <PracticeCalendar :practices="practices" />
+    <PracticeCalendar :practiceLogs="practiceLogs" />
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import PracticeCalendar from './practice-calendar.vue'
 import Vue from 'vue'
 import VueToast from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-sugar.css'
-import PracticeFetchable from './mixins/practice-fetchable'
+import PracticeLogFetchable from './mixins/practice-log-fetchable'
 
 Vue.use(VueToast)
 
@@ -20,13 +20,13 @@ export default {
     YouTubeLoop,
     PracticeCalendar,
   },
-  mixins: [PracticeFetchable],
+  mixins: [PracticeLogFetchable],
   mounted() {
-    this.fetchPractices()
+    this.fetchPracticeLogs()
   },
   methods: {
     createPracticeLog(practiceLog) {
-      fetch('/api/practices', {
+      fetch('/api/practice_logs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
@@ -39,7 +39,7 @@ export default {
       })
         .then(() => {
           this.$toast.success("Yey! You've created another practice log!")
-          this.fetchPractices()
+          this.fetchPracticeLogs()
         })
         .catch(() => {
           this.$toast.error('Failed to create a new practice log!')

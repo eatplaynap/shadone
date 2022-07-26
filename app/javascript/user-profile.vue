@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <PracticeCalendar :practices="practices" />
+    <PracticeCalendar :practiceLogs="practiceLogs" />
   </div>
 </template>
 
 <script>
 import PracticeCalendar from './practice-calendar.vue'
-import PracticeFetchable from './mixins/practice-fetchable'
+import PracticeLogFetchable from './mixins/practice-log-fetchable'
 
 export default {
   components: {
     PracticeCalendar,
   },
-  mixins: [PracticeFetchable],
+  mixins: [PracticeLogFetchable],
   mounted() {
-    this.fetchPractices()
+    this.fetchPracticeLogs()
   },
 }
 </script>
