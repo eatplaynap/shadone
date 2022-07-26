@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resource :me, only: [:show, :destroy], controller: 'users'
-  resources :practices, only: [:show, :edit, :update]
+  resources :practice_logs, only: [:show, :edit, :update]
   namespace :api do
-    resources :practices, only: [:index, :create]
+    resources :practice_logs, only: [:index, :create]
   end
 end
 
