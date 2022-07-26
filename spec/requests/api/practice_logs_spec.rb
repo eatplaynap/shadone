@@ -8,42 +8,52 @@ RSpec.describe 'PracticeLog', type: :request do
   end
 
   context 'as an authenticated user' do
-    it 'can create a practice log' do
+    before do
       get '/auth/google_oauth2/callback'
-      post api_practice_logs_path, params: {
-        practice_log: {
-          url: 'https://www.youtube.com/watch?v=s3ZX2RX73_g',
-          duration: 300
+    end
+
+    it 'can create a practice log' do
+      expect {
+        post api_practice_logs_path, params: {
+          practice_log: {
+            url: 'https://www.youtube.com/watch?v=s3ZX2RX73_g',
+            duration: 300
+          }
         }
-      }
-      expect(response).to have_http_status(201)
+      }.to change(PracticeLog, :count).from(0).to(1)
+      expect(response).to have_http_status(:created)
     end
 
     it 'can update a practice log' do
-      get '/auth/google_oauth2/callback'
       post api_practice_logs_path, params: {
         practice_log: {
           url: 'https://www.youtube.com/watch?v=s3ZX2RX73_g',
           duration: 300
         }
       }
-      expect do
+      expect {
         post api_practice_logs_path, params: {
-          practice_log: { url: 'https://www.youtube.com/watch?v=A51rPtHYKrk', duration: 100 }
+          practice_log: {
+            url: 'https://www.youtube.com/watch?v=A51rPtHYKrk',
+            duration: 100
+          }
         }
-      end.to_not(change { PracticeLog.count })
+      }.to_not change(PracticeLog, :count)
+      expect(response).to have_http_status(:created)
     end
   end
 
   context 'as an unauthenticated user' do
-    it 'cannot create a practice' do
-      post api_practice_logs_path, params: {
-        practice: {
-          url: 'https://www.youtube.com/watch?v=s3ZX2RX73_g',
-          duration: 300
+    it 'cannot create a practice log' do
+      expect {
+        post api_practice_logs_path, params: {
+          practice: {
+            url: 'https://www.youtube.com/watch?v=s3ZX2RX73_g',
+            duration: 300
+          }
         }
-      }
-      expect(response).to have_http_status(302)
+      }.to_not change(PracticeLog, :count)
+      expect(response).to have_http_status(:found)
     end
   end
 end

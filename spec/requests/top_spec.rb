@@ -6,12 +6,12 @@ RSpec.describe 'Top', type: :request do
   context 'as an authenticated user' do
     before do
       google_oauth_mock
+      get '/auth/google_oauth2/callback'
     end
 
     it 'can access top page' do
-      get '/auth/google_oauth2/callback'
       get root_path
-      expect(response).to be_successful
+      expect(response).to have_http_status(:ok)
     end
   end
 

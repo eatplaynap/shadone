@@ -7,12 +7,12 @@ RSpec.describe 'Sessions', type: :system do
 
   it 'can log in' do
     sign_in_as user
-    expect(page).to have_content('Successfully logged in!')
+    expect(page).to have_content 'Successfully logged in!'
   end
 
   it 'can log out' do
     sign_in_as user
     click_link 'Logout'
-    expect(page).to have_content('Successfully logged out!')
+    expect(page).to have_content 'Successfully logged out!'
   end
 end

@@ -2,7 +2,7 @@
 
 module YoutubeHelper
   def youtube_iframe_url(url)
-    YouTubeRails.youtube_embed_url_only(url)
+    YouTubeRails.youtube_embed_url_only(url, ssl: true)
   end
 
   def youtube_thumbnail_url(url)

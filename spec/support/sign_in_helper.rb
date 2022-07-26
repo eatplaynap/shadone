@@ -6,7 +6,8 @@ module SignInHelper
     OmniAuth.config.add_mock(
       user.provider,
       uid: user.uid,
-      info: { name: user.name }
+      info: { name: user.name,
+              image: user.image_url }
     )
     visit welcome_path
     click_link 'Login'
