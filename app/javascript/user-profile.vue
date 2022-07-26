@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <PracticeCalendar :practiceLogs="practiceLogs" />
+    <PracticeCalendar :practice-logs="practiceLogs" />
   </div>
 </template>
 

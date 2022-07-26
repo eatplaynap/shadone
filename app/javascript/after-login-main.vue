@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <YouTubeLoop @loop-done="createPracticeLog" />
-    <PracticeCalendar :practiceLogs="practiceLogs" />
+    <PracticeCalendar :practice-logs="practiceLogs" />
   </div>
 </template>
 
