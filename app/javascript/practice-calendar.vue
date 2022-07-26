@@ -22,7 +22,7 @@
             :key="date.weekDay"
             :class="[practiceMarkClass(date), todayClass(date)]"
           >
-            <a v-if="date.id" :href="linkOfPractice(date)">
+            <a v-if="date.id" :href="linkOfPracticeLog(date)">
               {{ date.date }}
             </a>
             <span v-else>
@@ -38,7 +38,7 @@
 <script>
 export default {
   props: {
-    practices: { type: Array, required: true },
+    practiceLogs: { type: Array, required: true },
   },
   data() {
     return {
@@ -50,9 +50,9 @@ export default {
     }
   },
   computed: {
-    calendarPractices() {
-      return this.practices.filter((practice) =>
-        practice.practice_on.includes(
+    calendarPracticeLogs() {
+      return this.practiceLogs.filter((practiceLog) =>
+        practiceLog.practice_on.includes(
           `${this.calendarYear}-${this.formatMonth(this.calendarMonth)}`
         )
       )
@@ -73,8 +73,8 @@ export default {
         }
       }
       for (let date = 1; date <= this.lastDate; date++) {
-        const result = this.calendarPractices.find(
-          (practice) => this.practiceDate(practice) === date
+        const result = this.calendarPracticeLogs.find(
+          (practiceLog) => this.practiceLogDate(practiceLog) === date
         )
         if (result) {
           result.date = date
@@ -105,8 +105,8 @@ export default {
     },
   },
   methods: {
-    linkOfPractice(date) {
-      return `/practices/${date.id}`
+    linkOfPracticeLog(date) {
+      return `/practice_logs/${date.id}`
     },
     previousMonth() {
       if (this.calendarMonth === 1) {
@@ -150,8 +150,8 @@ export default {
     getCurrentDay() {
       return new Date().getDate()
     },
-    practiceDate(practice) {
-      return Number(practice.practice_on.split('-')[2])
+    practiceLogDate(practiceLog) {
+      return Number(practiceLog.practice_on.split('-')[2])
     },
     formatMonth(month) {
       return month.toString().padStart(2, '0')

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :practices, dependent: :destroy
+  has_many :practice_logs, dependent: :destroy
   validates :name, presence: true
   validates :provider, presence: true
   validates :uid, presence: true
@@ -20,6 +20,6 @@ class User < ApplicationRecord
   end
 
   def total_practice_duration
-    practices.sum(:duration)
+    practice_logs.sum(:duration)
   end
 end

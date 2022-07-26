@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_09_113608) do
+ActiveRecord::Schema.define(version: 2022_07_26_022441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "practices", force: :cascade do |t|
+  create_table "practice_logs", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "url", null: false
     t.integer "duration", null: false
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2022_05_09_113608) do
     t.date "practice_on", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "practice_on"], name: "index_practices_on_user_id_and_practice_on", unique: true
-    t.index ["user_id"], name: "index_practices_on_user_id"
+    t.index ["user_id", "practice_on"], name: "index_practice_logs_on_user_id_and_practice_on", unique: true
+    t.index ["user_id"], name: "index_practice_logs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,5 +37,5 @@ ActiveRecord::Schema.define(version: 2022_05_09_113608) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
-  add_foreign_key "practices", "users"
+  add_foreign_key "practice_logs", "users"
 end

@@ -1,0 +1,17 @@
+h2 = @practice_log.practice_on
+
+table
+  tbody
+    tr
+      th Video
+      td
+        img src="#{youtube_thumbnail_url(@practice_log.url)}"
+    tr
+      th = PracticeLog.human_attribute_name(:duration)
+      td = seconds_in_words(@practice_log.duration)
+
+= form_with model: @practice_log, local: true do |f|
+  .form-group
+    = f.label :memo
+    = f.text_area :memo, rows: 5, class: 'form-control'
+  = f.submit

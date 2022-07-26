@@ -1,12 +1,12 @@
 export default {
   data() {
     return {
-      practices: [],
+      practiceLogs: [],
     }
   },
   methods: {
-    fetchPractices() {
-      fetch(`/api/practices.json`, {
+    fetchPracticeLogs() {
+      fetch(`/api/practice_logs.json`, {
         method: 'GET',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -16,9 +16,9 @@ export default {
         .then((response) => {
           return response.json()
         })
-        .then((practices) => {
-          practices.forEach((practice) => {
-            this.practices.push(practice)
+        .then((practiceLogs) => {
+          practiceLogs.forEach((practiceLog) => {
+            this.practiceLogs.push(practiceLog)
           })
         })
     },
