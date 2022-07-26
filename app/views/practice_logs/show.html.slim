@@ -1,0 +1,23 @@
+h2 = @practice_log.practice_on
+
+table
+  tbody
+    tr
+      th Video
+      td
+        iframe width="560" height="315" src="#{youtube_iframe_url(@practice_log.url)}"
+    tr
+      th = PracticeLog.human_attribute_name(:duration)
+      td = seconds_in_words(@practice_log.duration)
+    tr
+      th = PracticeLog.human_attribute_name(:memo)
+      td = @practice_log.memo
+
+= link_to 'Edit', edit_practice_log_path
+
+- if @practice_log.previous
+  = link_to @practice_log.previous
+    | Previous
+- if @practice_log.next
+  = link_to @practice_log.next
+    | Next
