@@ -2,16 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Practice', type: :request do
+RSpec.describe 'PracticeLog', type: :request do
   before do
     google_oauth_mock
   end
 
   context 'as an authenticated user' do
-    it 'can create a practice' do
+    it 'can create a practice log' do
       get '/auth/google_oauth2/callback'
-      post api_practices_path, params: {
-        practice: {
+      post api_practice_logs_path, params: {
+        practice_log: {
           url: 'https://www.youtube.com/watch?v=s3ZX2RX73_g',
           duration: 300
         }
@@ -19,25 +19,25 @@ RSpec.describe 'Practice', type: :request do
       expect(response).to have_http_status(201)
     end
 
-    it 'can update a practice' do
+    it 'can update a practice log' do
       get '/auth/google_oauth2/callback'
-      post api_practices_path, params: {
-        practice: {
+      post api_practice_logs_path, params: {
+        practice_log: {
           url: 'https://www.youtube.com/watch?v=s3ZX2RX73_g',
           duration: 300
         }
       }
       expect do
-        post api_practices_path, params: {
-          practice: { url: 'https://www.youtube.com/watch?v=A51rPtHYKrk', duration: 100 }
+        post api_practice_logs_path, params: {
+          practice_log: { url: 'https://www.youtube.com/watch?v=A51rPtHYKrk', duration: 100 }
         }
-      end.to_not(change { Practice.count })
+      end.to_not(change { PracticeLog.count })
     end
   end
 
   context 'as an unauthenticated user' do
     it 'cannot create a practice' do
-      post api_practices_path, params: {
+      post api_practice_logs_path, params: {
         practice: {
           url: 'https://www.youtube.com/watch?v=s3ZX2RX73_g',
           duration: 300
