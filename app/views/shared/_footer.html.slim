@@ -2,8 +2,10 @@
 
 footer.footer.footer-center.p-10.bg-base-200.text-base-content.rounded
   .grid.grid-flow-col.gap-4
-    a.link.link-hover Terms of Service
-    a.link.link-hover Privacy Policy
+    .link.link-hover
+      = link_to 'Term of Service', tos_path
+    .link.link-hover
+      = link_to 'Privacy Policy', privacy_policy_path
   div
     .grid.grid-flow-col.gap-4
       a href='https://twitter.com/eatplaynap329'
