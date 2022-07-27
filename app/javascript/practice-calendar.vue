@@ -2,27 +2,29 @@
   <div id="practiceCalendar">
     <div class="card lg:card-side bg-base-100 z-0">
       <div class="card-body">
-
         <div class="card-title">Your Practice Calendar</div>
 
         <div class="navbar bg-base-100 flex justify-center">
           <div class="normal-case text-xl">
             <div class="link link-hover">
-              <div @click="previousMonth" class="previous-month">Previous Month</div>
+              <div class="previous-month" @click="previousMonth">
+                Previous Month
+              </div>
             </div>
 
             <div>{{ calendarYear }} - {{ calendarMonth }}</div>
 
             <div class="link link-hover">
-              <div v-if="!newestMonth()" @click="nextMonth" class="next-month">Next Month</div>
+              <div v-if="!newestMonth()" class="next-month" @click="nextMonth">
+                Next Month
+              </div>
               <div v-else class="blank"></div>
             </div>
-
           </div>
         </div>
 
-          <table class="border-collapse border border-neutral w-full">
-            <thead class="bg-sub">
+        <table class="border-collapse border border-neutral w-full">
+          <thead class="bg-sub">
             <tr>
               <th class="border border-neutral w-1/7">Su</th>
               <th class="border border-neutral w-1/7">Mo</th>
@@ -32,28 +34,33 @@
               <th class="border border-neutral w-1/7">Fr</th>
               <th class="border border-neutral w-1/7">Sa</th>
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             <tr v-for="week in calendarWeeks" :key="week.id">
-                <td v-for="date in week.value" :key="date.weekDay" :class="[practiceMarkClass(date), todayClass(date)]" class="border border-neutral h-12">
-                  <a v-if="date.id" :href="linkOfPracticeLog(date)">
-                    <div class="text-left inline-block align-top">
+              <td
+                v-for="date in week.value"
+                :key="date.weekDay"
+                :class="[practiceMarkClass(date), todayClass(date)]"
+                class="border border-neutral h-12"
+              >
+                <a v-if="date.id" :href="linkOfPracticeLog(date)">
+                  <div class="text-left inline-block align-top">
                     {{ date.date }}
-                    </div>
-                    <div class="h-2/3">
-                      <img src="/images/done.svg" class="h-10/12">
-                    </div>
-                  </a>
-                  <span v-else>
-                    <div class="text-left inline-block align-top">
+                  </div>
+                  <div class="h-2/3">
+                    <img src="/images/done.svg" class="h-10/12" />
+                  </div>
+                </a>
+                <span v-else>
+                  <div class="text-left inline-block align-top">
                     {{ date.date }}
-                    </div>
-                    <div class="h-2/3"></div>
-                  </span>
-                </td>
+                  </div>
+                  <div class="h-2/3"></div>
+                </span>
+              </td>
             </tr>
-            </tbody>
-          </table>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -153,16 +160,16 @@ export default {
     },
     todayClass(date) {
       if (
-          this.calendarYear !== this.currentYear ||
-          this.calendarMonth !== this.currentMonth
+        this.calendarYear !== this.currentYear ||
+        this.calendarMonth !== this.currentMonth
       )
         return
       if (date.date === this.today) return 'is-today'
     },
     newestMonth() {
       return (
-          this.currentYear === this.calendarYear &&
-          this.currentMonth === this.calendarMonth
+        this.currentYear === this.calendarYear &&
+        this.currentMonth === this.calendarMonth
       )
     },
     getCurrentYear() {
@@ -190,5 +197,4 @@ export default {
 .is-today {
   border: dashed 2px;
 }
-
 </style>
