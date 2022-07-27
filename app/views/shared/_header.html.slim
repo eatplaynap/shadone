@@ -1,0 +1,10 @@
+header.w-full.sticky.top-0.bg-base.py-2.px-4
+  .container
+    .mx-auto.flex.justify-between.items-center
+      = link_to image_tag('shadone.svg', alt: 'Shadone logo', width: '200px'), '#'
+      .menu.text-main
+        - if logged_in?
+          = link_to 'YouTube', root_path
+          = link_to 'Calendar', root_path
+          = link_to 'Profile', me_path
+          = link_to 'Logout', logout_path, method: :delete

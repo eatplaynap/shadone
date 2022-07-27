@@ -13,22 +13,9 @@ html(data-theme="shadone")
   body.text-main
     .flex.flex-col.min-h-screen
       .flex-grow
-        header.w-full.sticky.top-0.bg-base.py-2.px-4
-          .container
-            .mx-auto.flex.justify-between.items-center
-              = link_to image_tag('shadone.svg', alt: 'Shadone logo', width: '200px'), '#'
-              .menu.text-main
-                - if logged_in?
-                  = link_to 'YouTube', root_path
-                  = link_to 'Calendar', root_path
-                  = link_to 'Profile', me_path
-                  = link_to 'Logout', logout_path, method: :delete
-                - else
-                  = link_to 'Login', '/auth/google_oauth2', method: :post, class: 'btn btn-outline btn-primary bg-base-100'
+        - if logged_in?
+          = render 'shared/header'
         main.py-6
           .container.max-w-5xl
             = yield
-      footer.w-full.bg-base-200.text-center.py-4.px-4
-        | © 2022 eatplaynap
-        a href="https://twitter.com/eatplaynap329" role="button" Twitter
-        a href="https://github.com/eatplaynap/shadone/" role="button" GitHub
+        = render 'shared/footer'
