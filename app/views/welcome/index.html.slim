@@ -1,25 +1,31 @@
 = notice
-#js-youtube-loop
-.sha-explanations.mt-8
-  section.sha-explanations__explanation
-    h2.sha-logo.text-2xl.font-bold.mb-1
-      span.text-primary
-        | What&nbsp;
-      span
-        | is this?
-    p
-      | ShaDone is a web app for language learners who want to do shadowing exercise with YouTube videos.
-      br
-      | With ShaDone you can
-    ul
-      li Repeat full or a part of YouTube video
-      li Set loop how many times you want
+.hero.min-h-screen.bg-base
+  .hero-content.text-center
+    .max-w-md
+      = image_tag('shadone.svg', alt: 'Shadone logo', width: '500px')
+      .sha-explanations.mt-8
+        section.sha-explanations__explanation
+          h2.sha-logo.text-2xl.font-bold.mb-1
+            span.text-primary
+              | What&nbsp;
+            span
+              | is this?
+          p
+            | ShaDone is a web app for language learners who want to do shadowing exercise with YouTube videos.
+            br
+            | With ShaDone you can
+          ul
+            li Repeat full or a part of YouTube video
+            li Set loop how many times you want
 
-  section.sha-explanations__explanation.mt-4
-    h2.sha-logo.text-2xl.font-bold.mb-1
-      span.text-primary
-        | What&nbsp;
-      span
-        | can I do if I signed in?
-    p You can automatically record your practice duration.
-    p The best way to maintain your learning motivation is by accumulating your day-to-day effort!
+        section.sha-explanations__explanation.mt-4
+          h2.sha-logo.text-2xl.font-bold.mb-1
+            span.text-primary
+              | What&nbsp;
+            span
+              | can I do if I signed in?
+          p You can automatically record your practice duration.
+          p The best way to maintain your learning motivation is by accumulating your day-to-day effort!
+      #js-youtube-loop
+      = link_to 'Login', '/auth/google_oauth2', method: :post, class: 'btn btn-outline btn-primary bg-base-100'
+
