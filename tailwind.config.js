@@ -12,9 +12,14 @@ module.exports = {
       'base': '#FFF',
       'main': '#29292c',
       'accent': '#e03131',
-      'sub': '#f0f0f8'
+      'sub': '#f0f0f8',
+      'neutral': '#d2d2d8'
     },
-    extend: {},
+    extend: {
+      width: {
+        '1/7': '14.2857143%',
+      }
+    },
   },
   variants: {
     extend: {},
@@ -27,7 +32,9 @@ module.exports = {
       'base': '#FFF',
       'main': '#29292c',
       'accent': '#e03131',
-      'sub': '#f0f0f8'
+      'sub': '#f0f0f8',
+      'neutral': '#d2d2d8',
+      'success': '#75E1D6',
       }
       }, "bumblebee"],
   },

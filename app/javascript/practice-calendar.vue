@@ -1,37 +1,68 @@
 <template>
   <div id="practiceCalendar">
-    <div @click="previousMonth">Previous Month</div>
-    <div>{{ calendarYear }} - {{ calendarMonth }}</div>
-    <div v-if="!newestMonth()" @click="nextMonth">Next Month</div>
-    <table>
-      <thead>
-        <tr>
-          <th>Su</th>
-          <th>Mo</th>
-          <th>Tu</th>
-          <th>We</th>
-          <th>Th</th>
-          <th>Fr</th>
-          <th>Sa</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="week in calendarWeeks" :key="week.id">
-          <td
-            v-for="date in week.value"
-            :key="date.weekDay"
-            :class="[practiceMarkClass(date), todayClass(date)]"
-          >
-            <a v-if="date.id" :href="linkOfPracticeLog(date)">
-              {{ date.date }}
-            </a>
-            <span v-else>
-              {{ date.date }}
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card lg:card-side bg-base-100 z-0">
+      <div class="card-body">
+        <div class="card-title">Your Practice Calendar</div>
+
+        <div class="navbar bg-base-100 flex justify-center">
+          <div class="normal-case text-xl">
+            <div class="link link-hover">
+              <div class="previous-month" @click="previousMonth">
+                Previous Month
+              </div>
+            </div>
+
+            <div>{{ calendarYear }} - {{ calendarMonth }}</div>
+
+            <div class="link link-hover">
+              <div v-if="!newestMonth()" class="next-month" @click="nextMonth">
+                Next Month
+              </div>
+              <div v-else class="blank"></div>
+            </div>
+          </div>
+        </div>
+
+        <table class="border-collapse border border-neutral w-full">
+          <thead class="bg-sub">
+            <tr>
+              <th class="border border-neutral w-1/7">Su</th>
+              <th class="border border-neutral w-1/7">Mo</th>
+              <th class="border border-neutral w-1/7">Tu</th>
+              <th class="border border-neutral w-1/7">We</th>
+              <th class="border border-neutral w-1/7">Th</th>
+              <th class="border border-neutral w-1/7">Fr</th>
+              <th class="border border-neutral w-1/7">Sa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="week in calendarWeeks" :key="week.id">
+              <td
+                v-for="date in week.value"
+                :key="date.weekDay"
+                :class="[practiceMarkClass(date), todayClass(date)]"
+                class="border border-neutral h-12"
+              >
+                <a v-if="date.id" :href="linkOfPracticeLog(date)">
+                  <div class="text-left inline-block align-top">
+                    {{ date.date }}
+                  </div>
+                  <div class="h-2/3">
+                    <img src="/images/done.svg" class="h-10/12" />
+                  </div>
+                </a>
+                <span v-else>
+                  <div class="text-left inline-block align-top">
+                    {{ date.date }}
+                  </div>
+                  <div class="h-2/3"></div>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -164,9 +195,6 @@ export default {
 /*delete when time comes*/
 
 .is-today {
-  color: red;
-}
-.practice-done {
-  background-color: yellow;
+  border: dashed 2px;
 }
 </style>
