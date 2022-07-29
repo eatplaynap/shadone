@@ -5,7 +5,7 @@ table
     tr
       th Video
       td
-        img src="#{youtube_thumbnail_url(@practice_log.url)}"
+        img width="560" height="315" src="#{youtube_thumbnail_url(@practice_log.url)}"
     tr
       th = PracticeLog.human_attribute_name(:duration)
       td = seconds_in_words(@practice_log.duration)
@@ -13,5 +13,5 @@ table
 = form_with model: @practice_log, local: true do |f|
   .form-group
     = f.label :memo
-    = f.text_area :memo, rows: 5, class: 'form-control'
-  = f.submit
+    = f.text_area :memo, rows: 5, class: 'form-control textarea textarea-bordered'
+  = f.submit 'Update', class: 'btn'
