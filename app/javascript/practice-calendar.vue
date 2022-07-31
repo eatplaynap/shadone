@@ -10,7 +10,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="sha-icon" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
               </div>
 
-              <div>{{ calendarYear }} - {{ calendarMonth }}</div>
+              <div class="px-8">{{ monthName(calendarMonth) }} {{ calendarYear }}</div>
 
               <div v-if="!newestMonth()" @click="nextMonth" class="cursor-pointer w-11 h-11 flex items-center justify-center p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="sha-icon" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg>
@@ -78,6 +78,7 @@ export default {
       currentMonth: this.getCurrentMonth(),
       calendarYear: this.getCurrentYear(),
       calendarMonth: this.getCurrentMonth(),
+      humanReadableMonth: this.monthName(),
       today: this.getCurrentDay(),
     }
   },
@@ -187,6 +188,10 @@ export default {
     },
     formatMonth(month) {
       return month.toString().padStart(2, '0')
+    },
+    monthName(month) {
+      const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+      return months[month - 1]
     },
   },
 }

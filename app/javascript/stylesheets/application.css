@@ -38,12 +38,15 @@
   opacity: 0.4;
 }
 
+.sha-icon:hover {
+  opacity: 0.4;
+}
+
 .sha-icon.is-disabled {
   fill: #edd;
 }
 
 .is-today .sha-date {
-  /*box-shadow: black 0 0 0 1px inset;*/
   background-color: rgba(117,225,214,0.5);
 }
 
