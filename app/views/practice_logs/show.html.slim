@@ -1,24 +1,27 @@
-h1.text-xl = @practice_log.practice_on
+.mx-auto.max-w-xl
+  h1.text-xl = @practice_log.practice_on
 
-.pb-40
-  table.pb-40
-    tbody
-      tr
-        th Video
-        td
+  .pb-20
+    .pb-40
+      .table
+        .sha-youtube__container
           iframe width="560" height="315" src="#{youtube_iframe_url(@practice_log.url)}"
-      tr
-        th = PracticeLog.human_attribute_name(:duration)
-        td = seconds_in_words(@practice_log.duration)
-      tr
-        th = PracticeLog.human_attribute_name(:memo)
-        td = @practice_log.memo
+      .table
+        .title
+          = PracticeLog.human_attribute_name(:duration)
+        .body
+          = seconds_in_words(@practice_log.duration)
+      .table
+        .title
+          = PracticeLog.human_attribute_name(:memo)
+        .body.break-words
+          = simple_format(@practice_log.memo)
 
-  .flex.justify-between
-    - if @practice_log.previous
-      = link_to 'Prev', @practice_log.previous, class: 'btn'
+    .flex.justify-between
+      - if @practice_log.previous
+        = link_to 'Prev', @practice_log.previous, class: 'btn'
 
-    = link_to 'Edit', edit_practice_log_path, class: 'btn btn-wide'
+      = link_to 'Edit', edit_practice_log_path, class: 'btn btn-wide'
 
-    - if @practice_log.next
-      = link_to 'Next', @practice_log.next, class: 'btn'
+      - if @practice_log.next
+        = link_to 'Next', @practice_log.next, class: 'btn'
