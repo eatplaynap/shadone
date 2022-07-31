@@ -6,6 +6,10 @@ footer.footer.footer-center.p-10.bg-base-200.text-base-content.rounded
       = link_to 'Term of Service', tos_path
     .link.link-hover
       = link_to 'Privacy Policy', privacy_policy_path
+    .link.link-hover
+      = link_to 'Logout', logout_path, method: :delete
+    .link.link-hover
+      = link_to 'Delete Account', me_path, method: :delete, data: { confirm: 'Are you sure?' }
   div
     .grid.grid-flow-col.gap-4
       a href='https://twitter.com/eatplaynap329'
