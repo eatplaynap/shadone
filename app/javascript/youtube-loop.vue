@@ -1,5 +1,5 @@
 <template>
-  <div id="youtubeloop" class="sha-youtube flex gap-6">
+  <div id="youtubeloop" class="sha-youtube flex flex-col sm:flex-row gap-6">
     <div class="sha-youtube__container">
       <youtube
         ref="youtube"
@@ -10,7 +10,7 @@
 
     <div class="sha-youtube__form grow max-w-md">
       <div class="flex items-center">
-        <div class="w-20">
+        <div class="w-20 hidden sm:block">
           <label class="text-sm font-semibold">URL</label>
         </div>
         <div class="flex-1">
