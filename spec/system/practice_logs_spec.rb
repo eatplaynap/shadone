@@ -24,7 +24,7 @@ RSpec.describe 'PracticeLogs', type: :system do
     expect(page).to have_content '1 minute'
     expect(page).to have_content 'Lorem ipsum dolor sit amet'
     fill_in 'Memo', with: 'Edit the practice log.'
-    click_on 'Update Practice log'
+    click_on 'Update'
     expect(page).to have_content 'Edit the practice log.'
   end
 end
