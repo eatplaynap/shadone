@@ -3,7 +3,6 @@
     <div class="max-w-2xl mt-6">
       <div class="bg-base-100 z-0">
         <div class="">
-          <div class="card-title">Your Practice Calendar</div>
 
           <div class="navbar bg-base-100 flex justify-center">
             <div class="normal-case text-xl">
