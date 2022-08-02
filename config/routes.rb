@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resource :me, only: [:show, :destroy], controller: 'users'
   resources :practice_logs, only: [:show, :edit, :update]
   namespace :api do
-    resources :practice_logs, only: [:index, :create]
+    resources :practice_logs, only: [:index, :create, :show]
   end
 end
 

@@ -12,6 +12,7 @@ import 'stylesheets/application.css'
 import '../after-login-main.js'
 import '../youtube-loop.js'
 import '../user-profile.js'
+import '../edit-form.js'
 
 Rails.start()
 Turbolinks.start()
