@@ -1,30 +1,37 @@
-= notice
 .hero.min-h-screen.bg-base
-  .hero-content.text-center
-    .max-w-md
-      = image_tag('shadone.svg', alt: 'Shadone logo', width: '500px')
+  .hero-content.flex-col.md:flex-row-reverse.justify-between
+    .md:max-w-sm
+      = image_tag('online-learning.svg', alt: 'Online leaning')
+    div
+      h1.max-w-sm = image_tag('shadone-with-explanation.svg', alt: 'Shadone that helps your shadowing exerices')
       .sha-explanations.mt-8
         section.sha-explanations__explanation
           h2.sha-logo.text-2xl.font-bold.mb-1
             span.text-primary
-              | What&nbsp;
-            span
-              | is this?
+              | What is this?
           p
-            | ShaDone is a web app for language learners who want to do shadowing exercise with YouTube videos.
+            | Shadone is a web app for language learners who want to do shadowing exercise with YouTube videos.
             br
-            | With ShaDone you can
-          ul
+            | With Shadone you can...
+          ul.list-disc.ml-6
             li Repeat full or a part of YouTube video
             li Set loop how many times you want
+          p
+            a.link href="#js-youtube-loop" Wanna try?
 
         section.sha-explanations__explanation.mt-4
           h2.sha-logo.text-2xl.font-bold.mb-1
             span.text-primary
-              | What&nbsp;
-            span
-              | can I do if I signed in?
+              | What can I do if I logged in?
           p You can automatically record your practice duration.
-          p The best way to maintain your learning motivation is by accumulating your day-to-day effort!
-      #js-youtube-loop
-      = link_to 'Login', '/auth/google_oauth2', method: :post, class: 'btn btn-outline btn-primary bg-base-100'
+          p Keeping a daily record of your practices helps you motivated to continue learning!
+
+.flex.justify-center.pb-20.pt-10
+  = link_to 'Log In With Google Account', '/auth/google_oauth2', method: :post,
+          class: 'py-3 px-4 w- bg-accent text-base font-semibold rounded-lg sha-icon'
+
+a
+- if notice
+  #js-youtube-loop data-notice="#{notice}"
+- else
+  #js-youtube-loop

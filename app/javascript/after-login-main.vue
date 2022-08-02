@@ -21,8 +21,12 @@ export default {
     PracticeCalendar,
   },
   mixins: [PracticeLogFetchable],
+  props: {
+    notice: { type: String, default: null, required: false },
+  },
   mounted() {
     this.fetchPracticeLogs()
+    this.displayNotice()
   },
   methods: {
     createPracticeLog(practiceLog) {
@@ -49,6 +53,13 @@ export default {
       return document
         .querySelector('meta[name="csrf-token"]')
         ?.getAttribute('content')
+    },
+    displayNotice() {
+      if (this.notice) {
+        this.$toast.success(this.notice, {
+          position: 'top-left',
+        })
+      }
     },
   },
 }

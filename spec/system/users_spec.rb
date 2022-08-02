@@ -11,7 +11,6 @@ RSpec.describe 'Users', type: :system do
   end
 
   it 'can access their profile page' do
-    find('.dropdown.dropdown-end').click
     click_on 'Profile'
     expect(page).to have_content 'Test User'
     expect(page).to have_content '1 minute'
@@ -19,7 +18,6 @@ RSpec.describe 'Users', type: :system do
   end
 
   it 'can delete their account' do
-    find('.dropdown.dropdown-end').click
     click_on 'Profile'
     accept_confirm { click_on 'Delete Account' }
     expect(page).to have_content 'Successfully deleted your account!'

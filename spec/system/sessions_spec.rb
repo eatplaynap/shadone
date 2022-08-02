@@ -12,7 +12,6 @@ RSpec.describe 'Sessions', type: :system do
 
   it 'can log out' do
     sign_in_as user
-    find('.dropdown.dropdown-end').click
     click_link 'Logout'
     expect(page).to have_content 'Successfully logged out!'
   end

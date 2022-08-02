@@ -2,7 +2,7 @@ doctype html
 html(data-theme="shadone")
   head
     title
-      | Shadone
+      | Shadone the shadowing app
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = csrf_meta_tags
     = csp_meta_tag
@@ -16,6 +16,6 @@ html(data-theme="shadone")
         - if logged_in?
           = render 'shared/header'
         main.py-6
-          .container.max-w-5xl
+          .container.px-4.mx-auto.max-w-5xl
             = yield
         = render 'shared/footer'

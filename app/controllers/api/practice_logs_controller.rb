@@ -15,6 +15,10 @@ class API::PracticeLogsController < ApplicationController
     end
   end
 
+  def show
+    @practice_log = current_user.practice_logs.find(params[:id])
+  end
+
   private
 
   def practice_log_params

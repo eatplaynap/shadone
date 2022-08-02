@@ -1,24 +1,32 @@
-h1.text-xl = @practice_log.practice_on
-
-.pb-40
-  table.pb-40
-    tbody
-      tr
-        th Video
-        td
-          iframe width="560" height="315" src="#{youtube_iframe_url(@practice_log.url)}"
-      tr
-        th = PracticeLog.human_attribute_name(:duration)
-        td = seconds_in_words(@practice_log.duration)
-      tr
-        th = PracticeLog.human_attribute_name(:memo)
-        td = @practice_log.memo
-
-  .flex.justify-between
+.mx-auto.max-w-xl
+  .flex.justify-between.py-5.px-5
     - if @practice_log.previous
-      = link_to 'Prev', @practice_log.previous, class: 'btn'
+      = link_to @practice_log.previous, class: 'w-11 h-11 flex items-center justify-center p-2 sha-label' do
+        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon" viewBox="0 0 24 24"
+          path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
+    - else
+      .w-11.h-11.flex.items-center.justify-center.p-2
+        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon is-disabled" viewBox="0 0 24 24"
+          path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
 
-    = link_to 'Edit', edit_practice_log_path, class: 'btn btn-wide'
+    h1.sha-logo.text-2xl.font-bold.mb-1 = @practice_log.practice_on
 
     - if @practice_log.next
-      = link_to 'Next', @practice_log.next, class: 'btn'
+      = link_to @practice_log.next, class: 'w-11 h-11 flex items-center justify-center p-2 sha-label' do
+        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon" viewBox="0 0 24 24"
+          path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"
+    - else
+      .w-11.h-11.flex.items-center.justify-center.p-2
+        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon is-disabled" viewBox="0 0 24 24"
+          path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"
+
+  .table
+    .sha-youtube__container
+      iframe width="560" height="315" src="#{youtube_iframe_url(@practice_log.url)}"
+
+  .table
+    .title
+      = PracticeLog.human_attribute_name(:duration)
+    .body
+      = seconds_in_words(@practice_log.duration)
+  #js-edit-form data-practice-log-id="#{@practice_log.id}"

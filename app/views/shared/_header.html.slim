@@ -1,18 +1,22 @@
-header.w-full.sticky.top-0.bg-base.py-2.px-4.z-10
-  .container
+/ slim-lint:disable LineLength
+
+header.w-full.sticky.top-0.bg-base.py-2.z-10
+  .container.px-4.mx-auto.max-w-5xl
     .mx-auto.flex.justify-between.items-center
-      = link_to image_tag('shadone.svg', alt: 'Shadone logo', width: '200px'), root_path
-      .menu.text-main.flex.flex-row
-        - if logged_in?
-          = link_to image_tag('youtube.svg', alt: 'YouTube icon', width: '50px'), root_path
-          .px-8
-            = link_to image_tag('calendar.svg', alt: 'Calendar icon', width: '50px'), root_path
-          .dropdown.dropdown-end
-            label tabindex="0"
-              = image_tag('person.svg', alt: 'Person icon', width: '50px')
-              ul tabindex="0"
-              .dropdown-content.menu.p-2.shadow.bg-base-100.rounded-box.w-52
-                li
-                  = link_to 'Profile', me_path
-                li
-                  = link_to 'Logout', logout_path, method: :delete
+      = link_to image_tag('shadone.svg', alt: 'Shadone logo', width: '80px'), root_path
+      / .menu.text-main.flex.flex-row
+      /   - if logged_in?
+      /     = link_to root_path, class: 'w-11 h-11 flex items-center justify-center p-2 sha-label'  do
+      /       <svg class='sha-icon w-full h-full' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+      /     .px-8
+      /       = link_to root_path, class: 'w-11 h-11 flex items-center justify-center p-2 sha-label'  do
+      /         <svg class='sha-icon w-full h-full' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 2v22h-24v-22h3v1c0 1.103.897 2 2 2s2-.897 2-2v-1h10v1c0 1.103.897 2 2 2s2-.897 2-2v-1h3zm-2 6h-20v14h20v-14zm-2-7c0-.552-.447-1-1-1s-1 .448-1 1v2c0 .552.447 1 1 1s1-.448 1-1v-2zm-14 2c0 .552-.447 1-1 1s-1-.448-1-1v-2c0-.552.447-1 1-1s1 .448 1 1v2zm1 11.729l.855-.791c1 .484 1.635.852 2.76 1.654 2.113-2.399 3.511-3.616 6.106-5.231l.279.64c-2.141 1.869-3.709 3.949-5.967 7.999-1.393-1.64-2.322-2.686-4.033-4.271z"/></svg>
+      /     .dropdown.dropdown-end
+      /       label.sha-label.cursor-pointer.w-11.h-11.flex.items-center.justify-center.p-2 tabindex="0"
+      /         <svg class="sha-icon w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path id="person" d="M19 7.001c0 3.865-3.134 7-7 7s-7-3.135-7-7c0-3.867 3.134-7.001 7-7.001s7 3.134 7 7.001zm-1.598 7.18c-1.506 1.137-3.374 1.82-5.402 1.82-2.03 0-3.899-.685-5.407-1.822-4.072 1.793-6.593 7.376-6.593 9.821h24c0-2.423-2.6-8.006-6.598-9.819z"/></svg>
+      /       ul tabindex="0"
+      /       .dropdown-content.menu.p-2.shadow.bg-base-100.rounded-box.w-52
+      /         li
+      /           = link_to 'Profile', me_path
+      /         li
+      /           = link_to 'Logout', logout_path, method: :delete

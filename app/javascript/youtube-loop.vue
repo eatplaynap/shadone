@@ -1,5 +1,5 @@
 <template>
-  <div id="youtubeloop" class="sha-youtube flex gap-6">
+  <div id="youtubeloop" class="sha-youtube flex flex-col sm:flex-row gap-6">
     <div class="sha-youtube__container">
       <youtube
         ref="youtube"
@@ -10,7 +10,7 @@
 
     <div class="sha-youtube__form grow max-w-md">
       <div class="flex items-center">
-        <div class="w-20">
+        <div class="w-20 hidden sm:block">
           <label class="text-sm font-semibold">URL</label>
         </div>
         <div class="flex-1">
@@ -25,7 +25,7 @@
 
       <div class="flex items-center mt-4">
         <div class="w-20">
-          <label class="text-sm font-semibold">Start from</label>
+          <label class="text-sm font-semibold">Start From</label>
         </div>
         <div class="flex-1">
           <input
@@ -52,7 +52,7 @@
 
       <div class="flex items-center mt-4">
         <div class="w-20">
-          <label class="text-sm font-semibold">End at</label>
+          <label class="text-sm font-semibold">End At</label>
         </div>
         <div class="flex-1">
           <input
@@ -112,19 +112,21 @@
       <div class="flex items-center mt-4">
         <button
           v-if="!playing"
-          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
           @click="startLoop"
         >
           Start
         </button>
         <button
           v-else
-          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
           @click="endLoop"
         >
           Quit
         </button>
-        <p>{{ remainingLoopCount }}</p>
+        <div class="pl-8">
+          <p>{{ remainingLoopCount }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -134,10 +136,16 @@
 import Vue from 'vue'
 import VueYoutube from 'vue-youtube'
 import getYouTubeId from 'get-youtube-id'
+import VueToast from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-sugar.css'
 
 Vue.use(VueYoutube)
+Vue.use(VueToast)
 
 export default {
+  props: {
+    notice: { type: String, default: null, required: false },
+  },
   data() {
     return {
       playerVars: {
@@ -212,6 +220,9 @@ export default {
       localStorage.loopCount = newLoopCount
     },
   },
+  mounted() {
+    this.displayNotice()
+  },
   created() {
     if (localStorage.url) {
       this.url = localStorage.url
@@ -272,6 +283,13 @@ export default {
         duration: this.practiceDuration,
       }
       this.$emit('loop-done', practiceLog)
+    },
+    displayNotice() {
+      if (this.notice) {
+        this.$toast.success(this.notice, {
+          position: 'top-left',
+        })
+      }
     },
   },
 }
