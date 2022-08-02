@@ -7,14 +7,9 @@ class PracticeLogsController < ApplicationController
     @practice_log = current_user.practice_logs.find(params[:id])
   end
 
-  def edit
-    @practice_log = current_user.practice_logs.find(params[:id])
-  end
-
   def update
     practice_log = current_user.practice_logs.find(params[:id])
     practice_log.update!(practice_log_params)
-    redirect_to practice_log_url, notice: "Updated practice log of #{practice_log.practice_on}"
   end
 
   private
