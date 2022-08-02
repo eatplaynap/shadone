@@ -3,20 +3,55 @@
     <div class="max-w-2xl mt-6">
       <div class="bg-base-100 z-0">
         <div class="">
-
           <div class="navbar bg-base-100 flex justify-center">
             <div class="normal-case text-xl">
-              <div @click="previousMonth" class="cursor-pointer w-11 h-11 flex items-center justify-center p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="sha-icon" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
+              <div
+                class="cursor-pointer w-11 h-11 flex items-center justify-center p-2"
+                @click="previousMonth"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="sha-icon"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
+                  />
+                </svg>
               </div>
 
-              <div class="px-8">{{ monthName(calendarMonth) }} {{ calendarYear }}</div>
-
-              <div v-if="!newestMonth()" @click="nextMonth" class="cursor-pointer w-11 h-11 flex items-center justify-center p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="sha-icon" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg>
+              <div class="px-8 sha-logo text-2xl mb-1">
+                {{ monthName(calendarMonth) }} {{ calendarYear }}
               </div>
-              <div v-else class="blank w-11 h-11 flex items-center justify-center p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="sha-icon is-disabled" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg>
+
+              <div
+                v-if="!newestMonth()"
+                class="cursor-pointer w-11 h-11 flex items-center justify-center p-2"
+                @click="nextMonth"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="sha-icon"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"
+                  />
+                </svg>
+              </div>
+              <div
+                v-else
+                class="blank w-11 h-11 flex items-center justify-center p-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="sha-icon is-disabled"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"
+                  />
+                </svg>
               </div>
             </div>
           </div>
@@ -41,12 +76,20 @@
                   :class="[practiceMarkClass(date), todayClass(date)]"
                   class="border border-neutral h-12 align-top"
                 >
-                  <a v-if="date.id" :href="linkOfPracticeLog(date)" class="sha-date relative block p-1">
+                  <a
+                    v-if="date.id"
+                    :href="linkOfPracticeLog(date)"
+                    class="sha-date relative block p-1"
+                  >
                     <div class="text-left align-top absolute top-0">
                       {{ date.date }}
                     </div>
                     <div class="h-2/3">
-                      <img style="transform: rotate(1deg);" src="/images/done.svg" class="h-10/12" />
+                      <img
+                        style="transform: rotate(1deg)"
+                        src="/images/done.svg"
+                        class="h-10/12"
+                      />
                     </div>
                   </a>
                   <div v-else class="sha-date block p-1 relative">
@@ -54,7 +97,7 @@
                       {{ date.date }}
                     </div>
                     <div class="h-2/3">
-                       <img src="/images/blank.svg" class="h-10/12" />
+                      <img src="/images/blank.svg" class="h-10/12" />
                     </div>
                   </div>
                 </td>
@@ -190,7 +233,20 @@ export default {
       return month.toString().padStart(2, '0')
     },
     monthName(month) {
-      const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+      const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ]
       return months[month - 1]
     },
   },
