@@ -10,6 +10,6 @@ module SignInHelper
               image: user.image_url }
     )
     visit welcome_path
-    click_link 'Login'
+    click_link 'Log In With Google Account'
   end
 end

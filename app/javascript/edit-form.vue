@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <label>Memo</label>
+    <label for="memo">Memo</label>
     <p>{{ practiceLogMemo }}</p>
 
     <div v-if="!editing">
       <button class="btn" @click="editPracticeLog">Edit</button>
     </div>
     <div v-else>
-      <textarea v-model="practiceLogMemo" class="textarea textarea-bordered" />
+      <textarea id="memo" v-model="practiceLogMemo" class="textarea textarea-bordered" />
       <button class="btn" @click="updatePracticeLog(practiceLogMemo)">
         Update
       </button>
