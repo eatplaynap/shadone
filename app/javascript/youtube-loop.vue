@@ -136,10 +136,16 @@
 import Vue from 'vue'
 import VueYoutube from 'vue-youtube'
 import getYouTubeId from 'get-youtube-id'
+import VueToast from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-sugar.css'
 
 Vue.use(VueYoutube)
+Vue.use(VueToast)
 
 export default {
+  props: {
+    notice: { type: String, default: null, required: false },
+  },
   data() {
     return {
       playerVars: {
@@ -214,6 +220,9 @@ export default {
       localStorage.loopCount = newLoopCount
     },
   },
+  mounted() {
+    this.displayNotice()
+  },
   created() {
     if (localStorage.url) {
       this.url = localStorage.url
@@ -274,6 +283,13 @@ export default {
         duration: this.practiceDuration,
       }
       this.$emit('loop-done', practiceLog)
+    },
+    displayNotice() {
+      if (this.notice) {
+        this.$toast.success(this.notice, {
+          position: 'top-left',
+        })
+      }
     },
   },
 }
