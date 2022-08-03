@@ -53,3 +53,19 @@
 .sha-date:hover img {
   opacity: 0.4;
 }
+
+.sha-explanation h1 {
+  color: #29292c;
+}
+
+.sha-explanation h2 {
+  color: #29292c;
+}
+
+.sha-explanation h3 {
+  color: #29292c;
+}
+
+.sha-explanation {
+  color: #4b5563;
+}
