@@ -9,8 +9,6 @@
     "@vue/composition-api": "^1.6.2",
     "autoprefixer": "10",
     "daisyui": "^2.19.0",
-    "dayjs": "^1.11.3",
-    "pinia": "^2.0.14",
     "postcss": "8",
     "postcss-import": "^14.1.0",
     "postcss-loader": "4",
