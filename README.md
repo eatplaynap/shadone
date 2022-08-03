@@ -1,6 +1,6 @@
-# ShaDone
+# Shadone
 
-ShaDone is a web app for language learners who want to do shadowing exercise with YouTube videos.
+Shadone is a web app for language learners who want to do shadowing exercise with YouTube videos.
 
 ## Features
 With ShaDone you can
