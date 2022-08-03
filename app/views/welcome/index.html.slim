@@ -9,22 +9,24 @@
           h2.sha-logo.text-2xl.font-bold.mb-1
             span.text-primary
               | What is this?
-          p
-            | Shadone is a web app for language learners who want to do shadowing exercise with YouTube videos.
-            br
-            | With Shadone you can...
-          ul.list-disc.ml-6
-            li Repeat full or a part of YouTube video
-            li Set loop how many times you want
-          p
-            a.link href="#js-youtube-loop" Wanna try?
+          .text-gray
+            p
+              | Shadone is a web app for language learners who want to do shadowing exercise with YouTube videos.
+              br
+              | With Shadone you can...
+            ul.list-disc.ml-6
+              li Repeat full or a part of YouTube video
+              li Set loop how many times you want
+            p
+              a.link href="#js-youtube-loop" Wanna try?
 
         section.sha-explanations__explanation.mt-4
           h2.sha-logo.text-2xl.font-bold.mb-1
             span.text-primary
               | What can I do if I logged in?
-          p You can automatically record your practice duration.
-          p Keeping a daily record of your practices helps you motivated to continue learning!
+          .text-gray
+            p You can automatically record your practice duration.
+            p Keeping a daily record of your practices helps you motivated to continue learning!
 
 .flex.justify-center.pb-20.pt-10
   = link_to 'Log In With Google Account', '/auth/google_oauth2', method: :post,
