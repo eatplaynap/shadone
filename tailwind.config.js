@@ -13,7 +13,8 @@ module.exports = {
       'main': '#29292c',
       'accent': '#e03131',
       'sub': '#f0f0f8',
-      'neutral': '#d2d2d8'
+      'neutral': '#d2d2d8',
+      'gray' : '#4b5563'
     },
     extend: {
       width: {
@@ -24,7 +25,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("daisyui"), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require("daisyui")],
   daisyui: {
     themes: [
       {
