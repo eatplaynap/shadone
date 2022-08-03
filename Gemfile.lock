@@ -103,9 +103,6 @@ GEM
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
-    hpricot (0.8.6)
-    html2slim (0.2.0)
-      hpricot
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -326,7 +323,6 @@ DEPENDENCIES
   factory_bot_rails
   faker
   foreman
-  html2slim
   jbuilder (~> 2.7)
   listen (~> 3.3)
   omniauth-google-oauth2
