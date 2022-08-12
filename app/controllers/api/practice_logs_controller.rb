@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class API::PracticeLogsController < ApplicationController
+  around_action :use_time_zone, only: [:create]
+
   def index
     @practice_logs = current_user.practice_logs.order(:practice_on)
   end
@@ -23,5 +25,9 @@ class API::PracticeLogsController < ApplicationController
 
   def practice_log_params
     params.require(:practice_log).permit(:url, :duration)
+  end
+
+  def use_time_zone(&action)
+    Time.use_zone(Time.find_zone(cookies['browser.timezone'].presence) || Time.zone, &action)
   end
 end
