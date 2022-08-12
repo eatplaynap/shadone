@@ -4,7 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'PracticeLogs', type: :system do
   let(:user) { FactoryBot.create(:user) }
-  let(:practice_log) { FactoryBot.create(:practice_log, memo: 'Lorem ipsum dolor sit amet', practice_on: Date.parse('2022-07-26'), duration: 60, user: user) }
+  let(:practice_log) {
+    FactoryBot.create(:practice_log,
+                      memo: 'Lorem ipsum dolor sit amet',
+                      practice_on: Date.parse('2022-07-26'),
+                      duration: 60,
+                      user: user)
+  }
 
   before do
     sign_in_as user
