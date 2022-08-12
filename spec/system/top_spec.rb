@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Top', type: :system do
   let(:user) { FactoryBot.create(:user) }
-  date_of_today = Time.zone.today.day.to_s
+  date_of_today = Date.current.day.to_s
 
   it 'creates a new practice log and enables to access its show page when loop ended' do
     sign_in_as user

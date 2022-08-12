@@ -6,7 +6,7 @@ class API::PracticeLogsController < ApplicationController
   end
 
   def create
-    @practice_log = current_user.practice_logs.find_or_initialize_by(practice_on: Time.zone.today)
+    @practice_log = current_user.practice_logs.find_or_initialize_by(practice_on: Date.current)
 
     if @practice_log.update(practice_log_params)
       head :created
