@@ -65,4 +65,5 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include(SignInHelper, type: :system)
   config.include(GoogleOauthMockHelper, type: :request)
+  config.include(ActiveSupport::Testing::TimeHelpers)
 end
