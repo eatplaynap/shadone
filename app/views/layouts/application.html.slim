@@ -16,7 +16,7 @@ html(data-theme="shadone")
       .flex-grow
         - if logged_in?
           = render 'shared/header'
-        main.py-6
+        main.pt-6.pb-12
           .container.px-4.mx-auto.max-w-5xl
             = yield
         = render 'shared/footer'
