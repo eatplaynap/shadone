@@ -10,7 +10,7 @@
 
     <div class="sha-youtube__form grow max-w-md">
       <div class="flex items-center">
-        <div class="w-20 hidden sm:block">
+        <div class="w-24 hidden sm:block">
           <label class="text-sm font-semibold">URL</label>
         </div>
         <div class="flex-1">
@@ -24,7 +24,7 @@
       </div>
 
       <div class="flex items-center mt-4">
-        <div class="w-20">
+        <div class="w-24">
           <label class="text-sm font-semibold">Start From</label>
         </div>
         <div class="flex-1">
@@ -51,7 +51,7 @@
       </div>
 
       <div class="flex items-center mt-4">
-        <div class="w-20">
+        <div class="w-24">
           <label class="text-sm font-semibold">End At</label>
         </div>
         <div class="flex-1">
@@ -78,7 +78,7 @@
       </div>
 
       <div class="flex items-center mt-4">
-        <div class="w-20">
+        <div class="w-24">
           <label class="text-sm font-semibold">Loop Count</label>
         </div>
         <div class="flex-1">
@@ -93,7 +93,7 @@
       </div>
 
       <div class="flex items-center mt-4">
-        <div class="w-20">
+        <div class="w-24">
           <label class="text-sm font-semibold">Speed</label>
         </div>
         <div class="flex-1">
