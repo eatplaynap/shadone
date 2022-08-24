@@ -44,6 +44,7 @@
 
 .sha-icon.is-disabled {
   fill: #edd;
+  pointer-events: none;
 }
 
 .is-today .sha-date {
