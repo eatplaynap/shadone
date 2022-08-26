@@ -18,7 +18,7 @@
             id="url"
             v-model="url"
             type="url"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
       </div>
@@ -33,7 +33,7 @@
             v-model.number="startMinute"
             type="number"
             min="0"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
         <div class="w-4">
@@ -45,7 +45,7 @@
             v-model.number="startSecond"
             type="number"
             min="0"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
       </div>
@@ -60,7 +60,7 @@
             v-model.number="endMinute"
             type="number"
             min="0"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
         <div class="w-4">
@@ -72,7 +72,7 @@
             v-model.number="endSecond"
             type="number"
             min="0"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
       </div>
@@ -87,7 +87,7 @@
             v-model.number="loopCount"
             type="number"
             min="1"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
       </div>
@@ -97,7 +97,7 @@
           <label class="text-sm font-semibold">Speed</label>
         </div>
         <div class="flex-1">
-          <select v-model="playbackSpeed" class="select select-bordered w-full">
+          <select v-model="playbackSpeed" class="select select-bordered select-secondary w-full">
             <option
               v-for="item in selectItems"
               :key="item.id"

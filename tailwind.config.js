@@ -38,6 +38,7 @@ module.exports = {
       'sub': '#f0f0f8',
       'neutral': '#d2d2d8',
       'success': '#75E1D6',
+      'secondary' : '#d3d3d9',
       }
       }, "bumblebee"],
   },
