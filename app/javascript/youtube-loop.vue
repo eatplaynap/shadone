@@ -138,6 +138,7 @@ import VueYoutube from 'vue-youtube'
 import getYouTubeId from 'get-youtube-id'
 import VueToast from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-sugar.css'
+import YouTubeSizeChangable from './mixins/youtube-size-changable.js'
 
 Vue.use(VueYoutube)
 Vue.use(VueToast)
@@ -173,6 +174,7 @@ export default {
       intervalId: null,
     }
   },
+  mixins: [YouTubeSizeChangable],
   computed: {
     player() {
       return this.$refs.youtube.player

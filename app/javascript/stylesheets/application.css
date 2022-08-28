@@ -15,7 +15,7 @@
 }
 
 @media screen and (max-width:678px) {
-  .sha-youtube__container iframe {
+  .sha-youtube__container.is_scroll iframe {
     max-height: 80px;
     max-width: 120px;
     position: fixed;
