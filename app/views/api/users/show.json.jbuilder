@@ -1,0 +1,1 @@
+json.total_practice_duration seconds_in_words(@total_practice_duration)

@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   resources :practice_logs, only: [:show, :update]
   namespace :api do
     resources :practice_logs, only: [:index, :create, :show]
+    resources :users, only:[:show]
   end
 end
