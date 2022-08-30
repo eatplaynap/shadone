@@ -23,6 +23,14 @@
         </div>
       </div>
 
+      <div class="flex items-center mt-1">
+        <div class="w-24 hidden sm:block">
+        </div>
+        <div class="flex-1">
+          <div class="text-xs text-gray">Paste your favorite YouTube URL</div>
+        </div>
+      </div>
+
       <div class="flex items-center mt-4">
         <div class="w-24">
           <label class="text-sm font-semibold">Start From</label>
@@ -47,6 +55,14 @@
             min="0"
             class="input input-bordered input-secondary w-full"
           />
+        </div>
+      </div>
+
+      <div class="flex items-center mt-1">
+        <div class="w-24 hidden sm:block">
+        </div>
+        <div class="flex-1">
+          <div class="text-xs text-gray">Set the video start time</div>
         </div>
       </div>
 
@@ -77,6 +93,14 @@
         </div>
       </div>
 
+      <div class="flex items-center mt-1">
+        <div class="w-24 hidden sm:block">
+        </div>
+        <div class="flex-1">
+          <div class="text-xs text-gray">Set the video end time</div>
+        </div>
+      </div>
+
       <div class="flex items-center mt-4">
         <div class="w-24">
           <label class="text-sm font-semibold">Loop Count</label>
@@ -89,6 +113,14 @@
             min="1"
             class="input input-bordered input-secondary w-full"
           />
+        </div>
+      </div>
+
+      <div class="flex items-center mt-1">
+        <div class="w-24 hidden sm:block">
+        </div>
+        <div class="flex-1">
+          <div class="text-xs text-gray">Set how many times you want to loop the video</div>
         </div>
       </div>
 
@@ -138,6 +170,7 @@
         <div v-if="playing" class="sha-count flex justify-center items-center border rounded-lg px-3">
           <p>{{ remainingLoopCount }}</p>
         </div>
+
       </div>
     </div>
   </div>
