@@ -10,7 +10,7 @@
 
     <div class="sha-youtube__form grow max-w-md">
       <div class="flex items-center">
-        <div class="w-20 hidden sm:block">
+        <div class="w-24 hidden sm:block">
           <label class="text-sm font-semibold">URL</label>
         </div>
         <div class="flex-1">
@@ -18,13 +18,20 @@
             id="url"
             v-model="url"
             type="url"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
       </div>
 
+      <div class="flex items-center mt-1">
+        <div class="w-24 hidden sm:block"></div>
+        <div class="flex-1">
+          <div class="text-xs text-gray">Paste your favorite YouTube URL</div>
+        </div>
+      </div>
+
       <div class="flex items-center mt-4">
-        <div class="w-20">
+        <div class="w-24">
           <label class="text-sm font-semibold">Start From</label>
         </div>
         <div class="flex-1">
@@ -33,7 +40,7 @@
             v-model.number="startMinute"
             type="number"
             min="0"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
         <div class="w-4">
@@ -45,13 +52,20 @@
             v-model.number="startSecond"
             type="number"
             min="0"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
       </div>
 
+      <div class="flex items-center mt-1">
+        <div class="w-24 hidden sm:block"></div>
+        <div class="flex-1">
+          <div class="text-xs text-gray">Set the video start time</div>
+        </div>
+      </div>
+
       <div class="flex items-center mt-4">
-        <div class="w-20">
+        <div class="w-24">
           <label class="text-sm font-semibold">End At</label>
         </div>
         <div class="flex-1">
@@ -60,7 +74,7 @@
             v-model.number="endMinute"
             type="number"
             min="0"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
         <div class="w-4">
@@ -72,13 +86,20 @@
             v-model.number="endSecond"
             type="number"
             min="0"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
       </div>
 
+      <div class="flex items-center mt-1">
+        <div class="w-24 hidden sm:block"></div>
+        <div class="flex-1">
+          <div class="text-xs text-gray">Set the video end time</div>
+        </div>
+      </div>
+
       <div class="flex items-center mt-4">
-        <div class="w-20">
+        <div class="w-24">
           <label class="text-sm font-semibold">Loop Count</label>
         </div>
         <div class="flex-1">
@@ -87,17 +108,29 @@
             v-model.number="loopCount"
             type="number"
             min="1"
-            class="input input-bordered w-full"
+            class="input input-bordered input-secondary w-full"
           />
         </div>
       </div>
 
+      <div class="flex items-center mt-1">
+        <div class="w-24 hidden sm:block"></div>
+        <div class="flex-1">
+          <div class="text-xs text-gray">
+            Set how many times you want to loop the video
+          </div>
+        </div>
+      </div>
+
       <div class="flex items-center mt-4">
-        <div class="w-20">
+        <div class="w-24">
           <label class="text-sm font-semibold">Speed</label>
         </div>
         <div class="flex-1">
-          <select v-model="playbackSpeed" class="select select-bordered w-full">
+          <select
+            v-model="playbackSpeed"
+            class="select select-bordered select-secondary w-full"
+          >
             <option
               v-for="item in selectItems"
               :key="item.id"
@@ -109,22 +142,37 @@
         </div>
       </div>
 
-      <div class="flex items-center mt-4">
-        <button
-          v-if="!playing"
-          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-          @click="startLoop"
+      <div class="flex items-center mt-1">
+        <div class="w-24 hidden sm:block"></div>
+        <div class="flex-1">
+          <div class="text-xs text-gray">
+            Select playback speed of the video
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-5 mt-4">
+        <div class="flex items-center">
+          <button
+            v-if="!playing"
+            class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+            @click="startLoop"
+          >
+            Start
+          </button>
+          <button
+            v-else
+            class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+            @click="endLoop"
+          >
+            Quit
+          </button>
+        </div>
+
+        <div
+          v-if="playing"
+          class="sha-count flex justify-center items-center border rounded-lg px-3"
         >
-          Start
-        </button>
-        <button
-          v-else
-          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-          @click="endLoop"
-        >
-          Quit
-        </button>
-        <div class="pl-8">
           <p>{{ remainingLoopCount }}</p>
         </div>
       </div>
@@ -138,11 +186,13 @@ import VueYoutube from 'vue-youtube'
 import getYouTubeId from 'get-youtube-id'
 import VueToast from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-sugar.css'
+import YouTubeSizeChangable from './mixins/youtube-size-changable.js'
 
 Vue.use(VueYoutube)
 Vue.use(VueToast)
 
 export default {
+  mixins: [YouTubeSizeChangable],
   props: {
     notice: { type: String, default: null, required: false },
   },
@@ -161,14 +211,11 @@ export default {
       remainingLoopCount: null,
       playbackSpeed: 1,
       selectItems: [
-        { id: 1, speed: 0.25 },
-        { id: 2, speed: 0.5 },
-        { id: 3, speed: 0.75 },
-        { id: 4, speed: 1 },
-        { id: 5, speed: 1.25 },
-        { id: 6, speed: 1.5 },
-        { id: 7, speed: 1.75 },
-        { id: 8, speed: 2 },
+        { id: 1, speed: 0.5 },
+        { id: 2, speed: 0.75 },
+        { id: 3, speed: 1 },
+        { id: 4, speed: 1.25 },
+        { id: 5, speed: 1.5 },
       ],
       intervalId: null,
     }

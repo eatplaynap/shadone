@@ -2,7 +2,7 @@ doctype html
 html(data-theme="shadone")
   head
     title
-      | Shadone the shadowing app
+      | Shadone: Let's practice shadowing with YouTube videos!
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = display_meta_tags(default_meta_tags)
     = csrf_meta_tags
@@ -16,7 +16,7 @@ html(data-theme="shadone")
       .flex-grow
         - if logged_in?
           = render 'shared/header'
-        main.py-6
+        main.pt-6.pb-12
           .container.px-4.mx-auto.max-w-5xl
             = yield
-        = render 'shared/footer'
+      = render 'shared/footer'

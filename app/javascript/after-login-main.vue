@@ -2,6 +2,9 @@
   <div id="app">
     <YouTubeLoop @loop-done="createPracticeLog" />
     <PracticeCalendar :practice-logs="practiceLogs" />
+    <div class="text-xl mt-2 text-primary">
+      You have practiced for {{ totalPracticeDuration }} in total.
+    </div>
   </div>
 </template>
 
@@ -23,10 +26,17 @@ export default {
   mixins: [PracticeLogFetchable],
   props: {
     notice: { type: String, default: null, required: false },
+    userId: { type: String, default: null, required: true },
+  },
+  data() {
+    return {
+      totalPracticeDuration: null,
+    }
   },
   mounted() {
     this.fetchPracticeLogs()
     this.displayNotice()
+    this.getTotalPracticeDuration()
   },
   methods: {
     createPracticeLog(practiceLog) {
@@ -60,6 +70,22 @@ export default {
           position: 'top-left',
         })
       }
+    },
+    getTotalPracticeDuration() {
+      fetch(`/api/users/${this.userId}.json`, {
+        method: 'GET',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+        credentials: 'same-origin',
+      })
+        .then((response) => {
+          return response.json()
+        })
+        .then((user) => {
+          this.totalPracticeDuration = user.total_practice_duration
+          return
+        })
     },
   },
 }

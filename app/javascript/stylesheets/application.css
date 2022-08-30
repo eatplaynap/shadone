@@ -7,6 +7,10 @@
   padding: 0 theme('spacing.4');
 }
 
+.sha-youtube__container {
+  height: 360px;
+}
+
 .sha-youtube__container iframe {
   max-width: 100%;
   border-radius: 8px;
@@ -15,7 +19,7 @@
 }
 
 @media screen and (max-width:678px) {
-  .sha-youtube__container iframe {
+  .sha-youtube__container.is_scroll iframe {
     max-height: 80px;
     max-width: 120px;
     position: fixed;
@@ -44,6 +48,7 @@
 
 .sha-icon.is-disabled {
   fill: #edd;
+  pointer-events: none;
 }
 
 .is-today .sha-date {
@@ -68,4 +73,32 @@
 
 .sha-explanation.prose a {
   color: #0750ae;
+}
+
+.sha-count {
+  border-color: #d3d3d9;
+  position: relative;
+  min-width: 80px;
+}
+
+.sha-count::before,
+.sha-count::after {
+  content: '';
+  display: block;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 8px 16px;
+  transform: translate(0, -50%);
+  position: absolute;
+  top: 50%;
+}
+
+.sha-count::before {
+  border-right-color: #d3d3d9;
+  left: -33px;
+}
+
+.sha-count::after {
+  border-right-color: #fff;
+  left: -31.5px;
 }
