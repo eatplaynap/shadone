@@ -8,8 +8,10 @@ export default {
   methods: {
     handleScroll() {
       const youtube = document.querySelector('.sha-youtube__container')
-      const urlHeight = document.getElementById('url').getBoundingClientRect().top
-      if ( scrollY > urlHeight + scrollY - 30 ) {
+      const urlHeight = document
+        .getElementById('url')
+        .getBoundingClientRect().top
+      if (scrollY > urlHeight + scrollY - 30) {
         youtube.classList.add('is_scroll')
       } else {
         youtube.classList.remove('is_scroll')

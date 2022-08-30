@@ -24,8 +24,7 @@
       </div>
 
       <div class="flex items-center mt-1">
-        <div class="w-24 hidden sm:block">
-        </div>
+        <div class="w-24 hidden sm:block"></div>
         <div class="flex-1">
           <div class="text-xs text-gray">Paste your favorite YouTube URL</div>
         </div>
@@ -59,8 +58,7 @@
       </div>
 
       <div class="flex items-center mt-1">
-        <div class="w-24 hidden sm:block">
-        </div>
+        <div class="w-24 hidden sm:block"></div>
         <div class="flex-1">
           <div class="text-xs text-gray">Set the video start time</div>
         </div>
@@ -94,8 +92,7 @@
       </div>
 
       <div class="flex items-center mt-1">
-        <div class="w-24 hidden sm:block">
-        </div>
+        <div class="w-24 hidden sm:block"></div>
         <div class="flex-1">
           <div class="text-xs text-gray">Set the video end time</div>
         </div>
@@ -117,10 +114,11 @@
       </div>
 
       <div class="flex items-center mt-1">
-        <div class="w-24 hidden sm:block">
-        </div>
+        <div class="w-24 hidden sm:block"></div>
         <div class="flex-1">
-          <div class="text-xs text-gray">Set how many times you want to loop the video</div>
+          <div class="text-xs text-gray">
+            Set how many times you want to loop the video
+          </div>
         </div>
       </div>
 
@@ -129,7 +127,10 @@
           <label class="text-sm font-semibold">Speed</label>
         </div>
         <div class="flex-1">
-          <select v-model="playbackSpeed" class="select select-bordered select-secondary w-full">
+          <select
+            v-model="playbackSpeed"
+            class="select select-bordered select-secondary w-full"
+          >
             <option
               v-for="item in selectItems"
               :key="item.id"
@@ -142,35 +143,38 @@
       </div>
 
       <div class="flex items-center mt-1">
-        <div class="w-24 hidden sm:block">
-        </div>
+        <div class="w-24 hidden sm:block"></div>
         <div class="flex-1">
-          <div class="text-xs text-gray">Select playback speed of the video</div>
+          <div class="text-xs text-gray">
+            Select playback speed of the video
+          </div>
         </div>
       </div>
 
       <div class="flex gap-5 mt-4">
         <div class="flex items-center">
           <button
-              v-if="!playing"
-              class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-              @click="startLoop"
+            v-if="!playing"
+            class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+            @click="startLoop"
           >
             Start
           </button>
           <button
-              v-else
-              class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-              @click="endLoop"
+            v-else
+            class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+            @click="endLoop"
           >
             Quit
           </button>
         </div>
 
-        <div v-if="playing" class="sha-count flex justify-center items-center border rounded-lg px-3">
+        <div
+          v-if="playing"
+          class="sha-count flex justify-center items-center border rounded-lg px-3"
+        >
           <p>{{ remainingLoopCount }}</p>
         </div>
-
       </div>
     </div>
   </div>
@@ -188,6 +192,7 @@ Vue.use(VueYoutube)
 Vue.use(VueToast)
 
 export default {
+  mixins: [YouTubeSizeChangable],
   props: {
     notice: { type: String, default: null, required: false },
   },
@@ -215,7 +220,6 @@ export default {
       intervalId: null,
     }
   },
-  mixins: [YouTubeSizeChangable],
   computed: {
     player() {
       return this.$refs.youtube.player

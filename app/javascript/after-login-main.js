@@ -6,13 +6,13 @@ document.addEventListener('turbolinks:load', () => {
   const main = document.querySelector(selector)
   if (main) {
     const notice = main.getAttribute('data-notice')
-    const user_id = main.getAttribute('data-user-id')
+    const userId = main.getAttribute('data-user-id')
     new Vue({
       render: (h) =>
         h(App, {
           props: {
             notice: notice,
-            user_id: user_id,
+            userId: userId,
           },
         }),
     }).$mount(selector)

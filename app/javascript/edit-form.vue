@@ -10,7 +10,12 @@
     </div>
 
     <div v-if="!editing">
-      <button class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" @click="editPracticeLog">Add Memo</button>
+      <button
+        class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+        @click="editPracticeLog"
+      >
+        Add Memo
+      </button>
     </div>
     <div v-else>
       <textarea
@@ -20,19 +25,24 @@
       />
 
       <div class="flex justify-end mt-4 gap-3">
-
         <div class="flex items-center">
-          <button class="py-3 px-4 w-28 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" @click="updatePracticeLog(practiceLogMemo)">
+          <button
+            class="py-3 px-4 w-28 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+            @click="updatePracticeLog(practiceLogMemo)"
+          >
             Update
           </button>
         </div>
 
         <div class="flex items-center">
-          <button class="py-3 px-4 w-28 bg-secondary font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" @click="cancelEdit()">Cancel</button>
+          <button
+            class="py-3 px-4 w-28 bg-secondary font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+            @click="cancelEdit()"
+          >
+            Cancel
+          </button>
         </div>
-
       </div>
-
     </div>
   </div>
 </template>
