@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <YouTubeLoop @loop-done="createPracticeLog" />
-    <div class="sha-logo text-2xl font-bold mb-1 text-primary" >
-      You have practiced for {{ totalPracticeDuration }} in total
-    </div>
     <PracticeCalendar :practice-logs="practiceLogs" />
+    <div class="text-xl mt-2 text-primary" >
+      You have practiced for {{ totalPracticeDuration }} in total.
+    </div>
   </div>
 </template>
 
