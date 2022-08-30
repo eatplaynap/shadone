@@ -20,7 +20,7 @@
                 </svg>
               </div>
 
-              <div class="px-8 sha-logo text-2xl mb-1">
+              <div class="px-8 font-bold text-2xl mb-1 w-64 text-center">
                 {{ monthName(calendarMonth) }} {{ calendarYear }}
               </div>
 
