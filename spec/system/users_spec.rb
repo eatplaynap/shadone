@@ -10,15 +10,7 @@ RSpec.describe 'Users', type: :system do
     sign_in_as user
   end
 
-  it 'can access their profile page' do
-    click_on 'Profile'
-    expect(page).to have_content 'Test User'
-    expect(page).to have_content '1 minute'
-    expect(page).to have_link practice_log.practice_on.day.to_s, href: practice_log_path(practice_log)
-  end
-
   it 'can delete their account' do
-    click_on 'Profile'
     accept_confirm { click_on 'Delete Account' }
     expect(page).to have_content 'Successfully deleted your account!'
   end

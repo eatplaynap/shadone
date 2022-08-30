@@ -19,7 +19,7 @@ RSpec.describe 'PracticeLogs', type: :system do
 
   it 'can edit practice log' do
     visit practice_log_path(practice_log)
-    click_on 'Edit'
+    click_on 'Add Memo'
     expect(page).to have_content '2022-07-26'
     expect(page).to have_content '1 minute'
     expect(page).to have_content 'Lorem ipsum dolor sit amet'
