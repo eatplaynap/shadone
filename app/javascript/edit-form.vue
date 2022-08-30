@@ -1,21 +1,38 @@
 <template>
   <div id="app">
-    <label for="memo">Memo</label>
-    <p>{{ practiceLogMemo }}</p>
+    <div class="flex items-center">
+      <div class="w-24">
+        <label for="memo" class="font-bold">Memo</label>
+      </div>
+      <div class="flex-1">
+        <p>{{ practiceLogMemo }}</p>
+      </div>
+    </div>
 
     <div v-if="!editing">
-      <button class="btn" @click="editPracticeLog">Edit</button>
+      <button class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" @click="editPracticeLog">Add Memo</button>
     </div>
     <div v-else>
       <textarea
         id="memo"
         v-model="practiceLogMemo"
-        class="textarea textarea-bordered"
+        class="textarea textarea-bordered w-full"
       />
-      <button class="btn" @click="updatePracticeLog(practiceLogMemo)">
-        Update
-      </button>
-      <button class="btn" @click="cancelEdit()">Cancel</button>
+
+      <div class="flex justify-end mt-4 gap-3">
+
+        <div class="flex items-center">
+          <button class="py-3 px-4 w-28 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" @click="updatePracticeLog(practiceLogMemo)">
+            Update
+          </button>
+        </div>
+
+        <div class="flex items-center">
+          <button class="py-3 px-4 w-28 bg-secondary font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" @click="cancelEdit()">Cancel</button>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </template>
