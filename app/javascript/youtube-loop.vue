@@ -109,22 +109,33 @@
         </div>
       </div>
 
-      <div class="flex items-center mt-4">
-        <button
-          v-if="!playing"
-          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-          @click="startLoop"
-        >
-          Start
-        </button>
-        <button
-          v-else
-          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-          @click="endLoop"
-        >
-          Quit
-        </button>
-        <div class="pl-8">
+      <div class="flex items-center mt-1">
+        <div class="w-24 hidden sm:block">
+        </div>
+        <div class="flex-1">
+          <div class="text-xs text-gray">Select playback speed of the video</div>
+        </div>
+      </div>
+
+      <div class="flex gap-5 mt-4">
+        <div class="flex items-center">
+          <button
+              v-if="!playing"
+              class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              @click="startLoop"
+          >
+            Start
+          </button>
+          <button
+              v-else
+              class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              @click="endLoop"
+          >
+            Quit
+          </button>
+        </div>
+
+        <div v-if="playing" class="sha-count flex justify-center items-center border rounded-lg px-3">
           <p>{{ remainingLoopCount }}</p>
         </div>
       </div>

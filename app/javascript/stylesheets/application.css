@@ -74,3 +74,31 @@
 .sha-explanation.prose a {
   color: #0750ae;
 }
+
+.sha-count {
+  border-color: #d3d3d9;
+  position: relative;
+  min-width: 80px;
+}
+
+.sha-count::before,
+.sha-count::after {
+  content: '';
+  display: block;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 8px 16px;
+  transform: translate(0, -50%);
+  position: absolute;
+  top: 50%;
+}
+
+.sha-count::before {
+  border-right-color: #d3d3d9;
+  left: -33px;
+}
+
+.sha-count::after {
+  border-right-color: #fff;
+  left: -31.5px;
+}
