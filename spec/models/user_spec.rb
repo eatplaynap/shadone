@@ -25,8 +25,8 @@ RSpec.describe User, type: :model do
 
   describe '#total_practice_duration' do
     it 'returns total duration if a user created a practice' do
-      FactoryBot.create(:practice_log, duration: 300, practice_on: Time.zone.today, user: user)
-      FactoryBot.create(:practice_log, duration: 100, practice_on: Time.zone.yesterday, user: user)
+      FactoryBot.create(:practice_log, duration: 300, practice_on: Date.current, user: user)
+      FactoryBot.create(:practice_log, duration: 100, practice_on: Date.current.yesterday, user: user)
 
       expect(user.total_practice_duration).to eq 400
     end
