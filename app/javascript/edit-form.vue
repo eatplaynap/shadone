@@ -5,45 +5,44 @@
         <label for="memo" class="font-bold">Memo</label>
       </div>
 
-      <div class="flex-1">
-        <!--          <p>{{ practiceLogMemo }}</p>-->
-        <div class="sha-pre-wrap" v-text="practiceLogMemo" />
+      <div class="sha-pre-wrap flex-1" v-text="practiceLogMemo" />
+    </div>
+
+    <div class="pt-4">
+      <div v-if="!editing" class="flex justify-center">
+        <button
+          class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          @click="editPracticeLog"
+        >
+          Add Memo
+        </button>
       </div>
-    </div>
 
-    <div v-if="!editing">
-      <button
-        class="py-3 px-4 w-40 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-        @click="editPracticeLog"
-      >
-        Add Memo
-      </button>
-    </div>
+      <div v-else>
+        <textarea
+          id="memo"
+          v-model="practiceLogMemo"
+          class="textarea textarea-bordered textarea-secondary w-full"
+        />
 
-    <div v-else>
-      <textarea
-        id="memo"
-        v-model="practiceLogMemo"
-        class="textarea textarea-bordered w-full"
-      />
+        <div class="flex justify-end mt-4 gap-3">
+          <div class="flex items-center">
+            <button
+              class="py-3 px-4 w-28 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              @click="updatePracticeLog(practiceLogMemo)"
+            >
+              Update
+            </button>
+          </div>
 
-      <div class="flex justify-end mt-4 gap-3">
-        <div class="flex items-center">
-          <button
-            class="py-3 px-4 w-28 bg-success font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-            @click="updatePracticeLog(practiceLogMemo)"
-          >
-            Update
-          </button>
-        </div>
-
-        <div class="flex items-center">
-          <button
-            class="py-3 px-4 w-28 bg-secondary font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-            @click="cancelEdit()"
-          >
-            Cancel
-          </button>
+          <div class="flex items-center">
+            <button
+              class="py-3 px-4 w-28 bg-secondary font-semibold rounded-lg sha-icon focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              @click="cancelEdit()"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     </div>
