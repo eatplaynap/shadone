@@ -102,3 +102,7 @@
   border-right-color: #fff;
   left: -31.5px;
 }
+
+.sha-pre-wrap {
+  white-space: pre-wrap;
+}
