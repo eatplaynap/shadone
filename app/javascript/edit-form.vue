@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-     <div class="flex items-center">
+    <div class="flex items-center">
       <div class="w-24">
         <label for="memo" class="font-bold">Memo</label>
       </div>
+
       <div class="flex-1">
+        <!--          <p>{{ practiceLogMemo }}</p>-->
         <div class="sha-pre-wrap" v-text="practiceLogMemo" />
       </div>
     </div>
@@ -17,6 +19,7 @@
         Add Memo
       </button>
     </div>
+
     <div v-else>
       <textarea
         id="memo"
