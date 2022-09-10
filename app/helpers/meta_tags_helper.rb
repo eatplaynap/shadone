@@ -4,17 +4,17 @@ module MetaTagsHelper
   def default_meta_tags
     {
       site: 'Shadone',
-      description: 'Shadone; the app helps you do shadowing exercise with YouTube videos!',
+      description: 'Shadone: The app helps you do shadowing exercise with YouTube videos!',
       keywords: %w[Shadone Shadowing YouTube English],
       charset: 'utf-8',
-      canonical: 'https://shadone.herokuapp.com/welcome',
+      canonical: 'https://www.shadone.net',
       og: {
         title: 'Shadone',
         type: 'website',
         site_name: 'Shadone',
         description: :description,
         image: image_url('ogp.png'),
-        url: 'https://shadone.herokuapp.com/welcome'
+        url: 'https://www.shadone.net'
       },
       twitter: {
         card: 'summary_large_image',
