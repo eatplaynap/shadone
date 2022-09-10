@@ -207,7 +207,7 @@ export default {
       startSecond: 55,
       endMinute: 1,
       endSecond: 20,
-      loopCount: 1,
+      loopCount: 3,
       remainingLoopCount: null,
       playbackSpeed: 1,
       selectItems: [
