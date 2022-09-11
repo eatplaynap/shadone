@@ -6,8 +6,7 @@ document.addEventListener('turbolinks:load', () => {
   const editForm = document.querySelector(selector)
   if (editForm) {
     new Vue({
-      render: (h) =>
-        h(App),
+      render: (h) => h(App),
     }).$mount(selector)
   }
 })
