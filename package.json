@@ -17,6 +17,7 @@
     "tailwindcss": "^3.1.6",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.14",
+    "vue-js-modal": "^2.0.1",
     "vue-loader": "^15.9.8",
     "vue-template-compiler": "^2.6.14",
     "vue-toast-notification": "^0.6",

@@ -12,6 +12,7 @@ import '../after-login-main.js'
 import '../youtube-loop.js'
 import '../edit-form.js'
 import '../browser_timezone_cookie.js'
+import '../video-modal.js'
 
 Rails.start()
 Turbolinks.start()
