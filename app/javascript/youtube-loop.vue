@@ -19,6 +19,7 @@
             v-model="url"
             type="url"
             class="input input-bordered input-secondary w-full"
+            placeholder="https://www.youtube.com/watch?v=a-kWmI-RBUQ"
           />
         </div>
       </div>
@@ -40,7 +41,9 @@
             v-model.number="startMinute"
             type="number"
             min="0"
+            max="59"
             class="input input-bordered input-secondary w-full"
+            placeholder="0"
           />
         </div>
         <div class="w-4">
@@ -52,7 +55,9 @@
             v-model.number="startSecond"
             type="number"
             min="0"
+            max="59"
             class="input input-bordered input-secondary w-full"
+            placeholder="55"
           />
         </div>
       </div>
@@ -74,7 +79,9 @@
             v-model.number="endMinute"
             type="number"
             min="0"
+            max="59"
             class="input input-bordered input-secondary w-full"
+            placeholder="1"
           />
         </div>
         <div class="w-4">
@@ -86,7 +93,9 @@
             v-model.number="endSecond"
             type="number"
             min="0"
+            max="59"
             class="input input-bordered input-secondary w-full"
+            placeholder="22"
           />
         </div>
       </div>
@@ -108,6 +117,7 @@
             v-model.number="loopCount"
             type="number"
             min="1"
+            placeholder="3"
             class="input input-bordered input-secondary w-full"
           />
         </div>
@@ -201,13 +211,13 @@ export default {
       playerVars: {
         rel: 0,
       },
-      url: 'https://www.youtube.com/watch?v=caRRYz3LKns',
+      url: 'https://www.youtube.com/watch?v=a-kWmI-RBUQ',
       playing: false,
       startMinute: 0,
-      startSecond: 0,
-      endMinute: 0,
-      endSecond: 0,
-      loopCount: 1,
+      startSecond: 55,
+      endMinute: 1,
+      endSecond: 20,
+      loopCount: 3,
       remainingLoopCount: null,
       playbackSpeed: 1,
       selectItems: [

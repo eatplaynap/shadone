@@ -1,23 +1,24 @@
+- content_for(:title, "#{@practice_log.practice_on}'s practice")
 .mx-auto.max-w-xl
   .flex.justify-between.py-5.px-5
     - if @practice_log.previous
       = link_to @practice_log.previous, class: 'w-11 h-11 flex items-center justify-center p-2 sha-label' do
-        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon" viewBox="0 0 24 24"
+        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon" viewBox="0 0 24 24" width="100%"
           path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
     - else
       .w-11.h-11.flex.items-center.justify-center.p-2
-        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon is-disabled" viewBox="0 0 24 24"
+        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon is-disabled" viewBox="0 0 24 24" width="100%"
           path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
 
     h1.sha-logo.text-2xl.font-bold.mb-1 = @practice_log.practice_on
 
     - if @practice_log.next
       = link_to @practice_log.next, class: 'w-11 h-11 flex items-center justify-center p-2 sha-label' do
-        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon" viewBox="0 0 24 24"
+        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon" viewBox="0 0 24 24" width="100%"
           path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"
     - else
       .w-11.h-11.flex.items-center.justify-center.p-2
-        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon is-disabled" viewBox="0 0 24 24"
+        svg xmlns="http://www.w3.org/2000/svg" class="sha-icon is-disabled" viewBox="0 0 24 24" width="100%"
           path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"
 
   .sha-youtube__container
