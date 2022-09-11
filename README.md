@@ -37,16 +37,16 @@ $ bin/lint
 ### Screen Shots
 ### YouTube Loop
 #### Before Starting Loop
-![image](https://user-images.githubusercontent.com/63531341/182333029-4e7c2379-f939-4cb2-8229-7961154e3106.png)
+![image](https://user-images.githubusercontent.com/63531341/189540781-dedeb147-c244-4e03-baa4-13cfcbb7bee8.png)
 
 #### Middle of Loop
-![image](https://user-images.githubusercontent.com/63531341/182333393-9be999fe-df58-4a4a-a43f-817a46a082a5.png)
+![image](https://user-images.githubusercontent.com/63531341/189540827-7dafa32e-03f0-4697-9a5b-c4a720e60744.png)
 
 #### After Finishing Loop
-![image](https://user-images.githubusercontent.com/63531341/182333699-184ee9bc-45c1-494d-acea-d162eae45e45.png)
-
+![image](https://user-images.githubusercontent.com/63531341/189540878-f6a6bec2-cc4b-4fd5-b53d-51eb59f9c52e.png)
 
 ### Calendar
 ![image](https://user-images.githubusercontent.com/63531341/182334093-4bf9499f-48e5-4fbe-a69b-6c25cbc76f5a.png)
+
 ### Edit Practice Log
-![image](https://user-images.githubusercontent.com/63531341/182334397-792bf752-9d62-437b-858f-4ab950efe4ce.png)
+![image](https://user-images.githubusercontent.com/63531341/189540973-e6797cb2-a037-4e08-84fd-91e1d5793d70.png)
