@@ -27,6 +27,8 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@vue/server-test-utils": "1",
+    "@vue/test-utils": "1",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.2",
