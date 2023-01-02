@@ -1,0 +1,1 @@
+import AfterLoginMain from "../../app/javascript/after-login-main.vue";
