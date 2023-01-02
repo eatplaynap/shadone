@@ -39,6 +39,7 @@
     "webpack-dev-server": "^3"
   },
   "scripts": {
-    "lint": "eslint 'app/javascript/**/*.{js,vue}' --max-warnings=0"
+    "lint": "eslint 'app/javascript/**/*.{js,vue}' --max-warnings=0",
+    "test": "jest"
   }
 }
