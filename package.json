@@ -41,5 +41,10 @@
   "scripts": {
     "lint": "eslint 'app/javascript/**/*.{js,vue}' --max-warnings=0",
     "test": "jest"
+  },
+  "jest": {
+    "roots": [
+      "spec/javascripts"
+    ]
   }
 }
