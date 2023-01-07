@@ -2,6 +2,7 @@
   <div id="app">
     <button
       class="py-2 px-4 text-sm bg-accent text-base font-semibold rounded-lg sha-icon"
+      data-testid="how-to-use-button"
       @click="show"
     >
       How To Use
@@ -11,6 +12,7 @@
       width="80%"
       :max-width="560"
       :adaptive="true"
+      data-testid="instruction-video-modal"
     >
       <iframe
         width="100%"
