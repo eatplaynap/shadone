@@ -1,4 +1,4 @@
-import { shallowMount,mount, createLocalVue } from '@vue/test-utils'
+import { mount, createLocalVue } from '@vue/test-utils'
 import VModal from 'vue-js-modal/dist/index.nocss.js'
 import VideoModal from '../../app/javascript/video-modal.vue'
 
