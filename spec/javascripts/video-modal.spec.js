@@ -9,7 +9,7 @@ describe('VideoModal', () => {
         const wrapper = mount(VideoModal, {
             localVue
         })
-        expect(wrapper.get(`[data-testid="instruction-video-modal"]`).exists()).not.toBe(true)
+        expect(wrapper.find(`[data-testid="instruction-video-modal"]`).exists()).not.toBe(true)
         await wrapper.get(`[data-testid="how-to-use-button"]`).trigger('click')
         expect(wrapper.get(`[data-testid="instruction-video-modal"]`).exists()).toBe(true)
     })
