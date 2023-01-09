@@ -1,5 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app"
+   data-testid="video-modal-container"
+  >
     <button
       class="py-2 px-4 text-sm bg-accent text-base font-semibold rounded-lg sha-icon"
       data-testid="how-to-use-button"
