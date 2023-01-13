@@ -49,8 +49,11 @@ jobs:
       - name: yarn install
         run:  yarn install --check-files
 
-      - name: Setup test DB
+      - name: Set up test DB
         run: bundle exec rails db:setup
 
-      - name: Run tests
+      - name: Run rspec
         run: bundle exec rspec
+
+      - name: Run Jest
+        run: yarn test
