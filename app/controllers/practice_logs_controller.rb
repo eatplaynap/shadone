@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class PracticeLogsController < ApplicationController
-  def new; end
+  def new
+  end
 
   def show
     @practice_log = current_user.practice_logs.find(params[:id])
