@@ -13,10 +13,10 @@ module Shadone
 
     config.generators do |g|
       g.test_framework :rspec,
-                       fixtures: false,
-                       view_specs: false,
-                       helper_specs: false,
-                       routing_specs: false
+        fixtures: false,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false
     end
 
     # Configuration for the application, engines, and railties goes here.
@@ -26,7 +26,7 @@ module Shadone
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.time_zone = 'UTC'
+    config.time_zone = "UTC"
     config.active_record.default_timezone = :utc
   end
 end
