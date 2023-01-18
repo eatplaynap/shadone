@@ -25,6 +25,9 @@ jobs:
           node-version: '16.13.0'
           cache: 'yarn'
 
+      - name: Standard
+        run: bundle exec standardrb
+
       - name: yarn install
         run:  yarn install --check-files
 
