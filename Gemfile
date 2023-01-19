@@ -55,8 +55,8 @@ group :test do
   gem "capybara", ">= 3.26"
   gem "selenium-webdriver", ">= 4.0.0.rc1"
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'simplecov', require: false
-  gem 'webdrivers'
+  gem "simplecov", require: false
+  gem "webdrivers"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
