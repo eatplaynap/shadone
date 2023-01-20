@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :user do
-    provider { 'google_oauth2' }
+    provider { "google_oauth2" }
     uid { Faker::Number.number.to_s }
     name { Faker::Name.name }
     image_url { Faker::Avatar.image }

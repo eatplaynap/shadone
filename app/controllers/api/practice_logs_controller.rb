@@ -28,6 +28,6 @@ class API::PracticeLogsController < ApplicationController
   end
 
   def use_time_zone(&action)
-    Time.use_zone(Time.find_zone(cookies['browser.timezone'].presence) || Time.zone, &action)
+    Time.use_zone(Time.find_zone(cookies["browser.timezone"].presence) || Time.zone, &action)
   end
 end
