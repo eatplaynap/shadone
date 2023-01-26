@@ -11,7 +11,7 @@ With Shadone you can
 
 ## Developed With
 - Ruby 3.0.3
-- Rails  6.1.5.1
+- Rails  6.1.7.2
 - Vue.js 2.6.14
 
 ## How to use

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-bundle exec rubocop
+bundle exec standardrb
 bundle exec slim-lint app/views
 bin/yarn lint
