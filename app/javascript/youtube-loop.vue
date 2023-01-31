@@ -161,7 +161,7 @@
         </div>
       </div>
 
-      <div class="flex gap-5 mt-4">
+      <div class="flex gap-5 mt-4 justify-center sm:justify-start">
         <div class="flex items-center">
           <button
             v-if="!playing"
