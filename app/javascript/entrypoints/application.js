@@ -25,4 +25,4 @@ console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify
 // const channels = import.meta.globEager('./**/*_channel.js')
 
 // Example: Import a stylesheet in app/frontend/index.css
-// import '~/index.css'
+import '~/stylesheets/application.css'
