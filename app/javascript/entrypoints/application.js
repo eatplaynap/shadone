@@ -8,11 +8,11 @@ import Turbolinks from 'turbolinks'
 import * as ActiveStorage from '@rails/activestorage'
 import '~/stylesheets/application.css'
 
-// import '../after-login-main.js'
-// import '../youtube-loop.js'
-// import '../edit-form.js'
-// import '../browser_timezone_cookie.js'
-// import '../video-modal.js'
+import '../after-login-main.js'
+import '../youtube-loop.js'
+import '../edit-form.js'
+import '../browser_timezone_cookie.js'
+import '../video-modal.js'
 
 Rails.start()
 Turbolinks.start()
