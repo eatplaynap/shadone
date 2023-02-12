@@ -1,4 +1,4 @@
-- content_for(:title, "#{@practice_log.practice_on}'s practice")
+- content_for(:title, @practice_log.practice_on)
 .mx-auto.max-w-xl
   .flex.justify-between.py-5.px-5
     - if @practice_log.previous
