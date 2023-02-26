@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <YouTubeLoop @loop-done="createPracticeLog" />
-    <PracticeCalendar :practice-logs="practiceLogs" />
+    <PracticeCalendar
+      :practice-logs="practiceLogs"
+      :done-image-url="doneImageUrl"
+      :blank-image-url="blankImageUrl"
+    />
     <div class="text-xl mt-2 text-primary">
       You have practiced for {{ totalPracticeDuration }} in total.
     </div>
@@ -27,6 +31,8 @@ export default {
   props: {
     notice: { type: String, default: null, required: false },
     userId: { type: String, default: null, required: true },
+    doneImageUrl: { type: String, default: null, required: false },
+    blankImageUrl: { type: String, default: null, required: false },
   },
   data() {
     return {
