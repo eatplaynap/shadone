@@ -116,8 +116,8 @@
 export default {
   props: {
     practiceLogs: { type: Array, required: true },
-    doneImageUrl: { type: String, required: false },
-    blankImageUrl: { type: String, required: false },
+    doneImageUrl: { type: String, required: true, default: null },
+    blankImageUrl: { type: String, required: true, default: null },
   },
   data() {
     return {
