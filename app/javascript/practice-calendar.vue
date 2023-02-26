@@ -89,7 +89,7 @@
                     <div class="h-2/3">
                       <img
                         style="transform: rotate(1deg)"
-                        src="/images/done.svg"
+                        :src="doneImageUrl"
                         class="h-10/12"
                       />
                     </div>
@@ -99,7 +99,7 @@
                       {{ date.date }}
                     </div>
                     <div class="h-2/3">
-                      <img src="/images/blank.svg" class="h-10/12" />
+                      <img :src="blankImageUrl" class="h-10/12" />
                     </div>
                   </div>
                 </td>
@@ -116,6 +116,8 @@
 export default {
   props: {
     practiceLogs: { type: Array, required: true },
+    doneImageUrl: { type: String, required: false },
+    blankImageUrl: { type: String, required: false },
   },
   data() {
     return {

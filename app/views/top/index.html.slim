@@ -1,5 +1,5 @@
 - content_for(:title, 'Top')
 - if notice
-  #js-after-login-main data-notice="#{notice}" data-user-id="#{current_user.id}"
+  #js-after-login-main data-notice="#{notice}" data-user-id="#{current_user.id}" data-done-image-url="#{image_path('done.svg')}" data-blank-image-url="#{image_path('blank.svg')}"
 - else
-  #js-after-login-main data-user-id="#{current_user.id}"
+  #js-after-login-main data-user-id="#{current_user.id}" data-done-image-url="#{image_path('done.svg')}" data-blank-image-url="#{image_path('blank.svg')}"
