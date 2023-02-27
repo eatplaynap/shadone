@@ -7,8 +7,9 @@ html(data-theme="shadone")
     = display_meta_tags(default_meta_tags)
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = vite_client_tag
+    = vite_javascript_tag 'application', 'data-turbo-track': 'reload'
+    = vite_stylesheet_tag 'application', 'data-turbo-track': 'reload'
     = favicon_link_tag asset_path('shadone-favicon.svg')
   body.text-main
     .flex.flex-col.min-h-screen

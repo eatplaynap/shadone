@@ -7,6 +7,8 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
     "@tailwindcss/typography": "^0.5.4",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue2": "^2.2.0",
     "@vue/composition-api": "^1.6.2",
     "autoprefixer": "10",
     "daisyui": "^2.19.0",
@@ -43,6 +45,8 @@
     "jest-environment-jsdom": "^29.3.1",
     "jest-transform-stub": "^2.0.0",
     "prettier": "^2.6.2",
+    "vite": "^4.0.0",
+    "vite-plugin-ruby": "^3.1.2",
     "webpack-dev-server": "^3"
   },
   "scripts": {

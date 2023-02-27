@@ -25,7 +25,7 @@ With Shadone you can
 ### Installation
 ```bash
 $ bin/setup
-$ foreman start
+$ foreman start -f Procfile.dev
 ```
 
 ### Testing / Lint

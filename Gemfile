@@ -69,3 +69,4 @@ gem "slim_lint"
 gem "slim-rails"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "youtube_rails"
+gem "vite_rails"
